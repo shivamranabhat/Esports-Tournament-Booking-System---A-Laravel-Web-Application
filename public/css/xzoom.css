@@ -1,0 +1,95 @@
+/* Compatibility styles for frameworks like bootstrap, foundation e.t.c */
+.xzoom-source img, .xzoom-preview img, .xzoom-lens img {
+    display: block;
+    max-width: none;
+    max-height: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+  /* --------------- */
+  
+  /* xZoom Styles below */
+  .xzoom-container { 
+    display: inline-block;
+  }
+  
+  .xzoom-thumbs {
+    text-align: center;
+    margin: 10px 0;
+  }
+  .xzoom-container{
+    width: 100%;
+  }
+  .xzoom-container .xzoom5{
+    width: 100%!important;
+  }
+  
+  .xzoom5 {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Thumbs */
+   .xzoom-gallery5 {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 3px;
+  }
+  
+  .xzoom-source, .xzoom-hidden {
+    display: block;
+    position: static;
+    float: none;
+    clear: both;
+  }
+  
+  /* Everything out of border is hidden */
+  .xzoom-hidden {
+    overflow: hidden;
+  }
+  
+  /* Preview */
+  .xzoom-preview {
+    border: 1px solid #777;
+  }
+  
+  /* Lens */
+  .xzoom-lens {
+    border: 1px solid #777;
+    cursor: crosshair;
+  }
+  
+  /* Loading */
+  .xzoom-loading {
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    opacity: .7;
+    /* background: url(../images/xloading.html); */
+    width: 48px;
+    height: 48px;
+  }
+  
+  /* Additional class that applied to thumb when it is active */
+  .xactive {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Caption */
+  .xzoom-caption {
+    position: absolute;
+    bottom: -43px;
+    left: 0;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .xzoom-caption span {
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: block;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 10px;
+  }
