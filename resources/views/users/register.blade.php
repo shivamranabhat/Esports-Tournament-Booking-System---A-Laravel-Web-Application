@@ -5,14 +5,14 @@
         @csrf
         <div class="form-group">
             <label>Email</label>
-            <input placeholder="Enter your Email"  id="email" name="email" type="email" value="{{old('email')}}">
+            <input placeholder="Enter your Email"  id="email" name="email" type="email" lass="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" required autocomplete="email">
             @error('email')
                <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
             @enderror
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input placeholder="Enter your password" id="password" name="password" type="password" value="{{old('password')}}">
+            <input placeholder="Enter your password" id="password" lass="form-control @error('password') is-invalid @enderror" name="password" type="password" value="{{old('password')}}" required autocomplete="new-password">
             @error('password')
             <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
             @enderror

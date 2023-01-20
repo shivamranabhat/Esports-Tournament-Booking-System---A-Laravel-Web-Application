@@ -8,13 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/style.css">
+    {{-- <link rel="shortcut icon" href="http://127.0.0.1:8000/images/fav.png" type="image/x-icon"> --}}
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/slick.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/magnific-popup.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/nice-select.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/animate.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
@@ -53,7 +53,7 @@
                         </nav>
                         <div class="right-area header-action d-flex align-items-center">
                             <div class="search-icon">
-                                <a href="#"><img src="images/search_btn.png" alt="icon"></a>
+                                <a href="#"><img src="http://127.0.0.1:8000/images/search_btn.png" alt="icon"></a>
                             </div>
                             @auth()
                             <span role="button" class="text-decoration-none ml-5" id="profile">
@@ -228,17 +228,38 @@
             </div>
         </footer>
     <!-- footer-section end -->
+    <script>
+        let timers = document.querySelectorAll(".countdown-timer");
+        for (let i = 0; i < timers.length; i++) {
+            let x = setInterval(function() {
+                let countDownDate = new Date(timers[i].getAttribute('data-closing-time')).getTime();
+                let now = new Date().getTime();
+                let distance = countDownDate - now;
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                timers[i].innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                if (distance < 0) {
+                    clearInterval(x);
+                    timers[i].innerHTML = "CLOSED";
+                    timers[i].closest('.single-item').style.display = "none";
+                }
+            }, 1000);
+        }
+
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/profiletoggle.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/fontawesome.js"></script>
-    <script src="js/countdown.jquery.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/wow.js"></script>
-    <script src="js/main.js"></script>
+    <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
+    <script src="http://127.0.0.1:8000/js/profiletoggle.js"></script>
+    <script src="http://127.0.0.1:8000/js/bootstrap.min.js"></script>
+    <script src="http://127.0.0.1:8000/js/slick.js"></script>
+    <script src="http://127.0.0.1:8000/js/jquery.nice-select.min.js"></script>
+    <script src="http://127.0.0.1:8000/js/fontawesome.js"></script>
+    <script src="http://127.0.0.1:8000/js/countdown.jquery.js"></script>
+    <script src="http://127.0.0.1:8000/js/jquery.counterup.min.js"></script>
+    <script src="http://127.0.0.1:8000/js/jquery.waypoints.min.js"></script>
+    <script src="http://127.0.0.1:8000/js/wow.js"></script>
+    <script src="http://127.0.0.1:8000/js/main.js"></script>
 </body>
 </html>

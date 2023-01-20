@@ -57,30 +57,12 @@
                         </div>
                     </div>
                     <div class="available-game-carousel">
+                        @foreach ($games as $game)
                         <div class="single-item">
-                            <a href="#"><img src="images/pubg.jpg" alt="image" class="rounded"></a>
+                            <a href="{{$game->id}}"><img src="{{ asset('storage/'. $game->image) }}" alt="image" class="rounded"></a>
                         </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/garena.jpg" alt="image" class="rounded"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/cod.jpg" alt="image" class="rounded"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/clash of clans.jpg" alt="image" class="rounded"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/clash royale.jpg" alt="image" class="rounded"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/arena of valor.jpg" alt="image" class="rounded"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/tournament-details-image.jpg" alt="image" class="rounded"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="images/chess.jpg" alt="image" class="rounded"></a>
-                        </div>
+                        @endforeach
+
                     </div>
                     {{-- <div class="btn-area text-center">
                         <a href="tournaments.html" class="cmn-btn">View All</a>
@@ -214,44 +196,44 @@
                         </div>
                     </div>
                 </div>
+                @foreach ($tournaments as $tournament)
                 <div class="single-item">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img" src="images/game-img-1.png" alt="image">
+                            <img class="top-img" src="{{ asset('storage/'. $tournament->image->image) }}" alt="image">
                         </div>
                         <div class="col-lg-6 col-md-9 d-flex align-items-center">
                             <div class="mid-area">
-                                <h4>Mix It Mondays - Carry Only</h4>
+                                <h4>{{$tournament->name}}</h4>
                                 <div class="title-bottom d-flex">
                                     <div class="time-area bg">
                                         <img src="images/waitng-icon.png" alt="image">
-                                        <span>Starts in</span>
-                                        <span class="time">10d 2H 18M</span>
+                                        <span class="countdown-timer" data-closing-time="{{ $tournament->closing_time }}"></span></p>
                                     </div>
                                     <div class="date-area bg">
-                                        <span class="date">Apr 21, 5:00 AM EDT</span>
+                                        <span class="date">{{$tournament->closing_time}}</span>
                                     </div>
                                 </div>
                                 <div class="single-box d-flex">
                                     <div class="box-item">
-                                        <span class="head">ENTRY/PLAYER</span>
-                                        <span class="sub">10 Credits</span>
+                                        <span class="head">ENTRY Fees</span>
+                                        <span class="sub">Rs.{{$tournament->fees}}</span>
                                     </div>
                                     <div class="box-item">
                                         <span class="head">Team Size</span>
-                                        <span class="sub">2 VS 2</span>
+                                        <span class="sub">{{$tournament->type}} VS {{$tournament->type}}</span>
                                     </div>
                                     <div class="box-item">
                                         <span class="head">Max Teams</span>
-                                        <span class="sub">64</span>
+                                        <span class="sub">{{$tournament->team_size}}</span>
                                     </div>
                                     <div class="box-item">
                                         <span class="head">Enrolled</span>
                                         <span class="sub">11</span>
                                     </div>
                                     <div class="box-item">
-                                        <span class="head">skill Level</span>
-                                        <span class="sub">All</span>
+                                        <span class="head">Game</span>
+                                        <span class="sub">{{$tournament->game->name}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -260,230 +242,16 @@
                             <div class="prize-area text-center">
                                 <div class="contain-area">
                                     <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
-                                    <h4 class="dollar">$739</h4>
-                                    <a href="tournaments-single.html" class="cmn-btn">View Tournament</a>
+                                    <h4 class="dollar">Rs. {{$tournament->prize_pool}}</h4>
+                                    <a href="#" class="cmn-btn">View Tournament</a>
                                     <p>Top 3 Players Win a Cash Prize</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="single-item">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img" src="images/game-img-2.png" alt="image">
-                        </div>
-                        <div class="col-lg-6 col-md-9 d-flex align-items-center">
-                            <div class="mid-area">
-                                <h4>Head 2 Head - Weekly - Nano</h4>
-                                <div class="title-bottom d-flex">
-                                    <div class="time-area bg">
-                                        <img src="images/waitng-icon.png" alt="image">
-                                        <span>Starts in</span>
-                                        <span class="time">10d 2H 18M</span>
-                                    </div>
-                                    <div class="date-area bg">
-                                        <span class="date">Apr 21, 5:00 AM EDT</span>
-                                    </div>
-                                </div>
-                                <div class="single-box d-flex">
-                                    <div class="box-item">
-                                        <span class="head">ENTRY/PLAYER</span>
-                                        <span class="sub">10 Credits</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Team Size</span>
-                                        <span class="sub">2 VS 2</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Max Teams</span>
-                                        <span class="sub">64</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Enrolled</span>
-                                        <span class="sub">11</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">skill Level</span>
-                                        <span class="sub">All</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 d-flex align-items-center">
-                            <div class="prize-area text-center">
-                                <div class="contain-area">
-                                    <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
-                                    <h4 class="dollar">$854</h4>
-                                    <a href="tournaments-single.html" class="cmn-btn">View Tournament</a>
-                                    <p>Top 3 Players Win a Cash Prize</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-item">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img" src="images/game-img-3.png" alt="image">
-                        </div>
-                        <div class="col-lg-6 col-md-9 d-flex align-items-center">
-                            <div class="mid-area">
-                                <h4>marathon aim premium</h4>
-                                <div class="title-bottom d-flex">
-                                    <div class="time-area bg">
-                                        <img src="images/waitng-icon.png" alt="image">
-                                        <span>Starts in</span>
-                                        <span class="time">10d 2H 18M</span>
-                                    </div>
-                                    <div class="date-area bg">
-                                        <span class="date">Apr 21, 5:00 AM EDT</span>
-                                    </div>
-                                </div>
-                                <div class="single-box d-flex">
-                                    <div class="box-item">
-                                        <span class="head">ENTRY/PLAYER</span>
-                                        <span class="sub">10 Credits</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Team Size</span>
-                                        <span class="sub">2 VS 2</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Max Teams</span>
-                                        <span class="sub">64</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Enrolled</span>
-                                        <span class="sub">11</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">skill Level</span>
-                                        <span class="sub">All</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 d-flex align-items-center">
-                            <div class="prize-area text-center">
-                                <div class="contain-area">
-                                    <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
-                                    <h4 class="dollar">$105</h4>
-                                    <a href="tournaments-single.html" class="cmn-btn">View Tournament</a>
-                                    <p>Top 3 Players Win a Cash Prize</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-item">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img" src="images/game-img-4.png" alt="image">
-                        </div>
-                        <div class="col-lg-6 col-md-9 d-flex align-items-center">
-                            <div class="mid-area">
-                                <h4>Begum Fortnite Tournament 23</h4>
-                                <div class="title-bottom d-flex">
-                                    <div class="time-area bg">
-                                        <img src="images/waitng-icon.png" alt="image">
-                                        <span>Starts in</span>
-                                        <span class="time">10d 2H 18M</span>
-                                    </div>
-                                    <div class="date-area bg">
-                                        <span class="date">Apr 21, 5:00 AM EDT</span>
-                                    </div>
-                                </div>
-                                <div class="single-box d-flex">
-                                    <div class="box-item">
-                                        <span class="head">ENTRY/PLAYER</span>
-                                        <span class="sub">10 Credits</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Team Size</span>
-                                        <span class="sub">2 VS 2</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Max Teams</span>
-                                        <span class="sub">64</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Enrolled</span>
-                                        <span class="sub">11</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">skill Level</span>
-                                        <span class="sub">All</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 d-flex align-items-center">
-                            <div class="prize-area text-center">
-                                <div class="contain-area">
-                                    <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
-                                    <h4 class="dollar">$473</h4>
-                                    <a href="tournaments-single.html" class="cmn-btn">View Tournament</a>
-                                    <p>Top 3 Players Win a Cash Prize</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-item mp-none">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img" src="images/game-img-5.png" alt="image">
-                        </div>
-                        <div class="col-lg-6 col-md-9 d-flex align-items-center">
-                            <div class="mid-area">
-                                <h4>60 Player - Weekly - Micro</h4>
-                                <div class="title-bottom d-flex">
-                                    <div class="time-area bg">
-                                        <img src="images/waitng-icon.png" alt="image">
-                                        <span>Starts in</span>
-                                        <span class="time">10d 2H 18M</span>
-                                    </div>
-                                    <div class="date-area bg">
-                                        <span class="date">Apr 21, 5:00 AM EDT</span>
-                                    </div>
-                                </div>
-                                <div class="single-box d-flex">
-                                    <div class="box-item">
-                                        <span class="head">ENTRY/PLAYER</span>
-                                        <span class="sub">10 Credits</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Team Size</span>
-                                        <span class="sub">2 VS 2</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Max Teams</span>
-                                        <span class="sub">64</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Enrolled</span>
-                                        <span class="sub">11</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">skill Level</span>
-                                        <span class="sub">All</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 d-flex align-items-center">
-                            <div class="prize-area text-center">
-                                <div class="contain-area">
-                                    <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
-                                    <h4 class="dollar">$778</h4>
-                                    <a href="tournaments-single.html" class="cmn-btn">View Tournament</a>
-                                    <p>Top 3 Players Win a Cash Prize</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
+
             </div>
         </div>
     </section>

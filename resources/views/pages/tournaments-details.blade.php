@@ -4,9 +4,9 @@
     <!-- banner-section start -->
     <section id="banner-section" class="inner-banner tournaments">
         <div class="ani-img">
-            <img class="img-1" src="images/banner-circle-1.png" alt="icon">
-            <img class="img-2" src="images/banner-circle-2.png" alt="icon">
-            <img class="img-3" src="images/banner-circle-2.png" alt="icon">
+            <img class="img-1" src="http://127.0.0.1:8000/images/banner-circle-1.png" alt="icon">
+            <img class="img-2" src="http://127.0.0.1:8000/images/banner-circle-2.png" alt="icon">
+            <img class="img-3" src="http://127.0.0.1:8000/images/banner-circle-2.png" alt="icon">
         </div>
         <div class="banner-content d-flex align-items-center">
             <div class="container">
@@ -32,16 +32,16 @@
                 <div class="top-area">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
-                            <img src="images/character_01.png" alt="image">
+                            <img src="http://127.0.0.1:8000/images/character_01.png" alt="image">
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 d-flex align-items-center justify-content-sm justify-content-center">
                             <div class="mid-area text-center">
-                                <img src="images/text-img.png" alt="image">
-                                <h5>Fortnite Weekly Nano</h5>
+                                <img src="http://127.0.0.1:8000/images/text-img.png" alt="image">
+                                <h5>{{$tournaments->name}}</h5>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 zindex">
-                            <img src="images/character_02.png" alt="image">
+                            <img src="http://127.0.0.1:8000/images/character_02.png" alt="image">
                         </div>
                     </div>
                 </div>
@@ -49,21 +49,20 @@
                     <div class="bottom">
                         <div class="row d-flex justify-content-between">
                             <div class="col-lg-8 col-md-8 justify-content-sm-center d-grid">
-                                <h3>Head 2 Head - Weekly - Nano</h3>
+                                <h3>{{$tournaments->name}}</h3>
                                 <div class="title-bottom d-flex">
                                     <div class="time-area bg">
-                                        <img src="images/waitng-icon.png" alt="image">
-                                        <span>Starts in</span>
-                                        <span class="time">10d 2H 18M</span>
+                                        <img src="http://127.0.0.1:8000/images/waitng-icon.png" alt="image">
+                                        <span class="countdown-timer" data-closing-time="{{ $tournaments->closing_time }}"></span>
                                     </div>
                                     <div class="date-area bg">
-                                        <span class="date">Apr 21, 5:00 AM EDT</span>
+                                        <span class="date">{{$tournaments->closing_time}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 text-center">
-                                <h2 class="dollar">$739</h2>
-                                <a href="registration.html" class="cmn-btn">Join Now!</a>
+                                <h2 class="dollar">Rs.{{$tournaments->fees}}</h2>
+                                <a href="#" class="cmn-btn">Join Now!</a>
                             </div>
                         </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -92,44 +91,44 @@
                             <div class="row wrapper">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="single-area">
-                                        <img src="images/format-icon-1.png" alt="image">
+                                        <img src="http://127.0.0.1:8000/images/format-icon-1.png" alt="image">
                                         <h6>Game</h6>
-                                        <p class="text-sm">CS:GO</p>
+                                        <p class="text-sm">{{$tournaments->game->name}}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="single-area">
-                                        <img src="images/format-icon-2.png" alt="image">
+                                        <img src="http://127.0.0.1:8000/images/format-icon-2.png" alt="image">
                                         <h6>Check-in period</h6>
-                                        <p class="text-sm">45 minutes before start</p>
+                                        <p class="text-sm">15 minutes before start</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="single-area">
-                                        <img src="images/format-icon-3.png" alt="image">
+                                        <img src="http://127.0.0.1:8000/images/format-icon-3.png" alt="image">
                                         <h6>Team Size</h6>
-                                        <p class="text-sm">1VS1</p>
+                                        <p class="text-sm">{{$tournaments->team_size}}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="single-area">
-                                        <img src="images/format-icon-4.png" alt="image">
+                                        <img src="http://127.0.0.1:8000/images/format-icon-4.png" alt="image">
                                         <h6>Entry Fee</h6>
-                                        <p class="text-sm">Free to enter</p>
+                                        <p class="text-sm">{{$tournaments->fees}}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="single-area">
-                                        <img src="images/format-icon-5.png" alt="image">
+                                        <img src="http://127.0.0.1:8000/images/format-icon-5.png" alt="image">
                                         <h6>Prize Pool</h6>
-                                        <p class="text-sm">$100</p>
+                                        <p class="text-sm">Rs.{{$tournaments->prize_pool}}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="single-area">
-                                        <img src="images/format-icon-6.png" alt="image">
+                                        <img src="http://127.0.0.1:8000/images/format-icon-6.png" alt="image">
                                         <h6>Tournament Format</h6>
-                                        <p class="text-sm">Single Elimination</p>
+                                        <p class="text-sm">{{$tournaments->type}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -181,24 +180,24 @@
                                         <h5>Prizes</h5>
                                     </div>
                                     <div class="result-single">
-                                        <img src="images/result-img-1.png" alt="images">
+                                        <img src="http://127.0.0.1:8000/images/result-img-1.png" alt="images">
                                         <div class="text-area d-flex justify-content-between align-items-center">
                                             <span>1st</span>
-                                            <h4>$60.0</h4>
+                                            <h4>Rs.{{$tournaments->first_prize}}</h4>
                                         </div>
                                     </div>
                                     <div class="result-single">
-                                        <img src="images/result-img-2.png" alt="images">
+                                        <img src="http://127.0.0.1:8000/images/result-img-2.png" alt="images">
                                         <div class="text-area d-flex justify-content-between align-items-center">
                                             <span>2nd</span>
-                                            <h4>$25.0</h4>
+                                            <h4>Rs.{{$tournaments->second_prize}}</h4>
                                         </div>
                                     </div>
                                     <div class="result-single">
-                                        <img src="images/result-img-3.png" alt="images">
+                                        <img src="http://127.0.0.1:8000/images/result-img-3.png" alt="images">
                                         <div class="text-area d-flex justify-content-between align-items-center">
                                             <span>3rd</span>
-                                            <h4>$15.0</h4>
+                                            <h4>Rs.{{$tournaments->third_prize}}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +207,7 @@
                                     <div class="admins-area">
                                         <div class="admins-single">
                                             <div class="left-area d-flex align-items-center">
-                                                <img src="images/admin-img-1.png" alt="images">
+                                                <img src="http://127.0.0.1:8000/images/admin-img-1.png" alt="images">
                                                 <div class="right-side">
                                                     <h6>Admin Albert</h6>
                                                     <p class="text-sm">OGXElite</p>
@@ -243,7 +242,7 @@
                                     <h4>Confirmed</h4>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-1.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-1.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -263,7 +262,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-2.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-2.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -283,7 +282,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-3.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-3.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -303,7 +302,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-4.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-4.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -323,7 +322,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-5.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-5.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -343,7 +342,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-6.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-6.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -363,7 +362,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-7.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-7.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -383,7 +382,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-8.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-8.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -403,7 +402,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-9.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-9.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
@@ -423,7 +422,7 @@
                                     </div>
                                     <div class="participants-single">
                                         <div class="left-area d-flex align-items-center">
-                                            <img src="images/participant-10.png" alt="images">
+                                            <img src="http://127.0.0.1:8000/images/participant-10.png" alt="images">
                                             <div class="right-side">
                                                 <h6>Miracle Rosser</h6>
                                             </div>
