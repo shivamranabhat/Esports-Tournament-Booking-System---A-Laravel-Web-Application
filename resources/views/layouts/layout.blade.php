@@ -48,22 +48,7 @@
                             <h4>Let's get started</h4>
                             <div class="form-area">
                                 @yield('page-name')
-                                <div class="or">
-                                    <p>And</p>
-                                </div>
-                                <div class="sign-in">
-                                    <p>Follow Us on</p>
-                                </div>
-                                <div class="reg-with">
-                                    <div class="social-area d-flex justify-content-center">
-                                        <a href="javascript:void(0)"><img src="images/social-icon-1.png" alt="image"></a>
-                                        <a class="google" href="javascript:void(0)"><img src="images/instagram.png" alt="image"></a>
-                                        <a class="google" href="javascript:void(0)"><img src="images/twitter.png" alt="image"></a>
-                                    </div>
-                                </div>
-                                <div class="account">
-                                    <p>Already have an account? <a href="/login">Sign In</a></p>
-                                 </div>
+
                             </div>
                         </div>
                     </div>

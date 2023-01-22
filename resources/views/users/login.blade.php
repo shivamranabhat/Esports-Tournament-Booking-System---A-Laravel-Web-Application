@@ -24,5 +24,21 @@
             <button type="submit" class="cmn-btn">Sign In</button>
         </div>
     </form>
+    <div class="or">
+        <p>And</p>
+    </div>
+    <div class="sign-in">
+        <p>Follow Us on</p>
+    </div>
+    <div class="reg-with">
+        <div class="social-area d-flex justify-content-center">
+            <a href="javascript:void(0)"><img src="images/social-icon-1.png" alt="image"></a>
+            <a class="google" href="javascript:void(0)"><img src="images/instagram.png" alt="image"></a>
+            <a class="google" href="javascript:void(0)"><img src="images/twitter.png" alt="image"></a>
+        </div>
+    </div>
+    <div class="account">
+        <p>Already have an account? <a href="/register">Sign Up</a></p>
+     </div>
 @endsection
 

@@ -1,11 +1,13 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\Tournament_AvatarController;
 use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\PointsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +37,11 @@ Route::get('/dashboard',[PageController::class,'dashboard']);
 //show create tournament page
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
 //Store tournament
-Route::post('/tournament/store',[TournamentController::class,'store']);
+Route::post('/tournament/store',[TournamentController::class,'store'])->middleware('auth');
+//Store points
+Route::post('/points/store',[PointsController::class,'store'])->middleware('auth');
+//Calculate points
+Route::post('/points/calculate',[PointsController::class,'calculate'])->middleware('auth');
 
 
 

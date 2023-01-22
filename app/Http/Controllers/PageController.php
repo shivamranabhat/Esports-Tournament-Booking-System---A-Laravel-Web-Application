@@ -7,6 +7,7 @@ use App\Models\Game;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -42,13 +43,20 @@ class PageController extends Controller
     }
     public function tournament_details($id)
     {
-        $tournaments = Tournament::findOrFail($id);
+        $tournaments = Tournament::find($id);
         return view('pages.tournaments-details',compact('tournaments'));
     }
     public function dashboard()
     {
+        $user = Auth::user();
+        if($user == null)
+        {
+            return redirect()->route('/login');
+        }
+        $tournaments = Tournament::where('user_id', $user->id)->get();
+        // $openBookingTournaments = Tournament::where('closing_time', '>', Carbon::now())->get();
         $games = Game::all();
-        return view('console.dashboard',compact('games'));
+        return view('console.dashboard',compact('games'),compact('tournaments'));
     }
     public function create_tournament($id)
     {

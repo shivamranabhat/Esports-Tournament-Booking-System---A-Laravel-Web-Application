@@ -47,7 +47,7 @@
     <section id="available-game-section">
         <div class="overlay pb-120">
             <div class="container wow fadeInUp">
-                <div class="main-container">
+                <div class="main-container mt-5">
                     <div class="row justify-content-between">
                         <div class="col-lg-10">
                             <div class="section-header">

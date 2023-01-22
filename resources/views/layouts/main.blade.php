@@ -40,10 +40,14 @@
                                 <ul class="navbar-nav main-menu ml-auto">
                                     <li><a href="/" class="active">Home</a></li>
                                     <li class="menu_has_children"><a href="/tournaments">Tournaments</a>
-                                        {{-- <ul class="sub-menu">
-                                            <li><a href="">Tournaments</a></li>
-                                            <li><a href="">Host Tournaments</a></li>
-                                        </ul> --}}
+                                        <ul class="sub-menu">
+                                            <li><a href="/tournaments">Tournaments</a></li>
+                                            @auth()
+                                            <li><a href="/dashboard">Host Tournaments</a></li>
+                                            @else
+                                            <li><a href="/login">Host Tournaments</a></li>
+                                            @endauth
+                                        </ul>
                                     </li>
                                     <li><a href="#">Players</a></li>
                                     <li><a href="#">About</a></li>

@@ -7,6 +7,10 @@ use Illuminate\Validation\Rule;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
 use App\Models\Game;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class TournamentController extends Controller
 {
@@ -52,11 +56,9 @@ class TournamentController extends Controller
             'image_id'=>'required',
             'game_id'=>'required'
         ]);
-
-        Tournament::create($formFields);
+        Tournament::create($formFields + ['user_id'=>auth()->user()->id]);
         return redirect('/dashboard')->with('message','Tournament created succesfully');
     }
-
     /**
      * Display the specified resource.
      *
