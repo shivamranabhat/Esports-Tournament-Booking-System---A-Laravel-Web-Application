@@ -232,29 +232,10 @@
             </div>
         </footer>
     <!-- footer-section end -->
-    <script>
-        let timers = document.querySelectorAll(".countdown-timer");
-        for (let i = 0; i < timers.length; i++) {
-            let x = setInterval(function() {
-                let countDownDate = new Date(timers[i].getAttribute('data-closing-time')).getTime();
-                let now = new Date().getTime();
-                let distance = countDownDate - now;
-                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                timers[i].innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-                if (distance < 0) {
-                    clearInterval(x);
-                    timers[i].innerHTML = "CLOSED";
-                    timers[i].closest('.single-item').style.display = "none";
-                }
-            }, 1000);
-        }
-
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
+    <script src="http://127.0.0.1:8000/js/timer.js"></script>
+    <script src="http://127.0.0.1:8000/js/select_img.js"></script>
     <script src="http://127.0.0.1:8000/js/profiletoggle.js"></script>
     <script src="http://127.0.0.1:8000/js/bootstrap.min.js"></script>
     <script src="http://127.0.0.1:8000/js/slick.js"></script>

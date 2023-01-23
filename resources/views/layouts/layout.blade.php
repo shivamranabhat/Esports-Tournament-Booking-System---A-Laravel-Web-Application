@@ -8,13 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
+    {{-- <link rel="shortcut icon" href="images/fav.png" type="image/x-icon"> --}}
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hover{
+            border:5px solid orange;
+            border-radius:10px;
+            backdrop-filter: blur(5px);
+            filter: brightness(0.5) grayscale(100%);
+
+        }
+    </style>
 </head>
 
 <body>

@@ -26,6 +26,11 @@ class PageController extends Controller
     }
     public function user_profile()
     {
+        $user = Auth::user();
+        if($user == null)
+        {
+            return redirect('/login');
+        }
         return view('users.userprofile');
     }
     public function show_tournaments()
@@ -51,7 +56,7 @@ class PageController extends Controller
         $user = Auth::user();
         if($user == null)
         {
-            return redirect()->route('/login');
+            return redirect('/login');
         }
         $tournaments = Tournament::where('user_id', $user->id)->get();
         // $openBookingTournaments = Tournament::where('closing_time', '>', Carbon::now())->get();
@@ -63,6 +68,11 @@ class PageController extends Controller
         $game = Game::find($id);
         $tournament_avatars = Tournament_Avatar::all();
         return view('console.create_tournament',compact('tournament_avatars'),['game' => $game]);
+    }
+    public function editprofile()
+    {
+        $tournament_avatars = tournament_avatar::all();
+        return view('users.editprofile',compact('tournament_avatars'));
     }
 
 }

@@ -53,6 +53,9 @@ Route::get('/tournaments',[PageController::class,'show_tournaments']);
 Route::get('/details/{id}',[PageController::class,'tournament_details']);
 //show profile page
 Route::get('/myprofile',[PageController::class,'user_profile']);
+//show edit profile page
+Route::get('/editprofile',[PageController::class,'editprofile']);
+//show register page
 Route::get('/register',[UserController::class,'create']);
 //create new user
 Route::post('/users',[UserController::class,'store']);

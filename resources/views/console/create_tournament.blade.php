@@ -47,7 +47,7 @@
                                 <div class="row">
                                     @foreach ($tournament_avatars as $avatar )
                                     <div class="col-6 col-lg-2 col-sm-3 mb-2">
-                                        <img src="{{asset('storage/'. $avatar->image)}}" data-id="{{ $avatar->id }}" class="image w=100" width="150" height="150" alt="">
+                                        <img src="{{asset('storage/'. $avatar->image)}}" data-id="{{ $avatar->id }}" class="image w-100" width="150" height="150" alt="">
                                     </div>
                                     @endforeach
                                 </div>

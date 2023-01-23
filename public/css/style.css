@@ -284,7 +284,7 @@ iframe {
     margin-top: 30px;
 }
 .pt-120 {
-    padding-top: 120px;
+    padding-top: 90px;
 }
 @media (max-width: 991px) {
     .pt-120 {
@@ -2463,27 +2463,27 @@ body::-webkit-scrollbar-thumb:hover {
 #login-reg .top-area .back-home img{
     margin-right: 10px;
 }
-#login-reg .login-reg-main{
+#login-reg .login-reg-main,#profile .login-reg-main{
     background: #4609C3;
     box-shadow: 0px 15px 76px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 40px 30px;
 }
-#login-reg .login-reg-main h4{
+#login-reg .login-reg-main h4,#profile-reg-main h4{
     margin-bottom: 30px;
 }
-#login-reg .login-reg-main form input{
+#login-reg .login-reg-main form input,#profile .login-reg-main form input{
     background: #370898;
     border-radius: 10px;
     padding: 15px 25px;
     border: none;
     color: var(--body-color);
 }
-#login-reg .login-reg-main form label{
+#login-reg .login-reg-main form label,#profile .login-reg-main form label{
     display: flex;
     color: var(--body-color);
 }
-#login-reg .login-reg-main .recover{
+#login-reg .login-reg-main .recover,#profile .login-reg-main .recover{
     margin: 20px 0 30px;
 }
 #login-reg .login-reg-main .recover p a{
@@ -2492,7 +2492,7 @@ body::-webkit-scrollbar-thumb:hover {
 #login-reg .login-reg-main .recover p{
     text-align: left;
 }
-#login-reg .login-reg-main .cmn-btn{
+#login-reg .login-reg-main .cmn-btn,#profile .login-reg-main .cmn-btn{
     border-radius: 10px;
     width: 100%;
     color: var(--body-color);
@@ -2561,10 +2561,7 @@ body::-webkit-scrollbar-thumb:hover {
     margin-bottom: -260px;
 }
 #banner-section.profile .heading-area .profile-area .photo{
-    border: 2px solid #01AEB9;
-    border-radius: 60px;
-    padding: 5px;
-    position: relative;
+
     margin-right: 30px;
 }
 #banner-section.profile .heading-area .profile-area .name-area h4{
@@ -2579,26 +2576,7 @@ body::-webkit-scrollbar-thumb:hover {
     text-transform: uppercase;
     font-weight: 500;
 }
-#banner-section.profile .heading-area .profile-area .photo::before,
-#banner-section.profile .heading-area .profile-area .photo::after{
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-}
-#banner-section.profile .heading-area .profile-area .photo::before{
-    width: 20px;
-    height: 20px;
-    top: 5px;
-    right: 5px;
-    background: #4609C3;
-}
-#banner-section.profile .heading-area .profile-area .photo::after{
-    width: 14px;
-    height: 14px;
-    top: 8px;
-    right: 8px;
-    background: #64BE56;
-}
+
 #banner-section.profile .heading-area .user-logo{
     width: 50px;
     height: 50px;
@@ -2606,7 +2584,75 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: 25px;
     margin-left: 30px;
 }
+.image{
+    cursor: pointer;
+}
+.hover{
+    border:5px solid orange;
+    border-radius:10px;
+    backdrop-filter: blur(5px);
+    filter: brightness(0.5) grayscale(100%);
 
+}
+.file-upload-container {
+width: 300px;
+height: 300px;
+border: 2px dashed #ccc;
+border-radius: 50%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+.file-upload-label {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+color: #ccc;
+text-align: center;
+cursor: pointer;
+}
+
+.file-upload-icon {
+font-size: 48px;
+color: #ccc;
+margin-bottom: 24px;
+}
+
+.file-upload-input {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+cursor: pointer;
+}
+
+.file-upload-preview {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: none;
+}
+
+.file-upload-preview img {
+width: 100%;
+height: auto;
+border-radius: 50%;
+}
 /* Features Page Start */
 #banner-section.inner-banner.profile {
     background-image: url(../images/about-bg-overlay.png), url(../images/features-banner-bg.png);
@@ -4573,7 +4619,7 @@ body::-webkit-scrollbar-thumb:hover {
     }
     #banner-section.profile .heading-area .profile-area .photo {
         margin-right: 15px;
-        width: 25%;
+        width: 30%;
     }
     #banner-section.profile .heading-area {
         padding: 15px;
