@@ -37,23 +37,30 @@
                         </div>
                         <div class="name-area">
                             @auth()
-                            @if (auth()->user()->name == null)
+                            @if ($profiles->count() == 0)
                             <h4>Username</h4>
-                            <p>Region:</p>
-                            <p>Age:</p>
+                            <p>** Player</p>
+                            <p>Level: **</p>
+                            <p>Game ID: ******</p>
                             @else
-                            <h4>Username</h4>
-                            <p>Region: Nepal</p>
-                            <p>Age: 20</p>
+                            <h4>{{$profiles->full_name}}</h4>
+                            <p>{{$games->name}} Player</p>
+                            <p>Level: {{$profiles->level}}</p>
+                            <p>Game ID: {{$profiles->uid}}</p>
                             @endif
-
                             @endauth
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
                     <div class="right d-flex align-items-center">
-                        <a href="#" class="cmn-btn">Edit Profile</a>
+
+                        @if($profiles->count() == 0)
+                          <a href="/editprofile" class="cmn-btn">Edit Profile</a>
+                        @else
+                        <a href="/edit/{{$profiles->id}}" class="cmn-btn">Edit Profile</a>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -66,6 +73,30 @@
     <div class="container">
         <div class="tab-content">
             <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="overview-tab">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-trophies d-flex align-items-center">
+                            <div class="left d-flex align-items-center justify-content-center">
+                                <a href="mailto:{{$profiles->email}}"><img src="http://127.0.0.1:8000/images/email.png" alt="image"></a>
+                            </div>
+                            <div class="right">
+                                <p class="text-sm">Email</p>
+                                <h6>{{$profiles->email}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-trophies d-flex align-items-center">
+                            <div class="left d-flex align-items-center justify-content-center">
+                                <a href="tel:{{$profiles->phone}}"><img src="http://127.0.0.1:8000/images/phone.png" alt="image"></a>
+                            </div>
+                            <div class="right">
+                                <p class="text-sm">Phone</p>
+                                <h6>{{$profiles->phone}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="single-trophies d-flex align-items-center">
@@ -189,7 +220,7 @@
                                     </li>
                                     <li>
                                         <span><img src="images/my-statistics-icon-2.png" alt="image">Tournament
-                                            Played</span>
+                                            </span>
                                         <span>1193</span>
                                     </li>
                                 </ul>

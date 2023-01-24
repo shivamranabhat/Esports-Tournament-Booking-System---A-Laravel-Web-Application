@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
+use App\Models\Profile;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,6 @@ class PageController extends Controller
     {
         $games = Game::all();
         $tournaments = Tournament::orderBy('closing_time', 'asc')->get();
-
         return view('pages.index', compact('games'),compact('tournaments'));
     }
     public function user_profile()
@@ -31,7 +31,12 @@ class PageController extends Controller
         {
             return redirect('/login');
         }
-        return view('users.userprofile');
+        else{
+            $user = auth()->user()->id;
+            $profiles = Profile::where('user_id',$user)->first();
+            $game = Game::find($profiles->game_id);
+            return view('users.userprofile',compact('profiles'),['games' => $game]);
+        }
     }
     public function show_tournaments()
     {
@@ -69,11 +74,7 @@ class PageController extends Controller
         $tournament_avatars = Tournament_Avatar::all();
         return view('console.create_tournament',compact('tournament_avatars'),['game' => $game]);
     }
-    public function editprofile()
-    {
-        $tournament_avatars = tournament_avatar::all();
-        return view('users.editprofile',compact('tournament_avatars'));
-    }
+    
 
 }
 

@@ -217,37 +217,25 @@
                     <div class="container px-5">
                         <form method="post" action="/points/calculate" class="entry-form p-2">
                             @csrf
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="name">Tournament Name</label>
-                                <select name="name" id="name" class="form-control">
-                                    <option value="#">Select tournament</option>
-                                    @foreach ( $tournaments as $tournament)
-                                    <option value="{{$tournament->name}}">{{$tournament->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('name')
-                                <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
-                                @enderror
-                            </div>
                             <div class="form-row mb-4">
+                                <div class="form-outline col-md-6">
+                                    <label class="form-label" for="name">Tournament Name</label>
+                                    <select name="name" id="name" class="form-control">
+                                        <option value="#">Select tournament</option>
+                                        @foreach ( $tournaments as $tournament)
+                                        <option value="{{$tournament->name}}">{{$tournament->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('name')
+                                    <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
+                                    @enderror
+                                </div>
                                 <div class="form-outline col-md-6">
                                     <label class="form-label" for="team_name">Team Name</label>
                                     <input type="text" id="team_name" name="team_name" class="form-control" value="{{old('team_name')}}"/>
                                     @error('team_name')
                                     <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
                                     @enderror
-                                </div>
-                                <div class="form-outline col-md-6">
-                                    <label class="form-label" for="match_no">Match No.</label>
-                                    <select name="match_no" id="match_no" class="form-control">
-                                        <option value="#">Select Match</option>
-                                        <option value="Match 1">Match 1</option>
-                                        <option value="Match 2">Match 2</option>
-                                        <option value="Match 3">Match 3</option>
-                                        <option value="Match 4">Match 4</option>
-                                        <option value="Match 5">Match 5</option>
-                                        <option value="Match 6">Match 6</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="form-row mb-4">

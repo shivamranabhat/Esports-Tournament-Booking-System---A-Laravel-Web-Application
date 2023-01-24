@@ -3661,11 +3661,13 @@ border-radius: 50%;
 #all-trophies .single-trophies .right p{
     text-transform: uppercase;
 }
-#all-trophies .single-trophies .right h4{
+#all-trophies .single-trophies img{
+    cursor: pointer;
+}
+#all-trophies .single-trophies .right h6{
     color: #00FADF;
 }
 #all-trophies .statistics-area {
-    margin-top: 40px;
     margin-bottom: -7px;
 }
 #all-trophies .statistics-area .total-area{
@@ -3729,7 +3731,8 @@ border-radius: 50%;
     color: rgba(255, 255, 255, 0.85);
 }
 #all-trophies .statistics-area .sidebar-area .title-area{
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #all-trophies .statistics-area .sidebar-area ul {
     margin-bottom: -20px;
@@ -3738,7 +3741,7 @@ border-radius: 50%;
     display: flex;
     align-self: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 #all-trophies .statistics-area .sidebar-area ul li span{
     font-size: 14px;

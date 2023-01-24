@@ -7,6 +7,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\Tournament_AvatarController;
 use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\PointsController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +55,11 @@ Route::get('/details/{id}',[PageController::class,'tournament_details']);
 //show profile page
 Route::get('/myprofile',[PageController::class,'user_profile']);
 //show edit profile page
-Route::get('/editprofile',[PageController::class,'editprofile']);
+Route::get('/editprofile',[ProfileController::class,'index']);
+//save profile
+Route::post('/profile/store',[ProfileController::class,'store'])->middleware('auth');
+//edit userprofile
+Route::get('/edit/{{id}}',[ProfileController::class,'edit'])->middleware('auth');
 //show register page
 Route::get('/register',[UserController::class,'create']);
 //create new user

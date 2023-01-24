@@ -82,8 +82,7 @@
                                 <div class="tab-content" id="myTabContents">
                                     <div class="tab-pane fade show active" id="personal-info" role="tabpanel"
                                         aria-labelledby="personal-info-tab">
-                                        <form method="post" action="/profile/store" class="px-3" enctype="multipart/form-data">
-                                            @csrf
+                                        <form method="POST" action="#" class="px-3">
                                             <div class="file-upload-container mx-auto mb-5">
                                                 <label for="user_image" class="file-upload-label">
                                                   <div class="file-upload-icon">
@@ -91,15 +90,15 @@
                                                   </div>
                                                   <div class="file-upload-text">Choose profile picture</div>
                                                 </label>
-                                                <input type="file" id="image" name="image" class="file-upload-input" onchange="previewImage()"/>
+                                                <input type="file" id="user_image" class="file-upload-input" onchange="previewImage()"/>
                                                 <div class="file-upload-preview">
                                                   <img id="preview-image" src="" alt="Preview Image"/>
                                                 </div>
                                               </div>
                                             <div class="form-row">
                                                 <div class="form-group form-outline col-md-6">
-                                                    <label for="full_name">Full full_</label>
-                                                    <input placeholder="Enter your name" type="text" id="full_name" name="full_name">
+                                                    <label for="name">Full Name</label>
+                                                    <input placeholder="Enter your name" type="name" id="name" name="name">
                                                     <p class="d-flex justify-content-start text-danger mt-2"></p>
                                                 </div>
                                                 <div class="form-group form-outline col-md-6">
@@ -115,11 +114,11 @@
                                                     <p class="d-flex justify-content-start text-danger mt-2"></p>
                                                 </div>
                                                 <div class="form-group form-outline col-md-6">
-                                                    <label for="game_id">Game</label>
-                                                    <select name="game_id" id="game_id">
+                                                    <label for="game">Game</label>
+                                                    <select name="game" id="game">
                                                         <option value="#">Choose Game</option>
                                                         @foreach ( $games as $game)
-                                                        <option value="{{$game->id}}" id="select">{{$game->name}}</option>
+                                                        <option value="{{$game->name}}" id="select">{{$game->name}}</option>
                                                         @endforeach
 
                                                     </select>
@@ -130,12 +129,12 @@
                                             <div class="form-row">
                                                 <div class="form-group form-outline col-md-6">
                                                     <label for="level">Level</label>
-                                                    <input placeholder="Enter your level" type="text" id="level" name="level">
+                                                    <input placeholder="Enter your level" type="level" id="level" name="level">
                                                     <p class="d-flex justify-content-start text-danger mt-2"></p>
                                                 </div>
                                                 <div class="form-group form-outline col-md-6">
                                                     <label for="uid">UID</label>
-                                                    <input placeholder="Enter your uid" type="texts" id="uid" name="uid">
+                                                    <input placeholder="Enter your uid" type="uid" id="uid" name="uid">
                                                     <p class="d-flex justify-content-start text-danger mt-2"></p>
                                                 </div>
                                             </div>

@@ -6,7 +6,7 @@ document.querySelectorAll('.image').forEach(function(img) {
     });
   });
   function previewImage() {
-    var input = document.getElementById('user_image');
+    var input = document.getElementById('image');
     var avatar = document.getElementById('avatar');
     var preview = document.getElementById('preview-image');
     var previewContainer = document.querySelector('.file-upload-preview');
