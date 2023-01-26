@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Team;
 use Illuminate\Http\Request;
-use App\Models\Profile;
-use App\Models\tournament_avatar;
-use App\Models\Game;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +14,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $games = Game::all();
-        $tournament_avatars = tournament_avatar::all();
-        return view('users.editprofile',compact('tournament_avatars'),compact('games'));
+        //
     }
 
     /**
@@ -40,20 +35,20 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id =  auth()->user()->id;
         $formFields = $request->validate([
-            'full_name'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'image'=>'required',
-            'level'=>'required',
-            'uid'=>'required',
-            'game_id'=>'required'
+            'name'=>'required',
+            'logo'=>'required|image',
+            'player_1'=>'required',
+            'player_2'=>'required',
+            'player_3'=>'required',
+            'player_4'=>'required'
         ]);
-        if($request->hasFile('image')){
-            $formFields['image']= $request->file('image')->store('users','public');
+        if($request->hasFile('logo')){
+            $formFields['logo']= $request->file('logo')->store('team_logo','public');
         }
-        Profile::create($formFields + ['user_id'=> auth()->user()->id]);
-        return redirect('/myprofile')->with('message','Your profile has been updated');
+        Team::create($formFields + ['user_id'=>$user_id]);
+        return redirect('/myprofile')->with('message','Your team has been updated');
     }
 
     /**
@@ -75,7 +70,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        return view('users.updateprofile');
+        //
     }
 
     /**

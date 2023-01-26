@@ -33,34 +33,20 @@
                 <div class="col-md-6">
                     <div class="profile-area d-flex align-items-center">
                         <div class="photo">
-                            <img src="images/profile-logo.png" alt="Image">
+                            <img src="{{asset('storage/'.$profiles->image)}}" alt="Image">
                         </div>
                         <div class="name-area">
                             @auth()
-                            @if ($profiles->count() == 0)
-                            <h4>Username</h4>
-                            <p>** Player</p>
-                            <p>Level: **</p>
-                            <p>Game ID: ******</p>
-                            @else
                             <h4>{{$profiles->full_name}}</h4>
-                            <p>{{$games->name}} Player</p>
-                            <p>Level: {{$profiles->level}}</p>
-                            <p>Game ID: {{$profiles->uid}}</p>
-                            @endif
+                            <p>Level: {{ $profiles->level}}</p>
+                            <p>Game ID: {{$profiles->uid}} </p>
                             @endauth
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
                     <div class="right d-flex align-items-center">
-
-                        @if($profiles->count() == 0)
-                          <a href="/editprofile" class="cmn-btn">Edit Profile</a>
-                        @else
-                        <a href="/edit/{{$profiles->id}}" class="cmn-btn">Edit Profile</a>
-                        @endif
-
+                        <a href="/edit/{{$profiles->id}}" class="cmn-btn">Update Profile</a>
                     </div>
                 </div>
             </div>
@@ -97,6 +83,103 @@
                         </div>
                     </div>
                 </div>
+               @if (!isset($teams))
+               <div class="row">
+                <div class="col-md-12">
+                    <div class="single-trophies d-flex align-items-center">
+                        <div class="left d-flex align-items-center justify-content-center">
+                            <img src="{{asset('storage/'.$games->image)}}" class="rounded-circle" alt="image">
+                        </div>
+                        <div class="right">
+                            <p class="text-sm">Game</p>
+                            <h6>{{ $games->name}}</h6>
+                        </div>
+                    </div>
+                </div>
+               </div>
+               @else
+               <div class="row">
+                <div class="col-sm-6 col-lg-6 col-md-6">
+                    <div class="single-trophies d-flex align-items-center">
+                        <div class="left d-flex align-items-center justify-content-center">
+                            <img src="{{asset('storage/'.$games->image)}}" class="rounded-circle" alt="image">
+                        </div>
+                        <div class="right">
+                            <p class="text-sm">Game</p>
+                            <h6>{{ $games->name}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-md-6">
+                    <div class="single-trophies d-flex align-items-center">
+                        <div class="left d-flex align-items-center justify-content-center">
+                            @if(!isset($teams))
+                            <img src="http://127.0.0.1:8000/images/organizerimg.png" alt="image">
+                           @else
+                           <img src="{{asset('storage/'.$teams->logo)}}" alt="image">
+
+                           @endif
+                        </div>
+                        <div class="right">
+                            <p class="text-sm">Team Name</p>
+                            @if(!isset($teams))
+                            <h6>Not in team</h6>
+                            @else
+
+                            <h6>{{$teams->name}}</h6>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-trophies d-flex align-items-center">
+                            <div class="left d-flex align-items-center justify-content-center">
+                                <img src="http://127.0.0.1:8000/images/num_1.png" alt="image">
+                            </div>
+                            <div class="right">
+                                <p class="text-sm">Members</p>
+                                <h6>{{$teams->player_1}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-trophies d-flex align-items-center">
+                            <div class="left d-flex align-items-center justify-content-center">
+                                <img src="http://127.0.0.1:8000/images/num_2.png" alt="image">
+                            </div>
+                            <div class="right">
+                                <p class="text-sm">Members</p>
+                                <h6>{{$teams->player_2}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-trophies d-flex align-items-center">
+                            <div class="left d-flex align-items-center justify-content-center">
+                                <img src="http://127.0.0.1:8000/images/num_3.png" alt="image">
+                            </div>
+                            <div class="right">
+                                <p class="text-sm">Members</p>
+                                <h6>{{$teams->player_3}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-trophies d-flex align-items-center">
+                            <div class="left d-flex align-items-center justify-content-center">
+                                <img src="http://127.0.0.1:8000/images/num_4.png" alt="image">
+                            </div>
+                            <div class="right">
+                                <p class="text-sm">Members</p>
+                                <h6>{{$teams->player_4}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               @endif
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="single-trophies d-flex align-items-center">

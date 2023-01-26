@@ -8,6 +8,7 @@ use App\Http\Controllers\Tournament_AvatarController;
 use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,8 @@ Route::get('/myprofile',[PageController::class,'user_profile']);
 Route::get('/editprofile',[ProfileController::class,'index']);
 //save profile
 Route::post('/profile/store',[ProfileController::class,'store'])->middleware('auth');
+//save team info
+Route::post('/team/store',[TeamController::class,'store'])->middleware('auth');
 //edit userprofile
 Route::get('/edit/{{id}}',[ProfileController::class,'edit'])->middleware('auth');
 //show register page

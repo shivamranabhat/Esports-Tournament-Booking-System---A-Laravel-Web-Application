@@ -29,5 +29,10 @@ class Tournament extends Model
     public function game(){
         return $this->belongsTo('App\Models\Game','game_id');
     }
-
+    public function profile(){
+        return $this->belongsTo('App\Models\Profile');
+    }
+    public function team(){
+        return $this->belongsTo('App\Models\Team','user_id');
+    }
 }

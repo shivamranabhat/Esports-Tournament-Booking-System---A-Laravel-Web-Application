@@ -708,7 +708,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 /* cmn btn */
-.cmn-btn {
+.cmn-btn,.update-btn {
     position: relative;
     text-transform: uppercase;
     font-weight: 500;
@@ -718,7 +718,6 @@ body::-webkit-scrollbar-thumb:hover {
     padding: 11px 32px;
     background: linear-gradient(351.09deg, #F029A0 4.36%, #F0B000 117.5%);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 25px;
     overflow: hidden;
     z-index: 0;
 }
@@ -2492,10 +2491,11 @@ body::-webkit-scrollbar-thumb:hover {
 #login-reg .login-reg-main .recover p{
     text-align: left;
 }
-#login-reg .login-reg-main .cmn-btn,#profile .login-reg-main .cmn-btn{
-    border-radius: 10px;
-    width: 100%;
+#login-reg .login-reg-main .cmn-btn,#profile .login-reg-main .cmn-btn,#login-reg .login-reg-main .cmn-btn,#profile .login-reg-main .update-btn{
     color: var(--body-color);
+}
+#login-reg .login-reg-main .cmn-btn,#profile .login-reg-main .cmn-btn,#login-reg .login-reg-main .cmn-btn{
+    width: 100%;
 }
 #login-reg .login-reg-main .or p{
     position: relative;
@@ -2561,8 +2561,12 @@ body::-webkit-scrollbar-thumb:hover {
     margin-bottom: -260px;
 }
 #banner-section.profile .heading-area .profile-area .photo{
-
     margin-right: 30px;
+}
+
+#banner-section.profile .heading-area .profile-area .photo img{
+    width: 100px !important;
+    border-radius: 50%;
 }
 #banner-section.profile .heading-area .profile-area .name-area h4{
     text-transform: uppercase;
@@ -2639,7 +2643,7 @@ opacity: 0;
 cursor: pointer;
 }
 
-.file-upload-preview {
+.file-upload-preview,.logo-upload-preview {
 position: absolute;
 top: 0;
 left: 0;
@@ -2648,7 +2652,7 @@ height: 100%;
 display: none;
 }
 
-.file-upload-preview img {
+.file-upload-preview img,.logo-upload-preview img {
 width: 100%;
 height: auto;
 border-radius: 50%;
@@ -3823,6 +3827,9 @@ border-radius: 50%;
     }
     #banner-section .text-right {
         text-align: center !important;
+    }
+    .profile{
+        margin-top: 5px;
     }
 }
 

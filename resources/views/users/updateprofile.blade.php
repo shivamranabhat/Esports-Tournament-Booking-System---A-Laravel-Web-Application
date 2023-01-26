@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('titile','My Profile')
+@section('titile','Update Profile')
 @section('page-name')
  <!-- banner-section start -->
  <section id="banner-section" class="inner-banner profile">

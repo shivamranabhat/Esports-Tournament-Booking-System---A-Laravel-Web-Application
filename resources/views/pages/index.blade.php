@@ -14,7 +14,7 @@
                                 <p>Compete in Free and Paid entry Tournaments. Transform your
                                     games to real money eSports</p>
                                 <div class="btn-play d-flex justify-content-center align-items-center">
-                                    <a href="registration.html" class="cmn-btn">Get Started</a>
+                                    <a href="/tournament" class="cmn-btn">Get Started</a>
                                     <a href="../watch-2.html?v=MJ0zpsWQ_XM" class="mfp-iframe popupvideo">
                                         <img src="images/play-icon.png" alt="play">
                                     </a>

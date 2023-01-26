@@ -209,8 +209,11 @@
                                             <div class="left-area d-flex align-items-center">
                                                 <img src="http://127.0.0.1:8000/images/admin-img-1.png" alt="images">
                                                 <div class="right-side">
-                                                    <h6>Admin Albert</h6>
-                                                    <p class="text-sm">OGXElite</p>
+                                                    @if (!isset($profile))
+                                                    <h6>Unknown Host </h6>
+                                                    @else
+                                                    <h6>{{$profile->full_name}}</h6>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="right-area">

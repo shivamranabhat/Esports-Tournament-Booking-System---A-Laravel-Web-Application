@@ -11,6 +11,7 @@
     {{-- <link rel="shortcut icon" href="http://127.0.0.1:8000/images/fav.png" type="image/x-icon"> --}}
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/slick.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/tablecss">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/magnific-popup.css">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/nice-select.css">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/animate.css">
@@ -51,7 +52,7 @@
                                     </li>
                                     <li><a href="#">Players</a></li>
                                     <li><a href="#">About</a></li>
-                                    <li><a href="">Contact</a></li>
+                                    <li><a href="#">Contact</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -60,12 +61,14 @@
                                 <a href="#"><img src="http://127.0.0.1:8000/images/search_btn.png" alt="icon"></a>
                             </div>
                             @auth()
+                           <a href="/myprofile" class="profile">
                             <span role="button" class="text-decoration-none ml-5" id="profile">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                                   </svg>
-                                </span>
+                            </span>
+                            </a>
                             @else
                             <a href="/login" class="login-btn">Login</a>
                             <a href="/register" class="cmn-btn">Join Now!</a>
@@ -73,93 +76,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- section side menu -->
-                <section id="side-menu" class="d-block">
-                    <div class="profile-side-menu mt-2 mr-2" id="side-menu">
-                        <div class="cancel-button mr-2 mt-2 d-flex justify-content-end">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(209,49,15)"
-                                class="bi bi-x-square-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
-                            </svg>
-                        </div>
-                        <div class="menu-list">
-                            <div class="user-profile d-flex mt-3">
-                                <div class="user-image d-flex justify-content-start ml-3">
-                                    <img src="images/profile-logo.png" alt="user-avatar" class="rounded-circle">
-                                </div>
-                                <div class="user-name ml-3 mt-2">
-                                    <p class="text-white mb-0">User Name</p>
-                                    <a href="/myprofile" class="text-decoration-none d-block view-profile">View your profile</a>
-                                </div>
-                            </div>
-                            <ul class="navbar-nav d-flex justify-content-center mt-5">
-                                <div class="row d-flex justify-content-center menu-row">
-                                    <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center mb-4">
-                                        <div class="li-card text-center rounded py-3">
-                                            <li class="nav-item text-uppercase active">
-                                                <a class="nav-link home" href="#">Chat</a>
-                                            </li>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center mb-4">
-                                        <div class="li-card text-center rounded py-3">
-                                            <li class="nav-item text-uppercase">
-                                                <a class="nav-link menu" href="#">Tournaments</a>
-                                            </li>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center mb-4">
-                                        <div class="li-card text-center rounded py-3">
-                                            <li class="nav-item text-uppercase active">
-                                                <a class="nav-link home" href="#">Results</a>
-                                            </li>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center mb-4">
-                                        <div class="li-card text-center rounded py-3">
-                                            <li class="nav-item text-uppercase">
-                                                <a class="nav-link menu" href="#">Host</a>
-                                            </li>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center mb-4">
-                                        <div class="li-card text-center rounded py-3">
-                                            <li class="nav-item text-uppercase active">
-                                                <a class="nav-link home" href="#">Home</a>
-                                            </li>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center mb-4">
-                                        <div class="li-card text-center rounded py-3">
-                                            <li class="nav-item text-uppercase">
-                                                <a class="nav-link menu" href="#">Teams</a>
-                                            </li>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                            </ul>
-                            <ul class="ul-end mx-3 py-3">
-                                <li class="nav-item text-uppercase ml-2">
-                                    <form class="inline" method="POST" action="/logout">
-                                        @csrf
-                                        <button type="submit" class="text-white">Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                <!-- section side menu -->
             </div>
         </header>
         <!-- header-section end -->
@@ -236,7 +152,6 @@
     <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
     <script src="http://127.0.0.1:8000/js/timer.js"></script>
     <script src="http://127.0.0.1:8000/js/select_img.js"></script>
-    <script src="http://127.0.0.1:8000/js/profiletoggle.js"></script>
     <script src="http://127.0.0.1:8000/js/bootstrap.min.js"></script>
     <script src="http://127.0.0.1:8000/js/slick.js"></script>
     <script src="http://127.0.0.1:8000/js/jquery.nice-select.min.js"></script>
