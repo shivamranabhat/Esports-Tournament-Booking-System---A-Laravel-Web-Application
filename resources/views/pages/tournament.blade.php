@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        
+
 
     </section>
     <!-- banner-section end -->
@@ -119,7 +119,11 @@
                                         </div>
                                         <div class="box-item">
                                             <span class="head">Enrolled</span>
-                                            <span class="sub">11</span>
+                                            @if ($tournament->bookings->where('tournament_id', $tournament->id)->count() > 0)
+                                            <span class="sub">{{ $tournament->bookings->where('tournament_id', $tournament->id)->count() }}</span>
+                                            @else
+                                            <span class="sub">0</span>
+                                            @endif
                                         </div>
                                         <div class="box-item">
                                             <span class="head">Game</span>

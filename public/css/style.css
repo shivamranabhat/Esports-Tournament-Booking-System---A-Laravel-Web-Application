@@ -3649,6 +3649,7 @@ border-radius: 50%;
 #all-trophies {
     margin-top: -70px;
 }
+
 #all-trophies .single-trophies{
     background: #370898;
     border-radius: 5px;
@@ -4460,6 +4461,10 @@ border-radius: 50%;
     #tournaments-section .single-item .single-box .box-item{
         margin: 5px 0;
         display: grid;
+    }
+    .game-row{
+        display: flex;
+        justify-content: center;
     }
     .col-6 {
         -ms-flex: 0 0 100%;

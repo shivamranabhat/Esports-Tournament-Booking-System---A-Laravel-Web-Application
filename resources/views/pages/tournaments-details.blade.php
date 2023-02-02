@@ -36,8 +36,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 d-flex align-items-center justify-content-sm justify-content-center">
                             <div class="mid-area text-center">
-                                <img src="http://127.0.0.1:8000/images/text-img.png" alt="image">
-                                <h5>{{$tournaments->name}}</h5>
+                                <h3>{{$tournaments->name}}</h3>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 zindex">
@@ -62,7 +61,8 @@
                             </div>
                             <div class="col-lg-3 col-md-4 text-center">
                                 <h2 class="dollar">Rs.{{$tournaments->fees}}</h2>
-                                <a href="#" class="cmn-btn">Join Now!</a>
+
+                                <a href="/bookings/{{$tournaments->id}}" class="cmn-btn">Join Now!</a>
                             </div>
                         </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -169,9 +169,8 @@
                                     <h5>Participants</h5>
                                     <div class="participants">
                                         <ul>
-                                            <li><span>Registered</span><span>17</span></li>
-                                            <li><span>Confirmed</span><span>15</span></li>
-                                            <li><span>Available slots</span><span>16</span></li>
+                                            <li><span>Registered</span><span>{{$tournaments->bookings->count()}}</span></li>
+                                            <li><span>Available slots</span><span>{{$tournaments->team_size-$tournaments->bookings->count()}}</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -242,208 +241,37 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="participants-area pb-120">
-                                    <h4>Confirmed</h4>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-1.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-2.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-3.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-4.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-5.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-6.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-7.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-8.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-9.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="participants-single">
-                                        <div class="left-area d-flex align-items-center">
-                                            <img src="http://127.0.0.1:8000/images/participant-10.png" alt="images">
-                                            <div class="right-side">
-                                                <h6>Miracle Rosser</h6>
-                                            </div>
-                                        </div>
-                                        <div class="right-area">
-                                            <div class="nice-select"><span class="current single-item share">
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                    <span class="dot"></span>
-                                                </span>
-                                                <ul class="list">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
-                                                    <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <h4>Participant</h4>
+                                  @if (count($tournaments->bookings) == 0)
+                                  <div class="participants-single d-flex justify-content-center">
+                                    <h6 class="text-center">No Bookings Yet</h6>
                                 </div>
+                            </div>
+                                  @else
+                                  @foreach ($tournaments->bookings as $booking)
+                                  <div class="participants-single">
+                                   <div class="left-area d-flex align-items-center">
+                                       <img src="{{asset('storage/'.$booking->team->logo)}}" alt="images">
+                                       <div class="right-side">
+                                           <h6>{{$booking->team->name}}</h6>
+                                       </div>
+                                   </div>
+                                   <div class="right-area">
+                                       <div class="nice-select"><span class="current single-item share">
+                                               <span class="dot"></span>
+                                               <span class="dot"></span>
+                                               <span class="dot"></span>
+                                           </span>
+                                           <ul class="list">
+                                               <li><a href="#"><i class="fab fa-facebook-f"></i>Share</a></li>
+                                               <li><a href="profile.html"><i class="fas fa-share-alt"></i>View Profile</a></li>
+                                           </ul>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                                  @endforeach
+                                  @endif
                             </div>
                         </div>
                     </div>

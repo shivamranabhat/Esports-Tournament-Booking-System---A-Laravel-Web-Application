@@ -122,7 +122,111 @@
                     <span class="dashboard">Bookings</span>
                 </div>
             </nav>
+            <div class="home-content">
+                <div class="container-fluid">
+                    <div class="row px-3">
+                        <div class="col-12 col-lg-3 bg-white mr-5 rounded p-5 mb-4">
+                            <div class="contents">
+                                <h1 class="text-warning text-center"><strong>0</strong></h1>
+                                <h5 class="text-center">Live Tournaments</h5>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3 bg-white rounded p-5 mb-4">
+                            <div class="contents">
+                                <h1 class="text-success text-center"><strong>{{$tournaments->count()}}</strong></h1>
+                                <h5 class="text-center">Hosted Tournaments</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-content pl-3 pr-5">
+                    <div class="filter d-flex ml-3 align-items-center">
+                        <h5 class="mt-3 text-muted">Filter</h5>
+                        <div class="dropdown ml-2">
+                            <button class="btn dropdown-toggle rounded px-4 mt-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Tournament
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @foreach ($games as $game)
+                                    <a class="dropdown-item" href="#">{{$game->name}}</a>
+                                @endforeach
 
+                            </div>
+                          </div>
+                    </div>
+                    <div class="tournament-table d-flex justify-content-between">
+                        <div class="table-responsive mt-3">
+                         @if ($tournaments->count()== 0)
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Starts</th>
+                                    <th scope="col">Ends</th>
+                                    <th scope="col">Prize</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <div class="null-message text-center my-5">
+                                <img src="http://127.0.0.1:8000/images/null-icon.jpg" alt="error" width="80">
+                                <h2 class="mt-3"><strong>Nothing to show</strong></h2>
+                                <h5>You haven't created any tournaments yet. Please click on Create Tournament.</h5>
+                            </div>
+                            @else
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">S.N.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Starts</th>
+                                    <th scope="col">Ends</th>
+                                    <th scope="col">Prize</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach ($tournaments as $tournament)
+                                    <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$tournament->name}}</td>
+                                    <td>{{$tournament->type}}</td>
+                                    <td>{{$tournament->created_at}}</td>
+                                    <td>{{$tournament->closing_time}}</td>
+                                    <td>{{$tournament->prize_pool}}</td>
+                                    <td>
+                                        <a href="/participants/{{$tournament->id}}" class="btn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                              </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                                    @endforeach
+
+                                </tbody>
+                              </table>
+
+                            @endif
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div  class="tab-pane fade in px-2" id="notification"></div>
         <div  class="tab-pane fade in px-2" id="create-tournament">

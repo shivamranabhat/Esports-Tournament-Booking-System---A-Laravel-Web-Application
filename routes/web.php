@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
@@ -36,6 +37,8 @@ Route::post('/tournament_avatar/store',[Tournament_AvatarController::class,'stor
 //Organizer
 //show dashboard
 Route::get('/dashboard',[PageController::class,'dashboard']);
+//show select game page
+Route::get('/select',[PageController::class,'select_game']);
 //show create tournament page
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
 //Store tournament
@@ -53,6 +56,7 @@ Route::get('/',[PageController::class,'index']);
 Route::get('/tournaments',[PageController::class,'show_tournaments']);
 //show tournament details
 Route::get('/details/{id}',[PageController::class,'tournament_details']);
+////////////////Profile ////////////////////////////////////
 //show profile page
 Route::get('/myprofile',[PageController::class,'user_profile']);
 //show edit profile page
@@ -62,7 +66,17 @@ Route::post('/profile/store',[ProfileController::class,'store'])->middleware('au
 //save team info
 Route::post('/team/store',[TeamController::class,'store'])->middleware('auth');
 //edit userprofile
-Route::get('/edit/{{id}}',[ProfileController::class,'edit'])->middleware('auth');
+Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
+////////////////Booking ////////////////////////////////////
+//booking page
+Route::get('/bookings/{id}',[PageController::class, 'bookings']);
+//store bookings
+Route::post('/bookings/store',[BookingsController::class, 'store']);
+//show participants
+Route::get('/participants/{id}',[BookingsController::class,'index']);
+
+
+////////////////Handling user ////////////////////////////////////
 //show register page
 Route::get('/register',[UserController::class,'create']);
 //create new user
@@ -74,5 +88,7 @@ Route::post('/users/authenticate',[UserController::class,'authenticate']);
 //logout user
 Route::post('/logout',[UserController::class,'logout']);
 // Auth::routes(['verify' => true]);
+
+
 
 

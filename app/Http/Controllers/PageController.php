@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
+use App\Models\Booking;
 use App\Models\Profile;
 use App\Models\Team;
 use Carbon\Carbon;
@@ -23,8 +24,7 @@ class PageController extends Controller
     {
         $games = Game::all();
         $tournaments = Tournament::orderBy('closing_time', 'asc')->get();
-        $profile = Profile::where('user_id',auth()->user()->id)->first();
-        return view('pages.index', compact('games'),compact('tournaments'),['profiles'=>$profile]);
+        return view('pages.index', compact('games'),compact('tournaments'));
     }
     public function user_profile()
     {
@@ -48,7 +48,7 @@ class PageController extends Controller
     }
     public function show_tournaments()
     {
-        $tournaments = Tournament::orderBy('closing_time','asc')->get();
+        $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->get();
         $now = Carbon::now();
         foreach ($tournaments as $tournament) {
             $bookingCloseTime = new Carbon($tournament->closing_time);
@@ -75,7 +75,12 @@ class PageController extends Controller
         $tournaments = Tournament::where('user_id', $user->id)->get();
         // $openBookingTournaments = Tournament::where('closing_time', '>', Carbon::now())->get();
         $games = Game::all();
-        return view('tournament.index',compact('games'),compact('tournaments'));
+        return view('console.dashboard',compact('games'),compact('tournaments'));
+    }
+    public function select_game()
+    {
+        $games = Game::all();
+        return view('console.tournaments.select',compact('games'));
     }
     public function create_tournament($id)
     {
@@ -84,6 +89,24 @@ class PageController extends Controller
         return view('console.create_tournament',compact('tournament_avatars'),['game' => $game]);
     }
 
+    public function bookings($id)
+    {
+        $user = auth()->user()->id;
+        $profiles = Profile::find($user);
+        if($user == null)
+        {
+            return redirect('/login');
+        }
+        else if($profiles == null)
+        {
+            return redirect('/editprofile');
+        }
+        else{
+            $tournaments = Tournament::find($id);
+            $teams = Team::where('user_id',$user)->first();
+            return view('tournament.bookings',compact('teams','profiles'),['tournaments'=>$tournaments]);
+        }
+    }
 
 }
 
