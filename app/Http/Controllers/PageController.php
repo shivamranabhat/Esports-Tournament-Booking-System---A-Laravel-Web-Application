@@ -75,7 +75,7 @@ class PageController extends Controller
         $tournaments = Tournament::where('user_id', $user->id)->get();
         // $openBookingTournaments = Tournament::where('closing_time', '>', Carbon::now())->get();
         $games = Game::all();
-        return view('console.dashboard',compact('games'),compact('tournaments'));
+        return view('console.tournaments.index',compact('games'),compact('tournaments'));
     }
     public function select_game()
     {
@@ -86,7 +86,7 @@ class PageController extends Controller
     {
         $game = Game::find($id);
         $tournament_avatars = Tournament_Avatar::all();
-        return view('console.create_tournament',compact('tournament_avatars'),['game' => $game]);
+        return view('console.tournaments.create',compact('tournament_avatars'),['game' => $game]);
     }
 
     public function bookings($id)

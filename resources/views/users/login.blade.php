@@ -21,7 +21,7 @@
             <p>Forgot your password? <a href="#">Recover Password</a></p>
         </div>
         <div class="form-group">
-            <button type="submit" class="cmn-btn">Sign In</button>
+            <button type="submit" class="rounded cmn-btn">Sign In</button>
         </div>
     </form>
     <div class="or">

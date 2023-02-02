@@ -25,7 +25,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <button type="submit" class="cmn-btn" id="register-btn">Sign Up</button>
+            <button type="submit" class="rounded cmn-btn" id="register-btn">Sign Up</button>
         </div>
     </form>
     <div class="or">

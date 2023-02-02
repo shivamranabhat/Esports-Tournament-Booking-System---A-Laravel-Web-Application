@@ -9,12 +9,12 @@
     <title>@yield('title')</title>
 
     {{-- <link rel="shortcut icon" href="images/fav.png" type="image/x-icon"> --}}
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/fontawesome.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/slick.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/nice-select.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/animate.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/style.css">
      <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
@@ -41,8 +41,8 @@
                 <div class="top-area">
                     <div class="row d-flex align-items-center">
                         <div class="col-sm-5 col">
-                            <a class="back-home" href="/">
-                                <img src="images/left-icon.png" alt="image">
+                            <a class="back-home text-white text-decoration-none" href="/">
+                                <img src="http://127.0.0.1:8000/images/left-icon.png" alt="image">
                                 Back To Home
                             </a>
                         </div>
@@ -59,7 +59,6 @@
                             <h4>Let's get started</h4>
                             <div class="form-area">
                                 @yield('page-name')
-
                             </div>
                         </div>
                     </div>
@@ -78,10 +77,6 @@
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/wow.js"></script>
     <script src="js/main.js"></script>
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 </body>

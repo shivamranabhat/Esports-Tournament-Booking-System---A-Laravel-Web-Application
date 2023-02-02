@@ -14,9 +14,9 @@
                                 <p>Compete in Free and Paid entry Tournaments. Transform your
                                     games to real money eSports</p>
                                 <div class="btn-play d-flex justify-content-center align-items-center">
-                                    <a href="/tournament" class="cmn-btn">Get Started</a>
+                                    <a href="/tournament" class="btn text-white cmn-btn">Get Started</a>
                                     <a href="../watch-2.html?v=MJ0zpsWQ_XM" class="mfp-iframe popupvideo">
-                                        <img src="images/play-icon.png" alt="play">
+                                        <img src="http://127.0.0.1:8000/images/play-icon.png" alt="play">
                                     </a>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                     <div class="row justify-content-center">
                                         <div class="col-lg-6">
                                             <div class="bottom-area text-center">
-                                                <img src="images/versus.png" alt="banner-vs">
+                                                <img src="http://127.0.0.1:8000/images/versus.png" alt="banner-vs">
                                             </div>
                                         </div>
                                     </div>
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div class="ani-illu">
-                    <img class="left-1 wow fadeInUp" src="images/left-banner.png" alt="image">
-                    <img class="right-2 wow fadeInUp" src="images/right-banner.png" alt="image">
+                    <img class="left-1 wow fadeInUp" src="http://127.0.0.1:8000/images/left-banner.png" alt="image">
+                    <img class="right-2 wow fadeInUp" src="http://127.0.0.1:8000/images/right-banner.png" alt="image">
                 </div>
             </div>
         </div>

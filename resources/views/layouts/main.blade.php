@@ -72,7 +72,7 @@
                             </a>
                             @else
                             <a href="/login" class="login-btn">Login</a>
-                            <a href="/register" class="cmn-btn">Join Now!</a>
+                            <a href="/register" class="btn text-white cmn-btn">Join Now!</a>
                             @endauth
                         </div>
                     </div>

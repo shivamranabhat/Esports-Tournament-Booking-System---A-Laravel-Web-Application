@@ -1,11 +1,11 @@
 @extends('layouts.main')
 @section('page-name')
-         <!-- banner-section start -->
+<!-- banner-section start -->
  <section id="banner-section" class="inner-banner profile">
     <div class="ani-img">
-        <img class="img-1" src="images/banner-circle-1.png" alt="icon">
-        <img class="img-2" src="images/banner-circle-2.png" alt="icon">
-        <img class="img-3" src="images/banner-circle-2.png" alt="icon">
+        <img class="img-1" src="http://127.0.0.1:8000/images/banner-circle-1.png" alt="icon">
+        <img class="img-2" src="http://127.0.0.1:8000/images/banner-circle-2.png" alt="icon">
+        <img class="img-3" src="http://127.0.0.1:8000/images/banner-circle-2.png" alt="icon">
     </div>
     <div class="banner-content d-flex align-items-center">
         <div class="container">
@@ -32,13 +32,13 @@
                 <div class="col-md-6">
                     <div class="profile-area d-flex align-items-center">
                         <div class="photo">
-                            <img src="images/profile-logo.png"  class="rounded-circle" width="90" id="avatar" alt="Image">
+                            <img src="http://127.0.0.1:8000/images/profile-logo.png"  class="rounded-circle" width="90" id="avatar" alt="Image">
                         </div>
                         <div class="name-area">
                             @auth()
                             @if (auth()->user()->name == null)
                             <h4>Username</h4>
-                            <p>Region:</p>
+                            <p>Organizer</p>
                             <p>Age:</p>
                             @else
                             @endif
@@ -46,7 +46,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -69,30 +68,28 @@
                                 </div>
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="personal-info-tab" data-toggle="tab"
-                                            href="#personal-info" role="tab" aria-controls="personal-info"
-                                            aria-selected="true">Create</a>
+                                        <a class="nav-link active" id="personal-info-tab"
+                                            href="/dashboard" role="tab" aria-controls="personal-info"
+                                            aria-selected="true">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="team-tab" data-toggle="tab" href="#team" role="tab"
+                                        <a class="nav-link" id="team-tab" href="#team" role="tab"
                                             aria-controls="team" aria-selected="false">Bookings</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="team-tab" data-toggle="tab" href="#team" role="tab"
-                                            aria-controls="team" aria-selected="false">Set Points</a>
+                                        <a class="nav-link" id="team-tab" href="#team" role="tab"
+                                            aria-controls="team" aria-selected="false">Points</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="team-tab" data-toggle="tab" href="#team" role="tab"
-                                            aria-controls="team" aria-selected="false">Calculate Points</a>
+                                        <a class="nav-link" id="team-tab" href="#team" role="tab"
+                                            aria-controls="team" aria-selected="false">Calculate</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContents">
                                     @yield('child-page')
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
