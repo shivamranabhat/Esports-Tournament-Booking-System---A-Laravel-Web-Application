@@ -18,7 +18,7 @@ class BookingsController extends Controller
     {
         $tournament = Tournament::find($id);
         $participants= Booking::where('tournament_id',$tournament)->get();
-        return view('console.participant',compact('participants'));
+        return view('console.tournaments.participants',compact('participants'),compact('tournament'));
     }
 
     /**
@@ -63,9 +63,9 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $participants= Booking::where('tournament_id',$id)->get();
+        return view('console.participant',compact('participants'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

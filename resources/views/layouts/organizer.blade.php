@@ -77,11 +77,11 @@
                                             aria-controls="team" aria-selected="false">Bookings</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="team-tab" href="#team" role="tab"
+                                        <a class="nav-link" id="team-tab" href="/points" role="tab"
                                             aria-controls="team" aria-selected="false">Points</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="team-tab" href="#team" role="tab"
+                                        <a class="nav-link" id="team-tab" href="/calculate" role="tab"
                                             aria-controls="team" aria-selected="false">Calculate</a>
                                     </li>
                                 </ul>

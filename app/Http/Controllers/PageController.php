@@ -107,7 +107,17 @@ class PageController extends Controller
             return view('tournament.bookings',compact('teams','profiles'),['tournaments'=>$tournaments]);
         }
     }
-
+    public function show_calculate()
+    {
+        $user = Auth::user();
+        $tournaments = Tournament::where('user_id', $user->id)->with('team')->get();
+        $bookings = Booking::where('user_id', $user->id)->get();
+        return view('console.tournaments.calculate',compact('tournaments'),compact('bookings'));
+    }
+    public function show_points()
+    {
+        return view('console.tournaments.set_points');
+    }
 }
 
 

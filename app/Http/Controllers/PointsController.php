@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Points;
 use App\Models\Results;
 use App\Models\Tournament;
+use App\Models\Team;
 use App\Models\History;
 
 class PointsController extends Controller
@@ -17,7 +18,8 @@ class PointsController extends Controller
      */
     public function index()
     {
-        //
+        $points = Points::where('user_id',auth()->user()->id)->get();
+        return view('console.tournaments.point',compact('points'));
     }
 
     /**
@@ -38,18 +40,20 @@ class PointsController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = Points::find(auth()->user()->id);
-        if($user_id->count() == 0){
             $formFields= $request->validate([
                 'kills_point'=>'required',
                 'placement_point'=>'required',
             ]);
-            Points::create($formFields+['user_id'=>auth()->user()->id]);
-            return redirect('/dashboard');
-        }
-        else{
-            return redirect('/');
-        }
+            $count = Points::where('user_id',auth()->user()->id)->get()->count();
+            if($count>1)
+            {
+                return redirect('/dashboard');
+            }
+            else{
+                Points::create($formFields+['user_id'=>auth()->user()->id]);
+                return redirect('/dashboard');
+            }
+
     }
     public function calculate(Request $request)
     {
@@ -80,23 +84,21 @@ class PointsController extends Controller
     $result = new Results();
     $tournament = Tournament::where('name',$request->name)->first();
     $result->tournament_id = $tournament->id;
-    $result->user_id = auth()->user()->id;
-    $result->match_no = $request->match_no;
+    $team = Team::where('name',$request->team_name)->first();
+    $result->team_id = $team->id;
+
     $result->kills = $total_kills;
     $result->placement = $request->placement;
     $result->total = $totalPoints;
     $result->save();
     // inserting data for histories table
-      $data = [
-        ['tournament_id'=>$tournament->id,'player_name' => request('player_name1'), 'kills' => request('kills1')],
-        ['tournament_id'=>$tournament->id,'player_name' => request('player_name2'), 'kills' => request('kills2')],
-        ['tournament_id'=>$tournament->id,'player_name' => request('player_name3'), 'kills' => request('kills3')],
-        ['tournament_id'=>$tournament->id,'player_name' => request('player_name4'), 'kills' => request('kills4')],
+    $data = [
+        ['tournament_id' => $tournament->id, 'team_id' => $team->id, 'player_name' => $request->input('player_name1'), 'kills' => $request->input('kills1')],
+        ['tournament_id' => $tournament->id, 'team_id' => $team->id, 'player_name' => $request->input('player_name2'), 'kills' => $request->input('kills2')],
+        ['tournament_id' => $tournament->id, 'team_id' => $team->id, 'player_name' => $request->input('player_name3'), 'kills' => $request->input('kills3')],
+        ['tournament_id' => $tournament->id, 'team_id' => $team->id, 'player_name' => $request->input('player_name4'), 'kills' => $request->input('kills4')],
     ];
-    foreach ($data as $row) {
-        History::create($row);
-    }
-
+    History::insert($data);
     return redirect('/dashboard');
     }
     /**

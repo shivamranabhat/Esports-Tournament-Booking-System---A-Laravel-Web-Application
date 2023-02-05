@@ -9,6 +9,6 @@ class Results extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'tournament_id', 'user_id','match_number', 'kills', 'placement', 'total'
+        'tournament_id', 'team_id', 'kills', 'placement', 'total'
     ];
 }

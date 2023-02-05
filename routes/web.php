@@ -43,6 +43,12 @@ Route::get('/select',[PageController::class,'select_game']);
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
 //Store tournament
 Route::post('/tournament/store',[TournamentController::class,'store'])->middleware('auth');
+//show points index page
+Route::get('/points',[PointsController::class,'index'])->middleware('auth');
+//show points  page
+Route::get('/points/show',[PageController::class,'show_points'])->middleware('auth');
+//show points calculate page
+Route::get('/calculate',[PageController::class,'show_calculate'])->middleware('auth');
 //Store points
 Route::post('/points/store',[PointsController::class,'store'])->middleware('auth');
 //Calculate points
@@ -68,12 +74,13 @@ Route::post('/team/store',[TeamController::class,'store'])->middleware('auth');
 //edit userprofile
 Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
 ////////////////Booking ////////////////////////////////////
-//booking page
-Route::get('/bookings/{id}',[PageController::class, 'bookings']);
+
 //store bookings
 Route::post('/bookings/store',[BookingsController::class, 'store']);
 //show participants
 Route::get('/participants/{id}',[BookingsController::class,'index']);
+//show bookings
+Route::get('/bookings/{id}',[BookingsController::class,'show']);
 
 
 ////////////////Handling user ////////////////////////////////////
