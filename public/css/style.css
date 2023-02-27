@@ -220,8 +220,9 @@ span{
     margin-top: -5px;
 }
 .nice-select.open .list{
-    background-color: #0D0D59;
+    background-color: rgb(14,6,61);
 }
+
 .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
     background-color: transparent;
     color: #00FEDF;
@@ -285,6 +286,9 @@ iframe {
 }
 .pt-120 {
     padding-top: 90px;
+}
+.p-30{
+    padding: 0 30px ;
 }
 @media (max-width: 991px) {
     .pt-120 {
@@ -1893,7 +1897,7 @@ body::-webkit-scrollbar-thumb:hover {
 #banner-section.inner-banner .bottom-area{
     position: relative;
 }
-#banner-section.inner-banner .bottom-area::before{
+#banner-section.inner-banner .bottom-area::before,.dashboard-container::before{
     position: absolute;
     content: '';
     background-color: #130757;
@@ -2458,7 +2462,9 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: 50%;
     margin: 0 15px;
 }
+/* Dashboard container starts */
 
+/* Dashboard container ends */
 /* Login Regi Start */
 #login-reg{
     background: url(../images/login-reg-cover.png), rgba(8, 4, 73, 1);
@@ -4135,6 +4141,9 @@ textarea{
     .right-btn {
         right: 25%;
     }
+    #tournaments-content{
+        padding-top: 0px !important;
+    }
     .navbar-light .navbar-toggler {
         right: 16%;
     }
@@ -4371,6 +4380,9 @@ textarea{
         font-size: 14px;
         line-height: 24px;
     }
+    #tournaments-content{
+        padding-top: 30px !important;
+    }
     .title{
         font-size: 30px;
         line-height: 40px;
@@ -4569,7 +4581,7 @@ textarea{
     #deal-of-day .right-item .bottom-area h5 {
         margin-right: 15px;
     }
-    #banner-section.inner-banner .bottom-area {
+    #banner-section.inner-banner .bottom-area,.dashboard-container {
         display: grid !important;
         justify-content: start;
     }

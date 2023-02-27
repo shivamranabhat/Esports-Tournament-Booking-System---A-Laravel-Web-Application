@@ -63,7 +63,7 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
-        $participants= Booking::where('tournament_id',$id)->get();
+        $participants= Booking::where('tournament_id',$id)->first();
         return view('console.participant',compact('participants'));
     }
     /**

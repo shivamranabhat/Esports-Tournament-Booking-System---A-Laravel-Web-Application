@@ -46,8 +46,8 @@
                 </div>
                 <div class="bottom-area">
                     <div class="bottom">
-                        <div class="row d-flex justify-content-between">
-                            <div class="col-lg-8 col-md-8 justify-content-sm-center d-grid">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8  d-grid">
                                 <h3>{{$tournaments->name}}</h3>
                                 <div class="title-bottom d-flex">
                                     <div class="time-area bg">

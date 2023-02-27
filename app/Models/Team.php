@@ -13,7 +13,7 @@ class Team extends Model
     ];
     public function team()
     {
-        return $this->belongsTo('App\Models\Team','user_id');
+        return $this->belongsTo('App\Models\Booking','user_id');
     }
 
 }
