@@ -57,6 +57,10 @@ Route::get('/calculate/{id}',[PageController::class,'show_calculate'])->middlewa
 Route::post('/points/store',[PointsController::class,'store'])->middleware('auth');
 //Calculate points
 Route::post('/points/calculate',[PointsController::class,'calculate'])->middleware('auth');
+//Show tournament results
+Route::get('/result/{id}',[PageController::class,'show_result']);
+//Show points table
+Route::get('/points',[PageController::class, 'my_points']);
 
 
 
@@ -80,8 +84,8 @@ Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
 ////////////////Booking ////////////////////////////////////
 
 
-//show bookings
-Route::get('/bookings/{id}',[BookingsController::class,'show']);
+//show bookings page
+Route::get('/bookings/{id}',[PageController::class,'bookings']);
 
 
 ////////////////Handling user ////////////////////////////////////

@@ -57,7 +57,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="set-points-tab" data-toggle="tab" href="#set-points" role="tab" aria-controls="set-points" aria-selected="true">Set Points</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" id="manage_points-tab" data-toggle="tab" href="#manage_points" role="tab" aria-controls="manage_points" aria-selected="true">Manage Points</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -97,13 +99,34 @@
                                                 </span>
                                                 <ul class="list">
                                                     <li><a href="#"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
-                                                    <li><a href="#"><i class="fa-solid fa-trash"></i>Delete</a></li>
+                                                    <li><a href="#" data-toggle="modal" data-target="#delete_tournament"><i class="fa-solid fa-trash"></i>Delete</a></li>
                                                     <li><a href="/participants/{{$tournament->id}}"><i class="fa-solid fa-users"></i>Participants</a></li>
-                                                    {{-- <li><a href="/calculate/{{$tournament->id}}"><i class="fa-solid fa-calculator"></i>Calculate Points</a></li> --}}
+                                                    <li><a href="/result/{{$tournament->id}}"><i class="fa-solid fa-square-poll-vertical"></i>Result</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                    </div>
+                                    {{-- Modal for delete --}}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="delete_tournament" tabindex="-1" role="dialog" aria-labelledby="delete_tournamentTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content" style="background: rgb(55,8,152) !important;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">{{$tournament->name}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body text-white">
+                                            Are you sure want to delete this?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Close</button>
+                                            <a href="/delete/{{$tournament->id}}"><button type="button" class="btn btn-danger text-white">Delete</button></a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                    @endforeach
                                </div>
                                @endif
@@ -112,6 +135,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
                 <div class="participants">
                     <div class="container p-30">
@@ -143,6 +167,104 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade" id="manage_points" role="tabpanel" aria-labelledby="manage_points-tab">
+                <div class="participants">
+                    <div class="container p-30">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="participants-area dashboard-container pb-120">
+                                    <h4 class="py-3">Tournament Points</h4>
+                                    <div class="tournament-table d-flex justify-content-between">
+                                        <div class="table-responsive mt-1">
+                                            @if ($points->count()== 0)
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">S.N.</th>
+                                                    <th scope="col">Kills pts</th>
+                                                    <th scope="col">Placement pts</th>
+                                                    <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row"></th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                                <div class="null-message text-center my-5">
+                                                <img src="http://127.0.0.1:8000/images/null-icon.jpg" alt="error" width="80">
+                                                <h2 class="mt-3"><strong>Nothing to show</strong></h2>
+                                                <h5>You haven't set any points yet.</h5>
+                                            </div>
+                                            @else
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">S.N.</th>
+                                                        <th scope="col">Kills pts</th>
+                                                        <th scope="col">Placement pts</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                    @foreach ($points as $point)
+                                                    <tr>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td>{{$point->kills_point}}</td>
+                                                    <td>{{$point->placement_point}}</td>
+                                                    <td>
+                                                        <a href="/point/edit/{{$point->id}}" class="btn create-btn mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                                          </svg> </a>
+                                                        <a href="/point/edit/{{$point->id}}" data-toggle="modal" data-target="#delete_points" class="btn del-btn mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(70,9,195)" class="bi bi-trash-fill del" viewBox="0 0 16 16">
+                                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                          </svg> </a>
+                                                    </td>
+                                                </tr>
+                                                    @endforeach
+
+                                                </tbody>
+                                                </table>
+                                                {{-- Modal to show confirm dialog box while deleting points --}}
+                                                <div class="modal fade" id="delete_points" tabindex="-1" role="dialog" aria-labelledby="delete_pointsTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content" style="background: rgb(55,8,152) !important;">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Tournament Points</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body text-white">
+                                                        Are you sure want to delete this?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Close</button>
+                                                        <a href="/delete/{{$point->id}}"><button type="button" class="btn btn-danger text-white">Delete</button></a>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            @endif
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane fade" id="set-points" role="tabpanel" aria-labelledby="set-points-tab">
                 <div class="participants">
                     <div class="container p-30">
@@ -161,7 +283,7 @@
                                             </div>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label text-white" for="placement_point">Placement points</label>
-                                                <textarea class="form-control bg-white" id="placement_point" name="placement_point" rows="8" value="{{old('placement_point')}}"
+                                                <textarea class="form-control bg-white text-dark" id="placement_point" name="placement_point" rows="8" value="{{old('placement_point')}}"
                                                 placeholder=
                                                 "Provide the placement points as example:
 1=10,
@@ -188,7 +310,9 @@
         </div>
 
 
+
         </div>
+
 
     </section>
     <!-- Testimonials Content End -->

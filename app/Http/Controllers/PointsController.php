@@ -46,7 +46,7 @@ class PointsController extends Controller
                 'placement_point'=>'required',
             ]);
             $count = Points::where('user_id',auth()->user()->id)->get()->count();
-            if($count>1)
+            if($count > 0)
             {
                 return redirect('/dashboard');
             }

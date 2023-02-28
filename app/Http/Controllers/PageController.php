@@ -10,6 +10,7 @@ use App\Models\Booking;
 use App\Models\Profile;
 use App\Models\Team;
 use App\Models\Points;
+use App\Models\Results;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -28,6 +29,7 @@ class PageController extends Controller
         $tournaments = Tournament::orderBy('closing_time', 'asc')->get();
         return view('pages.index', compact('games'),compact('tournaments'));
     }
+    //display user profile page
     public function user_profile()
     {
         $user = Auth::user();
@@ -48,6 +50,7 @@ class PageController extends Controller
             }
         }
     }
+    //display all tournaments
     public function show_tournaments()
     {
         $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->get();
@@ -61,12 +64,14 @@ class PageController extends Controller
         }
         return view('pages.tournament',compact('tournaments'));
     }
+    //show indvidual tournaments details
     public function tournament_details($id)
     {
         $tournaments = Tournament::find($id);
         $user = Profile::where('user_id',$tournaments->user_id)->first();
         return view('pages.tournaments-details',compact('tournaments'),['profile'=>$user]);
     }
+    //show tournament host dashboard
     public function dashboard()
     {
         $user = Auth::user();
@@ -75,22 +80,27 @@ class PageController extends Controller
         {
             return redirect('/login');
         }
+        $points = Points::where('user_id',$user->id)->get();
         $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', $user->id)->get();
         $games = Game::all();
-        return view('console.tournaments.index',compact('games'),compact('tournaments'));
+        return view('console.tournaments.index',compact('games'),compact('tournaments','points'));
     }
+    //show page to select game
     public function select_game()
     {
         $games = Game::all();
         return view('console.tournaments.select',compact('games'));
     }
+    //show create tournament page inc game id in route
     public function create_tournament($id)
     {
         $game = Game::find($id);
+        $user = Auth::user();
         $tournament_avatars = Tournament_Avatar::all();
-        return view('console.tournaments.create',compact('tournament_avatars'),['game' => $game]);
+        $points = Points::where('user_id',$user->id)->get();
+        return view('console.tournaments.create',compact('tournament_avatars','points'),['game' => $game]);
     }
-
+    //show booking page inc team members in textboxes
     public function bookings($id)
     {
         $user = auth()->user()->id;
@@ -102,7 +112,7 @@ class PageController extends Controller
         }
         else if($profiles == null)
         {
-            return redirect('/editprofile');
+            return redirect('/editprofile')->with('message','Please set your team information');;
         }
         else{
             $tournaments = Tournament::find($id);
@@ -118,8 +128,8 @@ class PageController extends Controller
         $games = Game::all();
         Session::put('tournament_id', $id);
         $participants = Booking::where('tournament_id', $id)->get();
-        $games = Game::all();
-        return view('console.tournaments.participants',compact('games'),compact('participants'));
+        $points = Points::where('user_id',$user->id)->get();
+        return view('console.tournaments.participants',compact('games','points'),compact('participants'));
     }
     //show calculate page in dashboard
     public function show_calculate($id)
@@ -128,13 +138,21 @@ class PageController extends Controller
         $check_points = Points::where('user_id',$user)->first();
         $games = Game::all();
         $bookings = Booking::where('user_id', $user->id)->get();
+        $user = Auth::user();
+        $points = Points::where('user_id',$user->id)->get();
         $team = Team::where('id',$id)->first();
-        return view('console.tournaments.calculate',compact('bookings','games'),['team'=>$team]);
+        return view('console.tournaments.calculate',compact('bookings','games','points'),['team'=>$team]);
     }
-    public function show_points()
+    //show result
+    public function show_result($id)
     {
-        return view('console.tournaments.set_points');
+        $results = Results::where('tournament_id', $id)->get();
+        $user = Auth::user();
+        $points = Points::where('user_id',$user->id)->get();
+        $games = Game::all();
+        return view('console.tournaments.result',compact('results','points'),compact('games'));
     }
+
 
 }
 
