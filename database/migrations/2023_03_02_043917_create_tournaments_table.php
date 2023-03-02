@@ -26,14 +26,13 @@ return new class extends Migration
             $table->string('third_prize');
             $table->longText('rules');
             $table->unsignedBigInteger('image_id')->nullable();
-            $table->unsignedBigInteger('game_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('image_id')->references('id')->on('tournament_avatars');
-            $table->foreign('game_id')->references('id')->on('games');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('game_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('image_id')->references('id')->on('tournament_avatars')->onDelete('cascade');
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
-
     }
 
     /**

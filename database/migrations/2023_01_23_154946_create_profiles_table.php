@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('uid');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('game_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('game_id')->references('id')->on('games');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');;
             $table->timestamps();
         });
     }

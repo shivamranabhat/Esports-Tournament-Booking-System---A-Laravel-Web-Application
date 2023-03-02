@@ -149,6 +149,8 @@ class PointsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $points = Points::findOrFail($id);
+        $points->delete();
+        return redirect('/dashboard')->with('message','Points has been deleted');
     }
 }

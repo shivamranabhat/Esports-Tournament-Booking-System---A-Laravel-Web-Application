@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('player_3');
             $table->string('player_4')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

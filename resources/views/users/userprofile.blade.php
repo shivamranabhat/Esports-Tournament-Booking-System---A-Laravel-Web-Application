@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
                     <div class="right d-flex align-items-center">
-                        <a href="/edit/{{$profiles->id}}" class="cmn-btn">Update Profile</a>
+                        <a href="/edit/{{$profiles->id}}" class="cmn-btn btn text-white">Update Profile</a>
                     </div>
                 </div>
             </div>

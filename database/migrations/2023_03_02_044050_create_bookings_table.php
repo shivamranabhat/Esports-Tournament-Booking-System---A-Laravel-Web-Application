@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tournament_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('team_id');
-            $table->string('player_name');
-            $table->string('kills');
-            $table->foreign('tournament_id')->references('id')->on('tournaments');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->string('payment_id')->nullable();
+            $table->foreign('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('bookings');
     }
 };

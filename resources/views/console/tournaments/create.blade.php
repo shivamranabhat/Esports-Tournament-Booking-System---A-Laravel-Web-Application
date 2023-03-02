@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label text-white" for="rules">Rules</label>
-                                          <textarea class="form-control" id="rules" name="rules" rows="4" value="{{old('rules')}}"></textarea>
+                                          <textarea class="form-control bg-white text-dark" id="rules" name="rules" rows="4" value="{{old('rules')}}"></textarea>
                                           @error('name')
                                           <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
                                           @enderror

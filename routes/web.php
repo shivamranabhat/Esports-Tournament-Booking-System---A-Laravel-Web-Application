@@ -22,7 +22,7 @@ use App\Http\Controllers\TeamController;
 |
 */
 
-
+Auth::routes(['verify' => true]);
 
 // Admin
 //Game routes
@@ -43,6 +43,8 @@ Route::get('/select',[PageController::class,'select_game']);
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
 //Store tournament
 Route::post('/tournament/store',[TournamentController::class,'store'])->middleware('auth');
+// delete tournament
+Route::delete('/tournament/{id}', [TournamentController::class,'destroy'])->name('tournament.destroy');
 //show points index page
 Route::get('/points',[PointsController::class,'index'])->middleware('auth');
 //store bookings
@@ -61,6 +63,9 @@ Route::post('/points/calculate',[PointsController::class,'calculate'])->middlewa
 Route::get('/result/{id}',[PageController::class,'show_result']);
 //Show points table
 Route::get('/points',[PageController::class, 'my_points']);
+// delete points
+Route::delete('/points/{id}', [PointsController::class,'destroy'])->name('points.destroy');
+
 
 
 
@@ -99,8 +104,3 @@ Route::get('/login',[UserController::class,'login']);
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
 //logout user
 Route::post('/logout',[UserController::class,'logout']);
-// Auth::routes(['verify' => true]);
-
-
-
-
