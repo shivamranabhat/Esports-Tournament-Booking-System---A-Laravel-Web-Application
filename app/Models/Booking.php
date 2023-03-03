@@ -14,4 +14,9 @@ class Booking extends Model
     public function team(){
         return $this->belongsTo(Team::class,'team_id','id');
     }
+    public function points()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

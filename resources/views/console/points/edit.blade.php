@@ -58,7 +58,7 @@
                                 <a class="nav-link" id="set-points-tab" data-toggle="tab" href="#set-points" role="tab" aria-controls="set-points" aria-selected="true">Set Points</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" id="manage-points-tab" data-toggle="tab" href="#manage-points" role="tab" aria-controls="manage-points" aria-selected="true">Manage Points</a>
+                                <a class="nav-link active" id="edit-points-tab" data-toggle="tab" href="#edit-points" role="tab" aria-controls="manage-points" aria-selected="true">Manage Points</a>
                             </li>
                         </ul>
                     </div>
@@ -71,86 +71,74 @@
     <!-- Testimonials Content Start -->
     <section id="tournaments-content">
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+            <div class="tab-pane fade" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                 <div class="participants">
                     <div class="container p-30">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="participants-area dashboard-container pb-120">
-                                    <h4 class="py-3">Tournament Points</h4>
-                                    <div class="tournament-table d-flex justify-content-between">
-                                        <div class="table-responsive mt-1">
-                                            @if ($points->count()== 0)
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                    <th scope="col">S.N.</th>
-                                                    <th scope="col">Kills pts</th>
-                                                    <th scope="col">Placement pts</th>
-                                                    <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                    <th scope="row"></th>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    </tr>
-                                                </tbody>
-                                                </table>
-                                                <div class="null-message text-center my-5">
-                                                <img src="http://127.0.0.1:8000/images/null-icon.jpg" alt="error" width="80">
-                                                <h2 class="mt-3"><strong>Nothing to show</strong></h2>
-                                                <h5>You haven't set any points yet.</h5>
+                                    <h4 class="py-3">Tournaments</h4>
+                                @if (count($tournaments) == 0)
+                                  <div class="participants-single d-flex justify-content-center">
+                                    <h6 class="text-center">No Tournament Found</h6>
+                                  </div>
+                                  @else
+                                  @foreach ($tournaments as $tournament)
+                                  <div class="participants-single">
+                                        <div class="left-area d-flex align-items-center">
+                                            <img src="{{asset('storage/'.$tournament->image->image)}}" alt="images">
+                                            <div class="right-side">
+                                                <h6>{{$tournament->name}}</h6>
                                             </div>
-                                            @else
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">S.N.</th>
-                                                        <th scope="col">Kills pts</th>
-                                                        <th scope="col">Placement pts</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-
-                                                    @foreach ($points as $point)
-                                                    <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{$point->kills_point}}</td>
-                                                    <td>{{$point->placement_point}}</td>
-                                                    <td>
-                                                        <a href="/point/edit/{{$point->id}}" class="btn create-btn mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-                                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                                                          </svg> </a>
-                                                        <a href="/point/edit/{{$point->id}}" class="btn del-btn mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(70,9,195)" class="bi bi-trash-fill del" viewBox="0 0 16 16">
-                                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                                          </svg> </a>
-                                                    </td>
-                                                </tr>
-                                                    @endforeach
-
-                                                </tbody>
-                                                </table>
-
-                                            @endif
-
-
+                                        </div>
+                                        <div class="right-area">
+                                            <div class="nice-select"><span class="current single-item share">
+                                                    <span class="dot"></span>
+                                                    <span class="dot"></span>
+                                                    <span class="dot"></span>
+                                                </span>
+                                                <ul class="list">
+                                                    <li><a href="#"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+                                                    <li><a href="#" data-toggle="modal" data-target="#delete_tournament"><i class="fa-solid fa-trash"></i>Delete</a></li>
+                                                    <li><a href="/participants/{{$tournament->id}}"><i class="fa-solid fa-users"></i>Participants</a></li>
+                                                    <li><a href="/result/{{$tournament->id}}"><i class="fa-solid fa-square-poll-vertical"></i>Result</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                   </div>
+                                    {{-- Modal for delete --}}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="delete_tournament" tabindex="-1" role="dialog" aria-labelledby="delete_tournamentTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content" style="background: rgb(55,8,152) !important;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">{{$tournament->name}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body text-white">
+                                            Are you sure want to delete this?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Close</button>
+                                            <form action="{{ route('tournament.destroy', $tournament->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger text-white">Delete</button>
+                                            </form>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
-                                </div>
+                                   @endforeach
+                               </div>
+                               @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
                 <div class="participants">
                     <div class="container p-30">
@@ -203,11 +191,11 @@
                                                 <textarea class="form-control bg-white text-dark" id="placement_point" name="placement_point" rows="8" value="{{old('placement_point')}}"
                                                 placeholder=
                                                 "Provide the placement points as example:
-1=10,
-2=7,
-3=5.
-4=2,
-5-12=1"></textarea>
+                                                1=10,
+                                                2=7,
+                                                3=5.
+                                                4=2,
+                                                5-12=1"></textarea>
                                                 @error('placement_point')
                                                 <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
                                                 @enderror
@@ -215,6 +203,42 @@
                                         <!-- Submit button -->
                                         <div class="form-group">
                                             <button type="submit" class="btn pax-3 py-2 text-white update-btn mb-3">Add</button>
+                                        </div>
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade show active" id="edit-points" role="tabpanel" aria-labelledby="edit-points-tab">
+                <div class="participants">
+                    <div class="container p-30">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="participants-area dashboard-container">
+                                    <h4 class="py-3">Set Points</h4>
+                                    <form method="post" action="/points/update/{{$points->id}}" class="entry-form p-2">
+                                        @csrf
+                                        @method('PUT')
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label text-white" for="kills_point">kills point</label>
+                                                <input type="text" id="kills_point" name="kills_point" class="form-control" value="{{$points->kills_point}}"/>
+                                                @error('kills_point')
+                                                <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label text-white" for="placement_point">Placement points</label>
+                                                <textarea class="form-control bg-white text-dark" id="placement_point" name="placement_point" rows="8">{{$points->placement_point}}</textarea>
+                                                @error('placement_point')
+                                                <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                        <!-- Submit button -->
+                                        <div class="form-group">
+                                            <button type="submit" class="btn pax-3 py-2 text-white update-btn mb-3">Update</button>
                                         </div>
                                       </form>
                                 </div>

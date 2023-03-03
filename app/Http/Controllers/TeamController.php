@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,6 +94,12 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $team = Team::findOrFail($id);
+        // Make sure logged in user is owner
+         if($team->user_id != auth()->user()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $team->delete();
+        return redirect('/editprofile')->with('message','Team has been deleted successfully');
     }
 }

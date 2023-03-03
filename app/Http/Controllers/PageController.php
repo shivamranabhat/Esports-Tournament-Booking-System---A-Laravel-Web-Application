@@ -82,8 +82,7 @@ class PageController extends Controller
         }
         $points = Points::where('user_id',$user->id)->get();
         $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', $user->id)->get();
-        $games = Game::all();
-        return view('console.tournaments.index',compact('games'),compact('tournaments','points'));
+        return view('console.index',compact('games'),compact('tournaments','points'));
     }
     //show page to select game
     public function select_game()
@@ -129,7 +128,7 @@ class PageController extends Controller
         Session::put('tournament_id', $id);
         $participants = Booking::where('tournament_id', $id)->get();
         $points = Points::where('user_id',$user->id)->get();
-        return view('console.tournaments.participants',compact('games','points'),compact('participants'));
+        return view('console.participants',compact('games','points'),compact('participants'));
     }
     //show calculate page in dashboard
     public function show_calculate($id)
@@ -141,7 +140,7 @@ class PageController extends Controller
         $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
         $team = Team::where('id',$id)->first();
-        return view('console.tournaments.calculate',compact('bookings','games','points'),['team'=>$team]);
+        return view('console.calculate',compact('bookings','games','points'),['team'=>$team]);
     }
     //show result
     public function show_result($id)
@@ -150,9 +149,8 @@ class PageController extends Controller
         $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
         $games = Game::all();
-        return view('console.tournaments.result',compact('results','points'),compact('games'));
+        return view('console.result',compact('results','points'),compact('games'));
     }
-
 
 }
 

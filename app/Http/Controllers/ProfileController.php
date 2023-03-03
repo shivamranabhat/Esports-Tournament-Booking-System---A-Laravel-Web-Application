@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\tournament_avatar;
 use App\Models\Game;
+use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -18,8 +19,9 @@ class ProfileController extends Controller
     public function index()
     {
         $games = Game::all();
+        $teams = Team::where('user_id',auth()->user()->id)->get();
         $tournament_avatars = tournament_avatar::all();
-        return view('users.editprofile',compact('tournament_avatars'),compact('games'));
+        return view('users.editprofile',compact('tournament_avatars'),compact('games','teams'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Points;
 use App\Models\Results;
 use App\Models\Tournament;
 use App\Models\Team;
+use App\Models\Game;
 use App\Models\History;
 use Illuminate\Support\Facades\Session;
 
@@ -126,7 +127,10 @@ class PointsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $games = Game::all();
+        $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', auth()->user()->id)->get();
+        $points = Points::findOrFail($id);
+        return view('console.points.edit',compact('games','tournaments','points'));
     }
 
     /**
@@ -138,7 +142,17 @@ class PointsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $points = Points::findOrFail($id);
+        // Make sure logged in user is owner
+        if($points->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $formFields = $request->validate([
+            'kills_point'=>'required',
+            'placement_point'=>'required',
+        ]);
+        $points->update($formFields);
+        return redirect('/dashboard')->with('message', 'Points has been updated successfully');
     }
 
     /**
@@ -150,6 +164,10 @@ class PointsController extends Controller
     public function destroy($id)
     {
         $points = Points::findOrFail($id);
+         // Make sure logged in user is owner
+         if($points->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
         $points->delete();
         return redirect('/dashboard')->with('message','Points has been deleted');
     }

@@ -34,6 +34,7 @@ Route::get('/tournament_avatar',[Tournament_AvatarController::class,'index']);
 //Store tournament avatar
 Route::post('/tournament_avatar/store',[Tournament_AvatarController::class,'store']);
 
+
 //Organizer
 //show dashboard
 Route::get('/dashboard',[PageController::class,'dashboard']);
@@ -43,6 +44,10 @@ Route::get('/select',[PageController::class,'select_game']);
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
 //Store tournament
 Route::post('/tournament/store',[TournamentController::class,'store'])->middleware('auth');
+//edit tournament
+Route::get('/tournament/edit/{id}',[TournamentController::class,'edit'])->middleware('auth');
+//edit tournament
+Route::put('/tournament/update/{id}',[TournamentController::class,'update'])->middleware('auth');
 // delete tournament
 Route::delete('/tournament/{id}', [TournamentController::class,'destroy'])->name('tournament.destroy');
 //show points index page
@@ -63,6 +68,10 @@ Route::post('/points/calculate',[PointsController::class,'calculate'])->middlewa
 Route::get('/result/{id}',[PageController::class,'show_result']);
 //Show points table
 Route::get('/points',[PageController::class, 'my_points']);
+//Edit Points
+Route::get('/points/edit/{id}',[PointsController::class,'edit']);
+//Update Points
+Route::put('/points/update/{id}',[PointsController::class,'update']);
 // delete points
 Route::delete('/points/{id}', [PointsController::class,'destroy'])->name('points.destroy');
 
@@ -86,8 +95,13 @@ Route::post('/profile/store',[ProfileController::class,'store'])->middleware('au
 Route::post('/team/store',[TeamController::class,'store'])->middleware('auth');
 //edit userprofile
 Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
-////////////////Booking ////////////////////////////////////
+//Delete team
+Route::delete('/team/{id}',[TeamController::class,'destroy'])->name('team.destroy');
 
+
+
+
+////////////////Booking ////////////////////////////////////
 
 //show bookings page
 Route::get('/bookings/{id}',[PageController::class,'bookings']);
