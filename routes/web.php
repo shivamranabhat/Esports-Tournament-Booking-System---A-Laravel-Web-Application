@@ -22,7 +22,7 @@ use App\Http\Controllers\TeamController;
 |
 */
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
 
 // Admin
 //Game routes
@@ -87,14 +87,20 @@ Route::get('/details/{id}',[PageController::class,'tournament_details']);
 ////////////////Profile ////////////////////////////////////
 //show profile page
 Route::get('/myprofile',[PageController::class,'user_profile']);
-//show edit profile page
+//show edit page for new users
 Route::get('/editprofile',[ProfileController::class,'index']);
 //save profile
 Route::post('/profile/store',[ProfileController::class,'store'])->middleware('auth');
+//show update profile page
+Route::get('/profile/edit/{id}',[ProfileController::class,'edit']);
+//update user's profile
+Route::put('/profile/update/{id}',[ProfileController::class,'update']);
 //save team info
 Route::post('/team/store',[TeamController::class,'store'])->middleware('auth');
 //edit userprofile
 Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
+//update team
+Route::put('/team/update/{id}',[TeamController::class,'update']);
 //Delete team
 Route::delete('/team/{id}',[TeamController::class,'destroy'])->name('team.destroy');
 

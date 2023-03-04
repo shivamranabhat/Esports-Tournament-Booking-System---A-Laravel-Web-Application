@@ -37,6 +37,10 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $user_id =  auth()->user()->id;
+        $exists = Team::where('user_id',$user_id)->first();
+        if($exists){
+            return redirect('/editprofile')->with('message','Your team is already exists');
+        }
         $formFields = $request->validate([
             'name'=>'required',
             'logo'=>'required|image',
@@ -83,7 +87,35 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $teams = Team::findOrFail($id);
+        $user_id = auth()->id();
+        // Make sure logged in user is owner
+        if($teams->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        //if user select new image
+        if($request->hasFile('image')){
+            $formFields = $request->validate([
+                'name'=>'required',
+                'logo'=>'required|image',
+                'player_1'=>'required',
+                'player_2'=>'required',
+                'player_3'=>'required',
+                'player_4'=>'required'
+            ]);
+            $formFields['image']= $request->file('image')->store('users','public');
+            $teams->update($formFields);
+        }
+        //if user didn't select new image
+        $fields = $request->validate([
+            'name'=>'required',
+            'player_1'=>'required',
+            'player_2'=>'required',
+            'player_3'=>'required',
+            'player_4'=>'required'
+        ]);
+        $teams->update($fields);
+        return redirect('/myprofile')->with('message','Your profile has been updated');
     }
 
     /**
@@ -96,7 +128,7 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
         // Make sure logged in user is owner
-         if($team->user_id != auth()->user()->id()) {
+         if($team->user_id != auth()->id()) {
             abort(403, 'Unauthorized Action');
         }
         $team->delete();

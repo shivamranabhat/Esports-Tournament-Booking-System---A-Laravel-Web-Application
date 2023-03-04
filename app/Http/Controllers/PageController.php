@@ -104,18 +104,19 @@ class PageController extends Controller
     {
         $user = auth()->user()->id;
         $profiles = Profile::find($user);
+        $teams = Team::where('user_id',$user)->first();
 
         if($user == null)
         {
             return redirect('/login');
         }
-        else if($profiles == null)
+        else if($profiles == null || $teams == null)
         {
             return redirect('/editprofile')->with('message','Please set your team information');;
         }
         else{
             $tournaments = Tournament::find($id);
-            $teams = Team::where('user_id',$user)->first();
+
             return view('tournament.bookings',compact('teams','profiles'),['tournaments'=>$tournaments]);
         }
     }
@@ -137,9 +138,8 @@ class PageController extends Controller
         $check_points = Points::where('user_id',$user)->first();
         $games = Game::all();
         $bookings = Booking::where('user_id', $user->id)->get();
-        $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
-        $team = Team::where('id',$id)->first();
+        $team = Team::where('user_id',$id)->first();
         return view('console.calculate',compact('bookings','games','points'),['team'=>$team]);
     }
     //show result

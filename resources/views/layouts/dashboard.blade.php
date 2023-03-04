@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Tournaments')
+@section('title', 'Tournaments')
 @section('page-name')
     <!-- banner-section start -->
     <section id="banner-section" class="inner-banner tournaments">
@@ -34,7 +34,8 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
                             <img src="http://127.0.0.1:8000/images/character_01.png" alt="image">
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 d-flex align-items-center justify-content-sm justify-content-center">
+                        <div
+                            class="col-lg-4 col-md-4 col-sm-4 d-flex align-items-center justify-content-sm justify-content-center">
                             <div class="mid-area text-center">
                                 <h3>Organize Here</h3>
                             </div>
@@ -49,16 +50,20 @@
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview"
+                                    role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="true">Create</a>
+                                <a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab"
+                                    aria-controls="create" aria-selected="true">Create</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="set-points-tab" data-toggle="tab" href="#set-points" role="tab" aria-controls="set-points" aria-selected="true">Set Points</a>
+                                <a class="nav-link" id="set-points-tab" data-toggle="tab" href="#set-points" role="tab"
+                                    aria-controls="set-points" aria-selected="true">Set Points</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="manage_points-tab" data-toggle="tab" href="#manage_points" role="tab" aria-controls="manage_points" aria-selected="true">Manage Points</a>
+                                <a class="nav-link" id="manage_points-tab" data-toggle="tab" href="#manage_points"
+                                    role="tab" aria-controls="manage_points" aria-selected="true">Manage Points</a>
                             </li>
                         </ul>
                     </div>
@@ -74,11 +79,10 @@
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                 <div class="participants">
                     <div class="container p-30">
-                         @yield('dashboard-page')
+                        @yield('dashboard-page')
                     </div>
                 </div>
             </div>
-        
             <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
                 <div class="participants">
                     <div class="container p-30">
@@ -87,24 +91,27 @@
                                 <div class="participants-area dashboard-container pb-120">
                                     <h4 class="py-3">Choose Game</h4>
                                     <div class="row ">
-                                        @foreach ( $games as $game)
-                                        <div class="column col-6 col-sm-4 col-md-2 col-lg-2 mb-3 mx-0 mt-0 p-1  game-row">
-                                            <a href="{{ route('create_tournament', ['id' => $game->id]) }}">
-                                                <img src="{{asset('storage/'. $game->image)}}" alt="{{$game->name}}" class="img-fluid rounded" width="180">
-                                                <div class="game-name d-flex align-items-center">
-                                                    <svg class="ml-3" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                                        class="bi bi-phone" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-                                                        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                                    </svg>
-                                                    <span class="mt-2 ml-1 text-white">{{$game->name}}</span>
-                                                </div>
-                                            </a>
-                                        </div>
+                                        @foreach ($games as $game)
+                                            <div
+                                                class="column col-6 col-sm-4 col-md-2 col-lg-2 mb-3 mx-0 mt-0 p-1  game-row">
+                                                <a href="{{ route('create_tournament', ['id' => $game->id]) }}">
+                                                    <img src="{{ asset('storage/' . $game->image) }}"
+                                                        alt="{{ $game->name }}" class="img-fluid rounded" width="180">
+                                                    <div class="game-name d-flex align-items-center">
+                                                        <svg class="ml-3" xmlns="http://www.w3.org/2000/svg"
+                                                            width="18" height="18" fill="currentColor"
+                                                            class="bi bi-phone" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+                                                            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                                        </svg>
+                                                        <span class="mt-2 ml-1 text-white">{{ $game->name }}</span>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         @endforeach
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -119,32 +126,36 @@
                                     <h4 class="py-3">Set Points</h4>
                                     <form method="post" action="/points/store" class="entry-form p-2">
                                         @csrf
-                                            <div class="form-outline mb-4">
-                                                <label class="form-label text-white" for="kills_point">kills point</label>
-                                                <input type="text" id="kills_point" name="kills_point" class="form-control" value="{{old('kills_point')}}"/>
-                                                @error('kills_point')
-                                                <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="form-outline mb-4">
-                                                <label class="form-label text-white" for="placement_point">Placement points</label>
-                                                <textarea class="form-control bg-white text-dark" id="placement_point" name="placement_point" rows="8" value="{{old('placement_point')}}"
-                                                placeholder=
-                                                "Provide the placement points as example:
-        1=10,
-        2=7,
-        3=5.
-        4=2,
-        5-12=1"></textarea>
-                                                @error('placement_point')
-                                                <p class="d-flex justify-content-start text-danger mt-2">{{$message}}</p>
-                                                @enderror
-                                            </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label text-white" for="kills_point">kills point</label>
+                                            <input type="text" id="kills_point" name="kills_point"
+                                                class="form-control" value="{{ old('kills_point') }}" />
+                                            @error('kills_point')
+                                                <p class="d-flex justify-content-start text-danger mt-2">{{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label text-white" for="placement_point">Placement
+                                                points</label>
+                                            <textarea class="form-control bg-white text-dark" id="placement_point" name="placement_point" rows="8"
+                                                value="{{ old('placement_point') }}" placeholder="Provide the placement points as example:
+1=10,
+2=7,
+3=5.
+4=2,
+5-12=1"></textarea>
+                                            @error('placement_point')
+                                                <p class="d-flex justify-content-start text-danger mt-2">{{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
                                         <!-- Submit button -->
                                         <div class="form-group">
-                                            <button type="submit" class="btn pax-3 py-2 text-white update-btn mb-3">Add</button>
+                                            <button type="submit"
+                                                class="btn pax-3 py-2 text-white update-btn mb-3">Add</button>
                                         </div>
-                                        </form>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -161,87 +172,115 @@
                                     <h4 class="py-3">Tournament Points</h4>
                                     <div class="tournament-table d-flex justify-content-between">
                                         <div class="table-responsive mt-1">
-                                            @if ($points->count()== 0)
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                    <th scope="col">S.N.</th>
-                                                    <th scope="col">Kills pts</th>
-                                                    <th scope="col">Placement pts</th>
-                                                    <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
+                                            @if ($points->count() == 0)
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">S.N.</th>
+                                                            <th scope="col">Kills pts</th>
+                                                            <th scope="col">Placement pts</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                <tbody>
-                                                    <tr>
-                                                    <th scope="row"></th>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    </tr>
-                                                </tbody>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row"></th>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                                 <div class="null-message text-center my-5">
-                                                <img src="http://127.0.0.1:8000/images/null-icon.jpg" alt="error" width="80">
-                                                <h2 class="mt-3"><strong>Nothing to show</strong></h2>
-                                                <h5>You haven't set any points yet.</h5>
-                                            </div>
+                                                    <img src="http://127.0.0.1:8000/images/null-icon.jpg" alt="error"
+                                                        width="80">
+                                                    <h2 class="mt-3"><strong>Nothing to show</strong></h2>
+                                                    <h5>You haven't set any points yet.</h5>
+                                                </div>
                                             @else
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">S.N.</th>
-                                                        <th scope="col">Kills pts</th>
-                                                        <th scope="col">Placement pts</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-
-                                                    @foreach ($points as $point)
+                                                <table class="table">
+                                                    <thead>
                                                         <tr>
-                                                            <td>{{$loop->iteration}}</td>
-                                                            <td>{{$point->kills_point}}</td>
-                                                            <td>{{$point->placement_point}}</td>
-                                                            <td>
-                                                                <a href="/points/edit/{{$point->id}}" class="btn create-btn mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-                                                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                                                                </svg> </a>
-                                                                <button data-toggle="modal" data-target="#delete_points" class="btn del-btn mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(70,9,195)" class="bi bi-trash-fill del" viewBox="0 0 16 16">
-                                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                                                </svg> </button>
-                                                            </td>
+                                                            <th scope="col">S.N.</th>
+                                                            <th scope="col">Kills pts</th>
+                                                            <th scope="col">Placement pts</th>
+                                                            <th scope="col">Action</th>
                                                         </tr>
-                                                        {{-- Modal to show confirm dialog box while deleting points --}}
-                                                        <div class="modal fade" id="delete_points" tabindex="-1" role="dialog" aria-labelledby="delete_pointsTitle" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content" style="background: rgb(55,8,152) !important;">
-                                                                <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Tournament Points</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                                </div>
-                                                                <div class="modal-body text-white">
-                                                                Are you sure want to delete this?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Close</button>
-                                                                <form action="{{route('points.destroy',$point->id)}}" method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button class="btn btn-danger text-white mb-2" type="submit">DELETE </button>
-                                                                </form>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
+                                                    </thead>
 
-                                                </tbody>
-                                            </table>
+                                                    <tbody>
+
+                                                        @foreach ($points as $point)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{ $point->kills_point }}</td>
+                                                                <td>{{ $point->placement_point }}</td>
+                                                                <td>
+                                                                    <a href="/points/edit/{{ $point->id }}"
+                                                                        class="btn create-btn mb-2"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16" height="16"
+                                                                            fill="currentColor" class="bi bi-pen-fill"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                                                        </svg> </a>
+                                                                    <button data-toggle="modal"
+                                                                        data-target="#delete_points"
+                                                                        class="btn del-btn mb-2"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16" height="16"
+                                                                            fill="rgb(70,9,195)"
+                                                                            class="bi bi-trash-fill del"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                                                        </svg> </button>
+                                                                </td>
+                                                            </tr>
+                                                            {{-- Modal to show confirm dialog box while deleting points --}}
+                                                            <div class="modal fade" id="delete_points" tabindex="-1"
+                                                                role="dialog" aria-labelledby="delete_pointsTitle"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered"
+                                                                    role="document">
+                                                                    <div class="modal-content"
+                                                                        style="background: rgb(55,8,152) !important;">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalLongTitle">Tournament
+                                                                                Points</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body text-white">
+                                                                            Are you sure want to delete this?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary text-white"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <form
+                                                                                action="{{ route('points.destroy', $point->id) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button
+                                                                                    class="btn btn-danger text-white mb-2"
+                                                                                    type="submit">DELETE </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
                                             @endif
                                         </div>
                                     </div>
@@ -255,4 +294,3 @@
     </section>
     <!-- Dashboard Content End -->
 @endsection
-

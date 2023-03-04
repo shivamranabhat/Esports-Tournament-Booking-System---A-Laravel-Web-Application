@@ -42,21 +42,19 @@ class PointsController extends Controller
      */
     public function store(Request $request)
     {
-            $formFields= $request->validate([
-                'kills_point'=>'required',
-                'placement_point'=>'required',
-            ]);
-            $count = Points::where('user_id',auth()->user()->id)->get()->count();
-            if($count > 0)
-            {
-                return redirect('/dashboard');
-            }
-            else{
-                Points::create($formFields+['user_id'=>auth()->user()->id]);
-                return redirect('/dashboard');
-            }
-
+        $exists = Points::where('user_id',auth()->user()->id)->get();
+        if($exists > 0)
+        {
+            return redirect('/dashboard');
+        }
+        $formFields= $request->validate([
+            'kills_point'=>'required',
+            'placement_point'=>'required',
+        ]);
+        Points::create($formFields+['user_id'=>auth()->user()->id]);
+        return redirect('/dashboard');
     }
+
     public function calculate(Request $request)
     {
         $user = Points::where('user_id',auth()->user()->id)->first();
