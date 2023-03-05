@@ -10,6 +10,8 @@ use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\PerformanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,7 @@ Route::get('/calculate/{id}',[PageController::class,'show_calculate'])->middlewa
 //Store points
 Route::post('/points/store',[PointsController::class,'store'])->middleware('auth');
 //Calculate points
-Route::post('/points/calculate',[PointsController::class,'calculate'])->middleware('auth');
+Route::post('/calculate',[ResultsController::class,'store']);
 //Show tournament results
 Route::get('/result/{id}',[PageController::class,'show_result']);
 //Show points table
@@ -74,6 +76,9 @@ Route::get('/points/edit/{id}',[PointsController::class,'edit']);
 Route::put('/points/update/{id}',[PointsController::class,'update']);
 // delete points
 Route::delete('/points/{id}', [PointsController::class,'destroy'])->name('points.destroy');
+//delete results
+Route::delete('/result/{id}', [ResultsController::class,'destroy'])->name('results.destroy');
+
 
 
 
@@ -124,3 +129,7 @@ Route::get('/login',[UserController::class,'login']);
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
 //logout user
 Route::post('/logout',[UserController::class,'logout']);
+
+
+//Tracking performance
+Route::get('/performance',[PerformanceController::class,'performance']);

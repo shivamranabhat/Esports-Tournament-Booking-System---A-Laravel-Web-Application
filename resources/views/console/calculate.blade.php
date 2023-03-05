@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="participants-area dashboard-container pb-120">
                 <h4 class="py-3">Calculate Points</h4>
-                <form method="post" action="/points/calculate" class="entry-form p-2">
+                <form method="post" action="/calculate" class="entry-form p-2">
                     @csrf
 
                     <div class="form-row mb-4">
@@ -92,7 +92,6 @@
                         @enderror
                         <input type="hidden" id="team_id" name="team_id" value="{{$team->id}}">
                     </div>
-
                         <!-- Submit button -->
                         <div class="form-group">
                         <button type="submit" class="btn px-3 py-2 text-white update-btn">Publish</button>

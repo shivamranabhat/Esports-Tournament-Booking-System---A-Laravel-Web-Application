@@ -9,7 +9,7 @@ class Results extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'tournament_id', 'team_id', 'kills', 'placement', 'total'
+        'tournament_id', 'team_id', 'kills', 'placement','user_id','match_no','total'
     ];
     public function team(){
         return $this->belongsTo('App\Models\Team','team_id');

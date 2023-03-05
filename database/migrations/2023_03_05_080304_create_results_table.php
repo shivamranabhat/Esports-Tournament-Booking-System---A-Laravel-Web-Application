@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('tournament_id');
             $table->unsignedBigInteger('team_id');
-            $table->string('kills');
+            $table->integer('kills');
             $table->string('placement');
-            $table->string('total');
+            $table->integer('total');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

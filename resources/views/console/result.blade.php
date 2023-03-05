@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title','Dashboard')
+@section('title', 'Dashboard')
 @section('dashboard-page')
     <div class="row">
         <div class="col-lg-12">
@@ -74,14 +74,10 @@
                                 @endforeach
                             </tbody>
                             </table>
-
                         @endif
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-

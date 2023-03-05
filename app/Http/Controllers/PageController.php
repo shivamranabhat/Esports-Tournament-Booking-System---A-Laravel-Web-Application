@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Game;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
@@ -103,7 +104,7 @@ class PageController extends Controller
     public function bookings($id)
     {
         $user = auth()->user()->id;
-        $profiles = Profile::find($user);
+        $profiles = Profile::where('user_id',$user)->first();
         $teams = Team::where('user_id',$user)->first();
 
         if($user == null)
@@ -139,19 +140,20 @@ class PageController extends Controller
         $games = Game::all();
         $bookings = Booking::where('user_id', $user->id)->get();
         $points = Points::where('user_id',$user->id)->get();
-        $team = Team::where('user_id',$id)->first();
+        $team = Team::where('id',$id)->first();
         return view('console.calculate',compact('bookings','games','points'),['team'=>$team]);
     }
     //show result
     public function show_result($id)
     {
-        $results = Results::where('tournament_id', $id)->get();
+        $results = Results::orderBy('total','desc')->where('tournament_id',$id)->get();
         $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
         $games = Game::all();
         return view('console.result',compact('results','points'),compact('games'));
     }
 
+   
 }
 
 
