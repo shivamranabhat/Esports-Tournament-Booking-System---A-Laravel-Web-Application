@@ -146,14 +146,21 @@ class PageController extends Controller
     //show result
     public function show_result($id)
     {
-        $results = Results::orderBy('total','desc')->where('tournament_id',$id)->get();
+
+        $results = DB::table('results')
+        ->select('teams.name as team_name', 'teams.logo as logo', 'results.team_id', 'results.tournament_id', DB::raw('SUM(total) as total_points'), DB::raw('SUM(kills) as total_kills'))
+        ->join('teams', 'teams.id', '=', 'results.team_id')
+        ->join('tournaments', 'tournaments.id', '=', 'results.tournament_id')
+        ->groupBy('teams.name', 'results.team_id', 'results.tournament_id', 'teams.logo')
+        ->orderByRaw('SUM(total) desc')
+        ->get();
         $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
         $games = Game::all();
         return view('console.result',compact('results','points'),compact('games'));
     }
 
-   
+
 }
 
 

@@ -22,7 +22,8 @@ class PerformanceController extends Controller
                      ->join('tournaments', 'results.tournament_id', '=', 'tournaments.id')
                      ->join('teams', 'teams.id', '=', 'results.team_id')
                      ->where('teams.user_id', '=', $userId)
-                     ->select('tournaments.name', 'results.total')
+                     ->select('tournaments.name', DB::raw('SUM(total) as total_points'))
+                     ->groupBy('tournaments.name')
                      ->get();
 
         //to display kills in relation to tournament
@@ -43,7 +44,8 @@ class PerformanceController extends Controller
         ->join('teams', 'teams.id', '=', 'results.team_id')
         ->whereDate('results.created_at', '>=', $weekAgo)
         ->where('teams.user_id', '=', $userId)
-        ->select('tournaments.name', 'results.total')
+        ->select('tournaments.name', DB::raw('SUM(total) as total_points'))
+        ->groupBy('tournaments.name')
         ->get();
         //to display  monthly score
         // Calculate the date and time a month ago
@@ -53,7 +55,8 @@ class PerformanceController extends Controller
         ->join('teams', 'teams.id', '=', 'results.team_id')
         ->whereDate('results.created_at', '>=', $monthAgo)
         ->where('teams.user_id', '=', $userId)
-        ->select('tournaments.name', 'results.total')
+        ->select('tournaments.name', DB::raw('SUM(total) as total_points'))
+        ->groupBy('tournaments.name')
         ->get();
         return view('users.tournamentperformance',compact('results','kills'),compact('week_data','month_data'));
     }

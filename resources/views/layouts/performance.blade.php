@@ -136,7 +136,7 @@
                    labels: {!! json_encode($week_data->pluck('name')) !!},
                    datasets: [{
                        label: 'Weekly Score:',
-                       data: {!! json_encode($week_data->pluck('total')) !!},
+                       data: {!! json_encode($week_data->pluck('total_points')) !!},
                        backgroundColor: ['#3A1078','#4E31AA','#2F58CD','#3795BD'],
                        borderColor: '',
                        borderWidth: 1
@@ -162,7 +162,7 @@
                    labels: {!! json_encode($month_data->pluck('name')) !!},
                    datasets: [{
                        label: 'Monthly Score:',
-                       data: {!! json_encode($month_data->pluck('total')) !!},
+                       data: {!! json_encode($month_data->pluck('total_points')) !!},
                        backgroundColor: ['#3A1078','#4E31AA','#2F58CD','#3795BD'],
                        borderColor: '',
                        borderWidth: 1
@@ -215,7 +215,7 @@
                     labels: {!! json_encode($results->pluck('name')) !!},
                     datasets: [{
                         label: 'Total Score:',
-                        data: {!! json_encode($results->pluck('total')) !!},
+                        data: {!! json_encode($results->pluck('total_points')) !!},
                         backgroundColor: ['#3A1078','#4E31AA','#2F58CD','#3795BD'],
                         borderColor: '',
                         borderWidth: 1

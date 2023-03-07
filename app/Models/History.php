@@ -9,6 +9,6 @@ class History extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'tournament_id','team_id','player_name','kills'
+        'tournament_id','team_id','player_name','kills','match_no'
     ];
 }

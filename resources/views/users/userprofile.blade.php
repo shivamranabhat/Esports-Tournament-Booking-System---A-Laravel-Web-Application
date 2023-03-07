@@ -125,10 +125,8 @@
                             @if(!isset($teams))
                             <h6>Not in team</h6>
                             @else
-
                             <h6>{{$teams->name}}</h6>
                             @endif
-
                         </div>
                     </div>
                 </div>

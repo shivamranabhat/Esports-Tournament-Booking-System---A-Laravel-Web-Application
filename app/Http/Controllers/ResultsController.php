@@ -68,6 +68,7 @@ class ResultsController extends Controller
         $result->team_id = $request->team_id;
         $result->kills = $total_kills;
         $result->placement = $request->placement;
+        $result->match_no = $request->match_no;
         $result->user_id = auth()->user()->id;
         $result->total = $totalPoints;
         $result->save();

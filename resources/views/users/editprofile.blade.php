@@ -54,7 +54,7 @@
                                         <select name="game_id" id="game_id" >
                                             <option value="#">Choose Game</option>
                                             @foreach ( $games as $game)
-                                            <option value="{{$game->id}}" id="select" value="{{ old('game_name') }}">{{$game->name}}</option>
+                                            <option value="{{$game->id}}" id="select">{{$game->name}}</option>
                                             @endforeach
                                         </select>
                                         @error('game_id')
