@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\PerformanceHelper;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -143,7 +144,7 @@ class PageController extends Controller
         $team = Team::where('id',$id)->first();
         return view('console.calculate',compact('bookings','games','points'),['team'=>$team]);
     }
-    //show result
+    //show result to organizer
     public function show_result($id)
     {
 
@@ -152,6 +153,7 @@ class PageController extends Controller
         ->join('teams', 'teams.id', '=', 'results.team_id')
         ->join('tournaments', 'tournaments.id', '=', 'results.tournament_id')
         ->groupBy('teams.name', 'results.team_id', 'results.tournament_id', 'teams.logo')
+        ->where('results.tournament_id', '=', $id)
         ->orderByRaw('SUM(total) desc')
         ->get();
         $user = Auth::user();
@@ -159,6 +161,27 @@ class PageController extends Controller
         $games = Game::all();
         return view('console.result',compact('results','points'),compact('games'));
     }
+     //show result to user
+     public function user_result($id)
+     {
+        $userresults = DB::table('results')
+        ->select('teams.name as team_name', 'teams.logo as logo', 'results.team_id', 'results.tournament_id', DB::raw('SUM(total) as total_points'), DB::raw('SUM(kills) as total_kills'))
+        ->join('teams', 'teams.id', '=', 'results.team_id')
+        ->join('tournaments', 'tournaments.id', '=', 'results.tournament_id')
+        ->groupBy('teams.name', 'results.team_id', 'results.tournament_id', 'teams.logo')
+        ->where('results.tournament_id', '=', $id)
+        ->orderByRaw('SUM(total) desc')
+        ->get();
+         $performance = new PerformanceHelper();
+         $overall_results = $performance->performance();
+
+        // Access individual variables from the returned array
+        $kills = $overall_results[0];
+        $week_data = $overall_results[1];
+        $month_data = $overall_results[2];
+        $results = $overall_results[3];
+        return view('users.result',compact('userresults','kills','week_data','month_data','results'));
+     }
 
 
 }

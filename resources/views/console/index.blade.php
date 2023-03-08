@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 @section('title', 'Dashboard')
 @section('dashboard-page')
-
     @if (count($tournaments) == 0)
         <div class="row">
             <div class="col-lg-12">

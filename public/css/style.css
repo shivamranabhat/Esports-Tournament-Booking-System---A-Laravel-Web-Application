@@ -4712,3 +4712,53 @@ textarea{
         padding: 15px 10px;
     }
 }
+
+/*
+Style for option menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dots {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(19,14,111);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+
+  .dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown.show .dropdown-content {
+    display: block;
+  }
+
+
+  @media (max-width:1330px)
+  {
+    .dropdown-content{
+        position: absolute;
+        left: -80px;
+    }
+  }
+  @media (max-width:680px) {
+    .dropdown-content{
+        position: absolute;
+        left: -80px;
+    }
+
+  }
+

@@ -18,5 +18,9 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function tournament()
+    {
+        return $this->belongsTo(Tournament::class, 'tournament_id');
+    }
 
 }

@@ -108,6 +108,11 @@ Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
 Route::put('/team/update/{id}',[TeamController::class,'update']);
 //Delete team
 Route::delete('/team/{id}',[TeamController::class,'destroy'])->name('team.destroy');
+//show user dashboard
+Route::get('/user_dashboard',[PerformanceController::class,'performance']);
+//show result to user
+Route::get('/userresults/{id}',[PageController::class,'user_result']);
+
 
 
 
@@ -130,6 +135,3 @@ Route::post('/users/authenticate',[UserController::class,'authenticate']);
 //logout user
 Route::post('/logout',[UserController::class,'logout']);
 
-
-//Tracking performance
-Route::get('/performance',[PerformanceController::class,'performance']);
