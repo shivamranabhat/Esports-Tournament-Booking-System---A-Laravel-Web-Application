@@ -93,6 +93,13 @@ h1,h2,h3,h4,h5,h6 {
     outline: none;
     color: var(--body-color);
   }
+  .banner{
+    height: 100%;
+  }
+  .logout i{
+    font-size: 18px;
+    margin-top: 5px;
+  }
   p, span, li {
     margin: 0;
     font-family: var(--body-font);
@@ -410,6 +417,7 @@ body::-webkit-scrollbar-thumb:hover {
         width: 100%;
     }
 }
+
 .navbar-collapse .main-menu li .sub-menu {
     position: absolute;
     top: 100%;
@@ -1936,6 +1944,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 #banner-section.inner-banner .nav-tabs li a:hover{
     border-color: transparent;
+}
+.logout-mobile{
+    display: none;
 }
 #banner-section.inner-banner .nav-tabs li{
     position: relative;
@@ -3859,6 +3870,9 @@ textarea{
 }
 
 @media(max-width: 1199px) {
+    .profile{
+        margin-bottom: 10px;
+    }
     #header-section .right-area .nice-select {
         padding-left: 20px;
         margin-right: 10px;
@@ -3928,6 +3942,18 @@ textarea{
     input,textarea{
         font-size: 16px;
         line-height: 26px;
+    }
+    .logout{
+        display: none;
+    }
+    .logout-mobile{
+        display: block;
+    }
+    .profile{
+        margin-top: 5px;
+    }
+    .search-icon{
+        margin-bottom: 5px;
     }
     .title {
         font-size: 40px;

@@ -51,12 +51,9 @@
                                             @endauth
                                         </ul>
                                     </li>
+                                    <li><a href="#">Players</a></li>
                                     <li><a href="#">About</a></li>
                                     <li><a href="#">Contact</a></li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <li><button type="submit" class="btn logout-mobile text-white">Logout</button></li>
-                                    </form>
                                 </ul>
                             </div>
                         </nav>
@@ -65,20 +62,14 @@
                                 <a href="#"><img src="http://127.0.0.1:8000/images/search_btn.png" alt="icon"></a>
                             </div>
                             @auth()
-                         <div class="end-elements profile d-flex justify-content-between align-items-center">
-                            <a href="/myprofile" class="mr-3">
-                                <span role="button" class="text-decoration-none ml-5" id="profile">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                      </svg>
-                                </span>
-                                </a>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn text-white logout" ><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-                                </form>
-                         </div>
+                           <a href="/myprofile" class="profile">
+                            <span role="button" class="text-decoration-none ml-5" id="profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                  </svg>
+                            </span>
+                            </a>
                             @else
                             <a href="/login" class="login-btn">Login</a>
                             <a href="/register" class="btn text-white cmn-btn">Join Now!</a>
@@ -135,12 +126,92 @@
         </footer>
     <!-- footer-section end -->
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-     <script>
-           function showDropdown() {
-  var dropdown = document.querySelector('.dropdown');
-  dropdown.classList.toggle('show');
-}
-     </script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+      <script>
+        var data = {!! json_encode($tournament_data) !!};
+          var player_names = Object.values(data.team_kills.player_name);
+          var player_kills = Object.values(data.team_kills.total_kills);
+          var match_no = Object.values(data.score.match_no);
+          var kills = Object.values(data.score.kills);
+          var match_number = Object.values(data.score.match_no);
+          var score = Object.values(data.score.total);
+
+          //To display the total kills of each player in a particular tournament
+          var ctx = document.getElementById('killsChart').getContext('2d');
+          var player_kills = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: player_names,
+                  datasets: [{
+                      label: 'Player Kills',
+                      data: player_kills,
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero: true
+                          }
+                      }]
+                  }
+              }
+          });
+          //team kills in relation to match number
+          var ctx = document.getElementById('teamChart').getContext('2d');
+          var kills = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: match_no,
+                  datasets: [{
+                      label: 'Total Kills',
+                      data: kills,
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero: true
+                          }
+                      }]
+                  }
+              }
+          });
+
+        //team score in relation to matches
+          var ctx = document.getElementById('scoreChart').getContext('2d');
+          var score = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: match_number,
+                  datasets: [{
+                      label: 'Total Score',
+                      data: score,
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero: true
+                          }
+                      }]
+                  }
+              }
+          });
+      </script>
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

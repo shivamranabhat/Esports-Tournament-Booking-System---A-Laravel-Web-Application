@@ -60,6 +60,7 @@ class PerformanceHelper
         return [$kills, $week_data,$month_data,$results];
 
     }
+
 }
 
 ?>

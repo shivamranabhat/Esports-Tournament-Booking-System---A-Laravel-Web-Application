@@ -69,7 +69,7 @@ class PageController extends Controller
     //show indvidual tournaments details
     public function tournament_details($id)
     {
-        $tournaments = Tournament::find($id);
+        $tournaments = Tournament::findOrFail($id);
         $user = Profile::where('user_id',$tournaments->user_id)->first();
         return view('pages.tournaments-details',compact('tournaments'),['profile'=>$user]);
     }
@@ -107,7 +107,8 @@ class PageController extends Controller
         $user = auth()->user()->id;
         $profiles = Profile::where('user_id',$user)->first();
         $teams = Team::where('user_id',$user)->first();
-
+        $check = Booking::where('user_id',$user)->where('tournament_id',$id)->first();
+        $tournaments = Tournament::find($id);
         if($user == null)
         {
             return redirect('/login');
@@ -116,9 +117,11 @@ class PageController extends Controller
         {
             return redirect('/editprofile')->with('message','Please set your team information');;
         }
+        else if($check)
+        {
+            return redirect('/');
+        }
         else{
-            $tournaments = Tournament::find($id);
-
             return view('tournament.bookings',compact('teams','profiles'),['tournaments'=>$tournaments]);
         }
     }
@@ -130,6 +133,12 @@ class PageController extends Controller
         $games = Game::all();
         Session::put('tournament_id', $id);
         $participants = Booking::where('tournament_id', $id)->get();
+        //to check the user is host or not
+        $check = Tournament::where('user_id',$user->id)->where('id',$id)->first();
+        if(!$check)
+        {
+            return redirect('/')->with('message','Access forbidden');
+        }
         $points = Points::where('user_id',$user->id)->get();
         return view('console.participants',compact('games','points'),compact('participants'));
     }
@@ -139,6 +148,13 @@ class PageController extends Controller
         $user = Auth::user();
         $check_points = Points::where('user_id',$user)->first();
         $games = Game::all();
+        //check the host is actual a logged user
+        $tournament_id = Session::get('tournament_id');
+        $check = Tournament::where('id',$tournament_id)->where('user_id',$user->id)->first();
+        if(! $check)
+        {
+            return redirect('/')->with('message','Access forbidden');
+        }
         $bookings = Booking::where('user_id', $user->id)->get();
         $points = Points::where('user_id',$user->id)->get();
         $team = Team::where('id',$id)->first();
@@ -159,6 +175,12 @@ class PageController extends Controller
         $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
         $games = Game::all();
+         //check the host is actual a logged user
+         $check = Results::where('tournament_id',$id)->where('user_id',$user->id)->first();
+         if(! $check)
+         {
+             return redirect('/')->with('message','Access forbidden');
+         }
         return view('console.result',compact('results','points'),compact('games'));
     }
      //show result to user
@@ -174,13 +196,32 @@ class PageController extends Controller
         ->get();
          $performance = new PerformanceHelper();
          $overall_results = $performance->performance();
-
         // Access individual variables from the returned array
         $kills = $overall_results[0];
         $week_data = $overall_results[1];
         $month_data = $overall_results[2];
         $results = $overall_results[3];
         return view('users.result',compact('userresults','kills','week_data','month_data','results'));
+     }
+
+     //show tournament performance individually
+     public function tournament_performance($id)
+     {
+        $user_id = Auth::user()->id;
+        $team = Team::where('user_id',$user_id)->first();
+
+        //to fetch kills in relation to teammates from histories table
+        $command = 'python ' . base_path() . '/python/overall_manipulation.py '. $user_id;
+        $output = shell_exec($command);
+        $overall_data = json_decode($output, true);
+
+        //to fetch total score and kills in relation to match number from results table
+        $team = Team::where('user_id',$user_id)->first();
+        $command = 'python ' . base_path() . '/python/tournament_manipulation.py ' . $id . ' ' . $team->id;
+        $output = shell_exec($command);
+        $tournament_data= json_decode($output, true);
+
+        return view('users.tournament_performance',['overall_data' => $overall_data],['tournament_data' => $tournament_data]);
      }
 
 

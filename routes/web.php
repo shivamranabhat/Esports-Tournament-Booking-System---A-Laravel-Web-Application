@@ -112,6 +112,8 @@ Route::delete('/team/{id}',[TeamController::class,'destroy'])->name('team.destro
 Route::get('/user_dashboard',[PerformanceController::class,'performance']);
 //show result to user
 Route::get('/userresults/{id}',[PageController::class,'user_result']);
+//show tournament performance individually to user
+Route::get('/performance/{id}',[PageController::class,'tournament_performance']);
 
 
 

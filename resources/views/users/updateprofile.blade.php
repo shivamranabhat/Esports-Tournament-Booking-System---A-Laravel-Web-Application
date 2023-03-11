@@ -18,7 +18,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb d-flex justify-content-center">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                                        <li class="breadcrumb-item active mb-3" aria-current="page">Profile</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -51,11 +51,11 @@
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview"
-                                    role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                    role="tab" aria-controls="overview" aria-selected="true">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="create-team-tab" data-toggle="tab" href="#create-team"
-                                    role="tab" aria-controls="manage-team" aria-selected="true">Update Team</a>
+                                    role="tab" aria-controls="manage-team" aria-selected="true">Team</a>
                             </li>
                         </ul>
                     </div>
@@ -81,10 +81,6 @@
                                         @method('PUT')
                                         <div class="file-upload-container mx-auto mb-5">
                                             <label for="user_image" class="file-upload-label">
-                                                <div class="file-upload-icon">
-                                                    <i class="fas fa-upload"></i>
-                                                </div>
-
                                             </label>
                                             <input type="file" id="image" name="image" class="file-upload-input"
                                                 onchange="previewImage()" />
@@ -92,7 +88,7 @@
                                                 <p class="d-flex justify-content-start text-danger mt-4">{{ $message }}</p>
                                             @enderror
                                             <img id="preview-image" src="{{ asset('storage/' . $profile->image) }}"
-                                                alt="Preview Image" />
+                                                alt="Preview Image" class="w-100"/>
 
                                         </div>
                                         <div class="form-row">
@@ -254,10 +250,7 @@
                                                     <p class="d-flex justify-content-start text-danger mt-4">{{ $message }}</p>
                                                 @enderror
                                                 <img id="preview-image" src="{{ asset('storage/' . $teams->logo) }}"
-                                                    alt="Preview Image" />
-                                                    <div class="file-upload-icon">
-                                                        <i class="fas fa-upload"></i>
-                                                    </div>
+                                                    alt="Preview Image"class="w-100" />
 
                                             </div>
                                             <div class="form-group form-outline">

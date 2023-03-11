@@ -9,7 +9,9 @@ use App\Models\Tournament;
 use App\Models\Team;
 use App\Models\Game;
 use App\Models\History;
-use Illuminate\Support\Facades\Session;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Fascades\Session;
 
 class PointsController extends Controller
 {
@@ -42,8 +44,8 @@ class PointsController extends Controller
      */
     public function store(Request $request)
     {
-        $exists = Points::where('user_id',auth()->user()->id)->get();
-        if($exists > 0)
+        $exists = Points::where('user_id',auth()->user()->id)->first();
+        if($exists)
         {
             return redirect('/dashboard');
         }
@@ -75,9 +77,15 @@ class PointsController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
         $games = Game::all();
-        $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', auth()->user()->id)->get();
+        $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', $user->id)->get();
         $points = Points::findOrFail($id);
+          // Make sure logged in user is owner
+        if($points->user_id != $user->id )
+        {
+            return redirect('/login');
+        }
         return view('console.points.edit',compact('games','tournaments','points'));
     }
 

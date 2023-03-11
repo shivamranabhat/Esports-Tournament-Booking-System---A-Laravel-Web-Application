@@ -80,8 +80,13 @@ class TournamentController extends Controller
     public function edit($id)
     {
         $user = Auth::user();
-        $tournament_avatars = tournament_avatar::all();
         $tournament = Tournament::findOrFail($id);
+        // Make sure logged in user is owner
+        if($tournament->user_id != auth()->id())
+        {
+            return redirect('/login');
+        }
+        $tournament_avatars = tournament_avatar::all();
         $points = Points::where('user_id',$user->id)->get();
         return view('console.tournaments.edit',compact('tournament','tournament_avatars'),compact('points'));
     }
@@ -111,7 +116,6 @@ class TournamentController extends Controller
         ]);
         $tournament->update($formFields + ['user_id'=>auth()->user()->id]);
         return redirect('/dashboard')->with('message','Tournament has been updated successfully');
-
     }
 
     /**

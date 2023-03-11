@@ -88,6 +88,11 @@ class ProfileController extends Controller
         $teams = Team::where('user_id',$user->id)->first();
         $games = Game::all();
         $profile = Profile::findOrFail($id);
+        // Make sure logged in user is owner
+        if($profile->user_id != auth()->id()) {
+            // abort(403, 'Unauthorized Action');
+            return redirect('/login');
+        }
         return view('users.updateprofile',compact('profile','games'),compact('teams'));
     }
 

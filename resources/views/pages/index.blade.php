@@ -130,7 +130,7 @@
                 <div class="single-item">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img" src="{{ asset('storage/'. $tournament->image->image) }}" alt="image">
+                            <img class="top-img w-100" src="{{ asset('storage/'. $tournament->image->image) }}" alt="image">
                         </div>
                         <div class="col-lg-6 col-md-9 d-flex align-items-center">
                             <div class="mid-area">
