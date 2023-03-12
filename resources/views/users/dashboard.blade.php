@@ -18,7 +18,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb d-flex justify-content-center">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                        <li class="breadcrumb-item active mb-3" aria-current="page">Dashboard</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -84,7 +84,7 @@
                         @if (count($bookings) == 0)
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="participants-area dashboard-container pb-120">
+                                <div class="participants-area dashboard-container pb-30">
                                     <h4 class="py-3">Bookings</h4>
                                     <div class="participants-single d-flex justify-content-center">
                                         <h6 class="text-center">No Bookings Found</h6>
@@ -95,7 +95,7 @@
                     @else
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="participants-area dashboard-container pb-120">
+                                <div class="participants-area dashboard-container pb-30">
                                     <h4 class="py-3">Bookings</h4>
                                     @foreach ($bookings as $booking)
                                         <div class="participants-single">
@@ -121,6 +121,7 @@
                                         </div>
                                     @endforeach
                                 </div>
+
                             </div>
                         </div>
                     @endif

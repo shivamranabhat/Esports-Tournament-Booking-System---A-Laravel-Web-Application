@@ -15,7 +15,7 @@
     @else
         <div class="row">
             <div class="col-lg-12">
-                <div class="participants-area dashboard-container pb-120">
+                <div class="participants-area dashboard-container pb-30">
                     <h4 class="py-3">Tournaments</h4>
                     @foreach ($tournaments as $tournament)
                         <div class="participants-single">
@@ -34,8 +34,15 @@
                                     <ul class="list">
                                         <li><a href="/tournament/edit/{{ $tournament->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i>Edit</a></li>
-                                        <li><a href="#" data-toggle="modal" data-target="#delete_tournament"><i
-                                                    class="fa-solid fa-trash"></i>Delete</a></li>
+                                        <li>
+                                            <form action="{{ route('tournament.destroy', $tournament->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white" style="background: rgb(14,6,61)"><i
+                                                        class="fa-solid fa-trash"></i> Delete</button>
+                                            </form>
+                                        </li>
                                         <li><a href="/participants/{{ $tournament->id }}"><i
                                                     class="fa-solid fa-users"></i>Participants</a></li>
                                         <li><a href="/result/{{ $tournament->id }}"><i
@@ -43,35 +50,20 @@
                                     </ul>
                                 </div>
                             </div>
+
                         </div>
                     @endforeach
-                        {{-- Modal for delete --}}
-                        <!-- Modal -->
-                    <div class="modal fade" id="delete_tournament" tabindex="-1" role="dialog"
-                        aria-labelledby="delete_tournamentTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content" style="background: rgb(55,8,152) !important;">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">{{ $tournament->name }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body text-white">
-                                    Are you sure want to delete this?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary text-white"
-                                        data-dismiss="modal">Close</button>
-                                    <form action="{{ route('tournament.destroy', $tournament->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger text-white">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="pagination d-flex justify-content-end my-3">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    {{ $tournaments->links('vendor.pagination.simple-bootstrap-4') }}
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
+                    {{-- Modal for delete --}}
+
                 </div>
             </div>
         </div>

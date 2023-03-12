@@ -1,5 +1,5 @@
 ﻿@extends('layouts.main')
-@section('title','Home')
+@section('title', 'Home')
 @section('page-name')
     <!-- banner-section start -->
     <section id="banner-section">
@@ -58,9 +58,10 @@
                     </div>
                     <div class="available-game-carousel">
                         @foreach ($games as $game)
-                        <div class="single-item">
-                            <a href="{{$game->id}}"><img src="{{ asset('storage/'. $game->image) }}" alt="image" class="rounded"></a>
-                        </div>
+                            <div class="single-item">
+                                <a href="{{ $game->id }}"><img src="{{ asset('storage/' . $game->image) }}"
+                                        alt="image" class="rounded"></a>
+                            </div>
                         @endforeach
                     </div>
                     {{-- <div class="btn-area text-center">
@@ -127,62 +128,73 @@
                     </div>
                 </div>
                 @foreach ($tournaments as $tournament)
-                <div class="single-item">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                            <img class="top-img w-100" src="{{ asset('storage/'. $tournament->image->image) }}" alt="image">
-                        </div>
-                        <div class="col-lg-6 col-md-9 d-flex align-items-center">
-                            <div class="mid-area">
-                                <h4>{{$tournament->name}}</h4>
-                                <div class="title-bottom d-flex">
-                                    <div class="time-area bg">
-                                        <img src="images/waitng-icon.png" alt="image">
-                                        <span class="countdown-timer" data-closing-time="{{ $tournament->closing_time }}"></span></p>
+                    <div class="single-item">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 d-flex align-items-center">
+                                <img class="top-img w-100" src="{{ asset('storage/' . $tournament->image->image) }}"
+                                    alt="image">
+                            </div>
+                            <div class="col-lg-6 col-md-9 d-flex align-items-center">
+                                <div class="mid-area">
+                                    <h4>{{ $tournament->name }}</h4>
+                                    <div class="title-bottom d-flex">
+                                        <div class="time-area bg">
+                                            <img src="images/waitng-icon.png" alt="image">
+                                            <span class="countdown-timer"
+                                                data-closing-time="{{ $tournament->closing_time }}"></span></p>
+                                        </div>
+                                        <div class="date-area bg">
+                                            <span class="date">{{ $tournament->closing_time }}</span>
+                                        </div>
                                     </div>
-                                    <div class="date-area bg">
-                                        <span class="date">{{$tournament->closing_time}}</span>
-                                    </div>
-                                </div>
-                                <div class="single-box d-flex">
-                                    <div class="box-item">
-                                        <span class="head">ENTRY Fees</span>
-                                        <span class="sub">Rs.{{$tournament->fees}}</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Team Size</span>
-                                        <span class="sub">{{$tournament->type}} VS {{$tournament->type}}</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Max Teams</span>
-                                        <span class="sub">{{$tournament->team_size}}</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Enrolled</span>
-                                        <span class="sub">11</span>
-                                    </div>
-                                    <div class="box-item">
-                                        <span class="head">Game</span>
-                                        <span class="sub">{{$tournament->game->name}}</span>
+                                    <div class="single-box d-flex">
+                                        <div class="box-item">
+                                            <span class="head">ENTRY Fees</span>
+                                            <span class="sub">Rs.{{ $tournament->fees }}</span>
+                                        </div>
+                                        <div class="box-item">
+                                            <span class="head">Team Size</span>
+                                            <span class="sub">{{ $tournament->type }} VS {{ $tournament->type }}</span>
+                                        </div>
+                                        <div class="box-item">
+                                            <span class="head">Max Teams</span>
+                                            <span class="sub">{{ $tournament->team_size }}</span>
+                                        </div>
+                                        <div class="box-item">
+                                            <span class="head">Enrolled</span>
+                                            <span class="sub">11</span>
+                                        </div>
+                                        <div class="box-item">
+                                            <span class="head">Game</span>
+                                            <span class="sub">{{ $tournament->game->name }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 d-flex align-items-center">
-                            <div class="prize-area text-center">
-                                <div class="contain-area">
-                                    <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
-                                    <h4 class="dollar">Rs. {{$tournament->prize_pool}}</h4>
-                                    <a href="#" class="cmn-btn">View Tournament</a>
-                                    <p>Top 3 Players Win a Cash Prize</p>
+                            <div class="col-lg-3 d-flex align-items-center">
+                                <div class="prize-area text-center">
+                                    <div class="contain-area">
+                                        <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
+                                        <h4 class="dollar">Rs. {{ $tournament->prize_pool }}</h4>
+                                        <a href="/details/{{$tournament->id}}" class="btn text-white cmn-btn">View Tournament</a>
+                                        <p>Top 3 Players Win a Cash Prize</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                @endforeach
+                <div class="pagination d-flex justify-content-end mt-5">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                {{ $tournaments->links('vendor.pagination.simple-bootstrap-4') }}
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            @endforeach
-
             </div>
+
         </div>
     </section>
     <!-- Browse Tournaments end -->
@@ -496,7 +508,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="left-area">
                             <h2 class="title">Build Your Esports Profile</h2>
-                            <p>Showcase your achievements, match history and win rate while you build your reputation on Begam.</p>
+                            <p>Showcase your achievements, match history and win rate while you build your reputation on
+                                Begam.</p>
                             <a href="registration.html" class="cmn-btn-second">Sign Up Free</a>
                         </div>
                     </div>

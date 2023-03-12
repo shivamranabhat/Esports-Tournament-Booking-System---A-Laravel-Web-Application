@@ -205,6 +205,32 @@ span{
 .b-none {
     border: none !important;
 }
+/* flash message */
+.hover{
+    border:5px solid orange;
+    border-radius:10px;
+    backdrop-filter: blur(5px);
+    filter: brightness(0.5) grayscale(100%);
+
+}
+.flash-message{
+    width: 50%;
+    padding: 38px 0;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    color: #fff;
+    background: rgb(20,12,86);
+
+}
+.flash-message h5{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: var(--body-font);
+}
 .nice-select:after{
     position: absolute;
     content: '';
@@ -632,7 +658,7 @@ body::-webkit-scrollbar-thumb:hover {
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 9999;
+        z-index: 1;
         background-color: #00003E;
         box-shadow: 0px 3px 10px 0px rgb(0 0 0 / 30%);
         border-bottom: 1px solid rgb(255 255 255 / 25%);
@@ -809,7 +835,7 @@ body::-webkit-scrollbar-thumb:hover {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 1;
     background-color: transparent;
 }
 #header-section .site-logo{

@@ -17,15 +17,6 @@
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/style.css">
      <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        .hover{
-            border:5px solid orange;
-            border-radius:10px;
-            backdrop-filter: blur(5px);
-            filter: brightness(0.5) grayscale(100%);
-
-        }
-    </style>
 </head>
 
 <body>
@@ -33,7 +24,12 @@
     <!-- start preloader -->
     <div class="preloader" id="preloader"></div>
     <!-- end preloader -->
-
+    {{-- Flash message --}}
+    @if (session()->has('message'))
+        <div class="flash-message text-center">
+           <h5> {{ session('message') }}</h5>
+        </div>
+    @endif
     <!-- Login Reg In start -->
     <section id="login-reg">
         <div class="overlay pb-120">
@@ -67,7 +63,6 @@
         </div>
     </section>
     <!-- Login Reg In end -->
-
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/slick.js"></script>

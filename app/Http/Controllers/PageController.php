@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
+
     /**
      * Handle the incoming request.
      *
@@ -28,8 +29,8 @@ class PageController extends Controller
     public function index()
     {
         $games = Game::all();
-        $tournaments = Tournament::orderBy('closing_time', 'asc')->get();
-        return view('pages.index', compact('games'),compact('tournaments'));
+        $tournaments = Tournament::orderBy('closing_time', 'asc')->simplePaginate(3);
+        return view('pages.index', compact('games','tournaments'));
     }
     //display user profile page
     public function user_profile()
@@ -55,7 +56,7 @@ class PageController extends Controller
     //display all tournaments
     public function show_tournaments()
     {
-        $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->get();
+        $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->simplePaginate(3);
         $now = Carbon::now();
         foreach ($tournaments as $tournament) {
             $bookingCloseTime = new Carbon($tournament->closing_time);
@@ -83,8 +84,8 @@ class PageController extends Controller
             return redirect('/login');
         }
         $points = Points::where('user_id',$user->id)->get();
-        $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', $user->id)->get();
-        return view('console.index',compact('games'),compact('tournaments','points'));
+        $tournaments = Tournament::orderBy('closing_time','desc')->where('user_id', $user->id)->simplePaginate(3);
+        return view('console.index',compact('games','tournaments','points'));
     }
     //show page to select game
     public function select_game()
@@ -140,7 +141,7 @@ class PageController extends Controller
             return redirect('/')->with('message','Access forbidden');
         }
         $points = Points::where('user_id',$user->id)->get();
-        return view('console.participants',compact('games','points'),compact('participants'));
+        return view('console.participants',compact('games','points','participants'));
     }
     //show calculate page in dashboard
     public function show_calculate($id)
@@ -181,7 +182,7 @@ class PageController extends Controller
          {
              return redirect('/')->with('message','Access forbidden');
          }
-        return view('console.result',compact('results','points'),compact('games'));
+        return view('console.result',compact('results','points','games'));
     }
      //show result to user
      public function user_result($id)

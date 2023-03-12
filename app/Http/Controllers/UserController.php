@@ -20,8 +20,6 @@ class UserController extends Controller
         return view('users.login');
     }
 
-
-
     //user registration
     public function store(Request $request)
     {

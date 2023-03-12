@@ -137,7 +137,7 @@
                                     <div class="contain-area">
                                         <span class="prize"><img src="images/price-coin.png" alt="image">prize</span>
                                         <h4 class="dollar">Rs. {{$tournament->prize_pool}}</h4>
-                                        <a href="/details/{{$tournament->id}}" class="cmn-btn">View Tournament</a>
+                                        <a href="/details/{{$tournament->id}}" class="btn text-white cmn-btn">View Tournament</a>
                                         <p>Top 3 Players Win a Cash Prize</p>
                                     </div>
                                 </div>
@@ -145,8 +145,15 @@
                         </div>
                     </div>
                 @endforeach
-
-
+                <div class="pagination d-flex justify-content-end mt-5">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                {{$tournaments->links('vendor.pagination.simple-bootstrap-4')}}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </section>

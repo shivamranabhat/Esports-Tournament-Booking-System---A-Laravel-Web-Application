@@ -46,6 +46,7 @@
         fixed_top.removeClass("animated fadeInDown header-fixed");
     }
   });
+  
 
   // navbar-click
   $(".navbar li a").on("click", function () {
@@ -126,7 +127,16 @@
       }
     ]
   });
+    //hide flash message
+    setTimeout(function() {
+        $('.flash-message').fadeOut();
+    }, 4000);
 
+    //for dropdown
+    function showDropdown() {
+        var dropdown = document.querySelector('.dropdown');
+        dropdown.classList.toggle('show');
+    }
   // Shop Details Slide
   if (document.querySelector('.all-slider') !== null) {
     $('.all-slider').owlCarousel({

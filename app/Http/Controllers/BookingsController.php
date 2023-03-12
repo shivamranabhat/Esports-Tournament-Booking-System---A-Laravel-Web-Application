@@ -51,7 +51,7 @@ class BookingsController extends Controller
             'tournament_id'=>'required',
         ]);
         Booking::create($formFields+['team_id'=>$team_id] + ['user_id'=>$user_id]);
-        return redirect('/')->with('message','Tournament booked successfully. We will shortly inform you');
+        return redirect('/')->with('message','Tournament booked successfully');
 
     }
 
