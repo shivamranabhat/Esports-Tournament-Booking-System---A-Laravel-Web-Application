@@ -27,6 +27,7 @@ use App\Http\Controllers\PerformanceController;
 // Auth::routes(['verify' => true]);
 
 // Admin
+Route::middleware('auth','isAdmin')->group(function(){
 //Game routes
 Route::get('/game',[GameController::class,'index']);
 //Store games
@@ -35,6 +36,7 @@ Route::post('/game/store',[GameController::class,'store']);
 Route::get('/tournament_avatar',[Tournament_AvatarController::class,'index']);
 //Store tournament avatar
 Route::post('/tournament_avatar/store',[Tournament_AvatarController::class,'store']);
+});
 
 
 //Organizer

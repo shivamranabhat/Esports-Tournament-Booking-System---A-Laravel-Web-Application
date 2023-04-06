@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -53,7 +54,15 @@ class UserController extends Controller
         if(auth()->attempt($formFields))
         {
             $request->session()->regenerate();
-            return redirect('/')->with('message','You are logged in');
+            //check user role (if admin)
+            if(auth()->user()->role=='1')
+            {
+                return redirect('/game');
+            }
+            //if user then redirect to home
+            else{
+                return redirect('/')->with('message','You are logged in');
+            }
         }
         return back()->withErrors(['email'=>'Invalid credentials'])->onlyInput('email');
 

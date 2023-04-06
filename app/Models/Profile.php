@@ -17,7 +17,11 @@ class Profile extends Model
     */
     public function game()
     {
-        return $this->belongsTo('App\Models\Game', 'game_id');
+        return $this->belongsTo(Game::class, 'game_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
