@@ -25,9 +25,11 @@ use App\Http\Controllers\PerformanceController;
 */
 
 // Auth::routes(['verify' => true]);
-
 // Admin
 Route::middleware('auth','isAdmin')->group(function(){
+Route::get('/admin/index', function () {
+    return view('admin.index');
+    });
 //Game routes
 Route::get('/game',[GameController::class,'index']);
 //Store games

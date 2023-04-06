@@ -224,8 +224,6 @@ class PageController extends Controller
 
         return view('users.tournament_performance',['overall_data' => $overall_data],['tournament_data' => $tournament_data]);
      }
-
-
 }
 
 

@@ -27,7 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'email_verified_at',
     ];
 
     /**
@@ -60,12 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    protected function type(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) => ['user','admin'] [$value],
-        );
-    }
+
 
     // relations
     public function profile()
