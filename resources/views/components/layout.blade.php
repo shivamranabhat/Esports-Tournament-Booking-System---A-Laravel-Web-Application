@@ -9,6 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="http://127.0.0.1:8000/css/admin.css">
 	<title>Score Sensi</title>
+
 </head>
 <body>
 
@@ -21,31 +22,32 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a href="{{route('index')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="/admin/users">
+				<a href="{{route('users')}}">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Users</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{route('tournaments')}}">
 					<i class='bx bxs-joystick' ></i>
 					<span class="text">Tournaments</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				{{-- <a href="{{route('games')}}"> --}}
+				<a href="{{route('games')}}">
 					<i class='bx bxs-game' ></i>
 					<span class="text">Games</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{route('teams')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Teams</span>
 				</a>
@@ -72,7 +74,7 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
+			<a href="#" class="nav-link">Admin</a>
 			<form action="#">
 				<div class="form-input">
 					<input type="search" placeholder="Search...">
@@ -81,9 +83,9 @@
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
+			{{-- <a href="#" class="profile">
 				<img src="img/people.png">
-			</a>
+			</a> --}}
 		</nav>
 		<!-- NAVBAR -->
 
@@ -96,5 +98,6 @@
 	<!-- CONTENT -->
 
 	<script src="http://127.0.0.1:8000/js/admin.js"></script>
+    <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
 </body>
 </html>

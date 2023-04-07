@@ -187,6 +187,18 @@ body {
 	left: 60px;
 }
 
+/* Icons */
+.action-icons{
+    display: flex;
+    justify-content: space-between;
+}
+.action-icons a{
+    text-decoration: none !important;
+    color: rgb(119,7,212);
+}
+.action-icons i{
+    font-size: 22px;
+}
 
 
 /* NAVBAR */
@@ -203,7 +215,7 @@ body {
 	left: 0;
 	z-index: 1000;
 }
-#content nav::before {
+#content>nav::before {
 	content: '';
 	position: absolute;
 	width: 40px;
@@ -411,7 +423,7 @@ body {
 	color: var(--dark);
 }
 #content main .box-info li .text p {
-	color: var(--dark);	
+	color: var(--dark);
 }
 
 
@@ -496,35 +508,18 @@ body {
 	background: var(--orange);
 }
 
-
-#content main .table-data .todo {
-	flex-grow: 1;
-	flex-basis: 300px;
+.pagination
+{
+    display:flex;
+    justify-content:end;
+     margin-top:10px;
 }
-#content main .table-data .todo .todo-list {
-	width: 100%;
+.tournament-image{
+    display: flex;
+    align-items:center;
 }
-#content main .table-data .todo .todo-list li {
-	width: 100%;
-	margin-bottom: 16px;
-	background: var(--grey);
-	border-radius: 10px;
-	padding: 14px 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-#content main .table-data .todo .todo-list li .bx {
-	cursor: pointer;
-}
-#content main .table-data .todo .todo-list li.completed {
-	border-left: 10px solid var(--blue);
-}
-#content main .table-data .todo .todo-list li.not-completed {
-	border-left: 10px solid var(--orange);
-}
-#content main .table-data .todo .todo-list li:last-child {
-	margin-bottom: 0;
+.tournament-image img{
+    margin-right:10px;
 }
 /* MAIN */
 /* CONTENT */

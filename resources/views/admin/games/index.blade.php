@@ -1,10 +1,10 @@
 <x-layout>
     <x-labels>
-        <a class="active" href="#">Users</a>
+        <a class="active" href="#">Game</a>
     </x-labels>
     <x-table>
         <div class="head">
-            <h3>Users</h3>
+            <h3>Game</h3>
             <div class="action-icons">
                <a href="#">  <i class='bx bxs-plus-circle'></i></a>
             </div>
@@ -12,37 +12,40 @@
         <thead>
             <tr>
                 <th>S.N</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Image</th>
+                <th>Name</th>
                 <th>Created At</th>
                 <th>Updated At</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-           @if (!$users)
+           @if ($games->count()==0)
            <tr>
             <td colspan="4">
                 No data found
             </td>
             </tr>
            @else
-          @foreach ($users as $user)
+          @foreach ($games as $game)
           <tr>
             <td>
                 {{$loop->iteration}}
             </td>
             <td>
-                {{$user->email}}
+                <div class="tournament-image">
+                    <img src="{{asset('storage/'.$game->image)}}" alt="game-image">
+                </div>
+
             </td>
             <td>
-               Users
+                {{$game->name}}
             </td>
             <td>
-                {{$user->created_at}}
+                {{$game->created_at}}
             </td>
             <td>
-                {{$user->updated_at}}
+                {{$game->updated_at}}
             </td>
             <td>
                 <div class="action-icons">
@@ -52,9 +55,15 @@
             </td>
             </tr>
           @endforeach
+
            @endif
         </tbody>
     </x-table>
+    <div class="pagination d-flex justify-content-end mt-5">
+        <ul class="pagination">
+            <li class="page-item">
+                {{ $games->links('vendor.pagination.simple-tailwind') }}
+            </li>
+        </ul>
+    </div>
 </x-layout>
-
-

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::where('role',0)->get();
+      return view('admin.users.index',compact('users'));
+    }
     //Show Register/Create Form
     public function create()
     {
@@ -57,7 +62,7 @@ class UserController extends Controller
             //check user role (if admin)
             if(auth()->user()->role=='1')
             {
-                return redirect('/game');
+                return redirect('/admin/index');
             }
             //if user then redirect to home
             else{

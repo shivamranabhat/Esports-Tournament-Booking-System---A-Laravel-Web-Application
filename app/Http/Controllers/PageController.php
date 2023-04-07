@@ -6,6 +6,7 @@ use App\PerformanceHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Game;
+use App\Models\User;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
 use App\Models\Booking;
@@ -223,7 +224,7 @@ class PageController extends Controller
         $tournament_data= json_decode($output, true);
 
         return view('users.tournament_performance',['overall_data' => $overall_data],['tournament_data' => $tournament_data]);
-     }
+    }
 }
 
 

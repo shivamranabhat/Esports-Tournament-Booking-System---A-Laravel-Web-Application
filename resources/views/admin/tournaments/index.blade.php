@@ -1,34 +1,13 @@
 <x-layout>
     <x-labels>
-        <a class="active" href="#">Home</a>
+        <a class="active" href="#">Tournaments</a>
     </x-labels>
-    <ul class="box-info">
-        <li>
-            <i class='bx bx-joystick'></i>
-            <span class="text">
-                <h3>{{$overall_tournaments->count()}}</h3>
-                <p>Tournaments</p>
-            </span>
-        </li>
-        <li>
-            <i class='bx bxs-group' ></i>
-            <span class="text">
-                <h3>{{$users->count()}}</h3>
-                <p>Users</p>
-            </span>
-        </li>
-        <li>
-            <i class='bx bxs-calendar-check' ></i>
-            <span class="text">
-                <h3>{{$bookings->count()}}</h3>
-                <p>Bookings</p>
-            </span>
-        </li>
-    </ul>
     <x-table>
         <div class="head">
-            <h3> Recent Tournaments</h3>
-
+            <h3>Tournaments</h3>
+            <div class="action-icons">
+               <a href="#">  <i class='bx bxs-plus-circle'></i></a>
+            </div>
         </div>
         <thead>
             <tr>
@@ -40,6 +19,11 @@
                 <th>Team Size</th>
                 <th>Prize Pool</th>
                 <th>Closing Time</th>
+                <th>Bookings</th>
+                <th>Action</th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +63,15 @@
             </td>
             <td>
                 {{$tournament->closing_time}}
+            </td>
+            <td>
+                {{$tournament->bookings->count()}}
+            </td>
+            <td>
+                <div class="action-icons">
+                    <a href="#"><i class='bx bxs-edit'></i></a>
+                   <a href="#"> <i class='bx bxs-trash-alt'></i></a>
+                </div>
             </td>
             </tr>
           @endforeach

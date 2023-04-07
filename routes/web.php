@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\AdminTournamentController;
+use App\Http\Controllers\Admin\AdminTeamController;
+use App\Http\Controllers\Admin\AdminGameController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
@@ -26,12 +30,17 @@ use App\Http\Controllers\PerformanceController;
 
 // Auth::routes(['verify' => true]);
 // Admin
-Route::middleware('auth','isAdmin')->group(function(){
-Route::get('/admin/index', function () {
-    return view('admin.index');
-    });
-//Game routes
-Route::get('/game',[GameController::class,'index']);
+Route::prefix('/admin')->middleware('auth','isAdmin')->group(function(){
+//Access admin index
+Route::get('/index',[AdminPageController::class,'index'] )->name('index');
+//Display Teams
+Route::get('/team',[AdminTeamController::class,'index'])->name('teams');
+//Display Games
+Route::get('/game',[AdminGameController::class,'index'])->name('games');
+//Registered users
+Route::get('/users',[UserController::class,'index'])->name('users');
+//All Tournaments
+Route::get('/tournaments',[AdminTournamentController::class,'index'])->name('tournaments');
 //Store games
 Route::post('/game/store',[GameController::class,'store']);
 //Tournament Avatar routes
