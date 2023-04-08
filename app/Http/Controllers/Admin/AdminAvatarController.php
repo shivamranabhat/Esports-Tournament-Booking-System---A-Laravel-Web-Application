@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\Game;
+use App\Models\Tournament_Avatar;
 
-class GameController extends Controller
+
+class AdminAvatarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        return view('admin.games.create');
+        $avatars = Tournament_Avatar::orderBy('created_at','desc')->simplePaginate(5);
+        return view('admin.avatars.index',compact('avatars'));
     }
 
     /**
@@ -25,7 +28,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.avatars.create');
     }
 
     /**
@@ -36,15 +39,14 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields = $request->validate([
-            'name'=>'required',
+        $formFields= $request->validate([
             'image'=>'required|image'
         ]);
         if($request->hasFile('image')){
-            $formFields['image']= $request->file('image')->store('images','public');
+            $formFields['image']=$request->file('image')->store('tournament_avatar','public');
         }
-        Game::create($formFields);
-        return redirect('/')->with('message','Game added successfully');
+        Tournament_Avatar::create($formFields);
+        return redirect()->route('avatars')->with('message','Avatar added successfully');
     }
 
     /**

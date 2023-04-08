@@ -4,7 +4,7 @@
     </x-labels>
     <x-table>
         <div class="head">
-            <h3>Create</h3>
+            <h3>Edit</h3>
             <div class="action-icons">
                 <a href="{{ route('games') }}"> <i class='bx bxs-left-arrow-circle'></i></a>
             </div>

@@ -1,5 +1,5 @@
 <div class="table-data">
-    <div class="order">
+    <div class="details">
         <table>
             {{$slot}}
         </table>

@@ -6,7 +6,7 @@
         <div class="head">
             <h3>Game</h3>
             <div class="action-icons">
-               <a href="#">  <i class='bx bxs-plus-circle'></i></a>
+               <a href="{{route('add-game')}}">  <i class='bx bxs-plus-circle'></i></a>
             </div>
         </div>
         <thead>

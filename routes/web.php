@@ -5,11 +5,11 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminTournamentController;
 use App\Http\Controllers\Admin\AdminTeamController;
 use App\Http\Controllers\Admin\AdminGameController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminAvatarController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\GameController;
-use App\Http\Controllers\Tournament_AvatarController;
 use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ProfileController;
@@ -34,22 +34,36 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->group(function(){
 //Access admin index
 Route::get('/index',[AdminPageController::class,'index'] )->name('index');
 //Display Teams
-Route::get('/team',[AdminTeamController::class,'index'])->name('teams');
-//Display Games
-Route::get('/game',[AdminGameController::class,'index'])->name('games');
-//Registered users
-Route::get('/users',[UserController::class,'index'])->name('users');
-//All Tournaments
+Route::get('/teams',[AdminTeamController::class,'index'])->name('teams');
+//Routes for Users
+Route::prefix('/users')->group(function(){
+    Route::get('/',[AdminUserController::class,'index'])->name('users');
+    Route::get('/add',[AdminUserController::class,'create'])->name('add-user');
+});
+//Display Tournaments
 Route::get('/tournaments',[AdminTournamentController::class,'index'])->name('tournaments');
+
+//Routes for Games
+Route::prefix('/games')->group(function(){
+//Display Games
+Route::get('/',[AdminGameController::class,'index'])->name('games');
+//Add games
+Route::get('/create',[AdminGameController::class,'create'])->name('add-game');
 //Store games
-Route::post('/game/store',[GameController::class,'store']);
-//Tournament Avatar routes
-Route::get('/tournament_avatar',[Tournament_AvatarController::class,'index']);
+Route::post('/store',[AdminGameController::class,'store'])->name('store-game');
+});
+//Routes for Avatars
+Route::prefix('/avatars')->group(function(){
+//Display Avatars
+Route::get('/',[AdminAvatarController::class,'index'])->name('avatars');
+//Add Avatars
+Route::get('/add',[AdminAvatarController::class,'create'])->name('add-avatar');
 //Store tournament avatar
-Route::post('/tournament_avatar/store',[Tournament_AvatarController::class,'store']);
+Route::post('/store',[AdminAvatarController::class,'store'])->name('store-avatar');
+});
 });
 
-
+Route::middleware('auth')->group(function(){
 //Organizer
 //show dashboard
 Route::get('/dashboard',[PageController::class,'dashboard']);
@@ -58,25 +72,25 @@ Route::get('/select',[PageController::class,'select_game']);
 //show create tournament page
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
 //Store tournament
-Route::post('/tournament/store',[TournamentController::class,'store'])->middleware('auth');
+Route::post('/tournament/store',[TournamentController::class,'store']);
 //edit tournament
-Route::get('/tournament/edit/{id}',[TournamentController::class,'edit'])->middleware('auth');
+Route::get('/tournament/edit/{id}',[TournamentController::class,'edit']);
 //edit tournament
-Route::put('/tournament/update/{id}',[TournamentController::class,'update'])->middleware('auth');
+Route::put('/tournament/update/{id}',[TournamentController::class,'update']);
 // delete tournament
 Route::delete('/tournament/{id}', [TournamentController::class,'destroy'])->name('tournament.destroy');
 //show points index page
-Route::get('/points',[PointsController::class,'index'])->middleware('auth');
+Route::get('/points',[PointsController::class,'index']);
 //store bookings
 Route::post('/bookings/store',[BookingsController::class, 'store']);
 //show participants to organizer
 Route::get('/participants/{id}',[PageController::class,'participants']);
 //show points  page
-Route::get('/points/show',[PageController::class,'show_points'])->middleware('auth');
+Route::get('/points/show',[PageController::class,'show_points']);
 //show points calculate page
-Route::get('/calculate/{id}',[PageController::class,'show_calculate'])->middleware('auth');
+Route::get('/calculate/{id}',[PageController::class,'show_calculate']);
 //Store points
-Route::post('/points/store',[PointsController::class,'store'])->middleware('auth');
+Route::post('/points/store',[PointsController::class,'store']);
 //Calculate points
 Route::post('/calculate',[ResultsController::class,'store']);
 //Show tournament results
@@ -93,30 +107,21 @@ Route::delete('/points/{id}', [PointsController::class,'destroy'])->name('points
 Route::delete('/result/{id}', [ResultsController::class,'destroy'])->name('results.destroy');
 
 
-
-
-
-//User
-Route::get('/',[PageController::class,'index']);
-//show tournaments
-Route::get('/tournaments',[PageController::class,'show_tournaments']);
-//show tournament details
-Route::get('/details/{id}',[PageController::class,'tournament_details']);
 ////////////////Profile ////////////////////////////////////
 //show profile page
 Route::get('/myprofile',[PageController::class,'user_profile']);
 //show edit page for new users
 Route::get('/editprofile',[ProfileController::class,'index']);
 //save profile
-Route::post('/profile/store',[ProfileController::class,'store'])->middleware('auth');
+Route::post('/profile/store',[ProfileController::class,'store']);
 //show update profile page
 Route::get('/profile/edit/{id}',[ProfileController::class,'edit']);
 //update user's profile
 Route::put('/profile/update/{id}',[ProfileController::class,'update']);
 //save team info
-Route::post('/team/store',[TeamController::class,'store'])->middleware('auth');
+Route::post('/team/store',[TeamController::class,'store']);
 //edit userprofile
-Route::get('/edit/{id}',[ProfileController::class,'edit'])->middleware('auth');
+Route::get('/edit/{id}',[ProfileController::class,'edit']);
 //update team
 Route::put('/team/update/{id}',[TeamController::class,'update']);
 //Delete team
@@ -128,15 +133,20 @@ Route::get('/userresults/{id}',[PageController::class,'user_result']);
 //show tournament performance individually to user
 Route::get('/performance/{id}',[PageController::class,'tournament_performance']);
 
-
-
-
-
 ////////////////Booking ////////////////////////////////////
 
 //show bookings page
 Route::get('/bookings/{id}',[PageController::class,'bookings']);
+});
 
+//Accesing Index page
+Route::get('/',[PageController::class,'index']);
+
+//////////////User/////////////////
+//show tournaments
+Route::get('/tournaments',[PageController::class,'show_tournaments']);
+//show tournament details
+Route::get('/details/{id}',[PageController::class,'tournament_details']);
 
 ////////////////Handling user ////////////////////////////////////
 //show register page

@@ -30,7 +30,7 @@ class AdminGameController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.games.create');
     }
 
     /**
@@ -41,22 +41,15 @@ class AdminGameController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields=$request->validate([
+        $formFields = $request->validate([
             'name'=>'required',
-            'type'=>'required',
-            'fees'=>'required',
-            'closing_time'=>'required',
-            'team_size'=>'required',
-            'prize_pool'=>'required',
-            'first_prize'=>'required',
-            'second_prize'=>'required',
-            'third_prize'=>'required',
-            'rules'=>'required',
-            'image_id'=>'required',
-            'game_id'=>'required'
+            'image'=>'required|image'
         ]);
-        Tournament::create($formFields + ['user_id'=>auth()->user()->id]);
-        return redirect('/dashboard')->with('message','Tournament created succesfully');
+        if($request->hasFile('image')){
+            $formFields['image']= $request->file('image')->store('images','public');
+        }
+        Game::create($formFields);
+        return redirect('/games')->with('message','Game added successfully');
     }
     /**
      * Display the specified resource.

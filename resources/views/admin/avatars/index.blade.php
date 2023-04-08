@@ -1,48 +1,47 @@
 <x-layout>
     <x-labels>
-        <a class="active" href="#">Users</a>
+        <a class="active" href="#">Avatar</a>
     </x-labels>
     <x-table>
         <div class="head">
-            <h3>Users</h3>
+            <h3>Avatar</h3>
             <div class="action-icons">
-               <a href="{{route('add-user')}}">  <i class='bx bxs-plus-circle'></i></a>
+               <a href="{{route('add-avatar')}}">  <i class='bx bxs-plus-circle'></i></a>
             </div>
         </div>
         <thead>
             <tr>
                 <th>S.N</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Image</th>
                 <th>Created At</th>
                 <th>Updated At</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-           @if (!$users)
+           @if ($avatars->count()==0)
            <tr>
             <td colspan="4">
                 No data found
             </td>
             </tr>
            @else
-          @foreach ($users as $user)
+          @foreach ($avatars as $avatar)
           <tr>
             <td>
                 {{$loop->iteration}}
             </td>
             <td>
-                {{$user->email}}
+                <div class="tournament-image">
+                    <img src="{{asset('storage/'.$avatar->image)}}" alt="avatar-image">
+                </div>
+
             </td>
             <td>
-               Users
+                {{$avatar->created_at}}
             </td>
             <td>
-                {{$user->created_at}}
-            </td>
-            <td>
-                {{$user->updated_at}}
+                {{$avatar->updated_at}}
             </td>
             <td>
                 <div class="action-icons">
@@ -52,9 +51,15 @@
             </td>
             </tr>
           @endforeach
+
            @endif
         </tbody>
     </x-table>
+    <div class="pagination d-flex justify-content-end mt-5">
+        <ul class="pagination">
+            <li class="page-item">
+                {{ $avatars->links('vendor.pagination.simple-tailwind') }}
+            </li>
+        </ul>
+    </div>
 </x-layout>
-
-

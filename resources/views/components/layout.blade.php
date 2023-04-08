@@ -9,7 +9,8 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="http://127.0.0.1:8000/css/admin.css">
 	<title>Score Sensi</title>
-
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
@@ -21,35 +22,40 @@
 			<span class="text logo">ScoreSensi</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li class="{{(request()->segment(2)=='index') ? 'active' : ''}}">
 				<a href="{{route('index')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{(request()->segment(2)=='users') ? 'active' : ''}}">
 				<a href="{{route('users')}}">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Users</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{(request()->segment(2)=='tournaments')?'active':''}}">
 				<a href="{{route('tournaments')}}">
 					<i class='bx bxs-joystick' ></i>
 					<span class="text">Tournaments</span>
 				</a>
 			</li>
-			<li>
-				{{-- <a href="{{route('games')}}"> --}}
+			<li class="{{(request()->segment(2)=='games')?'active':''}}">
 				<a href="{{route('games')}}">
 					<i class='bx bxs-game' ></i>
 					<span class="text">Games</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{(request()->segment(2)=='teams')?'active':''}}">
 				<a href="{{route('teams')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Teams</span>
+				</a>
+			</li>
+			<li class="{{(request()->segment(2)=='avatars')?'active':''}}">
+				<a href="{{route('avatars')}}">
+					<i class='bx bxs-image-add'></i>
+					<span class="text">Avatars</span>
 				</a>
 			</li>
 		</ul>
@@ -96,7 +102,38 @@
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function (e) {
+                    $('#imageResult')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $('#upload').on('change', function () {
+                readURL(input);
+            });
+        });
+
+        /*  ==========================================
+            SHOW UPLOADED IMAGE NAME
+        * ========================================== */
+        var input = document.getElementById( 'upload' );
+        var infoArea = document.getElementById( 'upload-label' );
+
+        input.addEventListener( 'change', showFileName );
+        function showFileName( event ) {
+          var input = event.srcElement;
+          var fileName = input.files[0].name;
+          infoArea.textContent = 'File name: ' + fileName;
+        }
+   </script>
 	<script src="http://127.0.0.1:8000/js/admin.js"></script>
     <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
 </body>

@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
-use Illuminate\Validation\Rule;
-use App\Models\Tournament_Avatar;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Admin;
 
-class Tournament_AvatarController extends Controller
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
+
+class AdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +19,8 @@ class Tournament_AvatarController extends Controller
      */
     public function index()
     {
-        return view('admin.tournament_avatars.create');
+        $users = User::where('role',0)->get();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -24,7 +30,7 @@ class Tournament_AvatarController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -35,16 +41,8 @@ class Tournament_AvatarController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields= $request->validate([
-            'image'=>'required|image'
-        ]);
-        if($request->hasFile('image')){
-            $formFields['image']=$request->file('image')->store('tournament_avatar','public');
-        }
-        Tournament_Avatar::create($formFields);
-        return redirect('/tournament_avatar')->with('message','Avatar added successfully');
-    }
 
+    }
     /**
      * Display the specified resource.
      *
@@ -64,7 +62,7 @@ class Tournament_AvatarController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -76,7 +74,7 @@ class Tournament_AvatarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -87,6 +85,8 @@ class Tournament_AvatarController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
+
+?>
