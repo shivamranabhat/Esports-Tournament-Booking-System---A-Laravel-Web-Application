@@ -11,9 +11,16 @@ class Team extends Model
     protected $fillable=[
         'name','logo','player_1','player_2','player_3','player_4','user_id'
     ];
-    public function team()
+
+    //relation with user
+    public function user()
     {
-        return $this->belongsTo('App\Models\Booking','user_id');
+        return $this->belongsTo(User::class);
+    }
+    //relation with history
+    public function history()
+    {
+        return $this->hasMany(History::class);
     }
 
 }

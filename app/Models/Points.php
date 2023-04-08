@@ -11,4 +11,10 @@ class Points extends Model
     protected $fillable = [
         'kills_point','placement_point','user_id'
     ];
+
+    //relation with user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

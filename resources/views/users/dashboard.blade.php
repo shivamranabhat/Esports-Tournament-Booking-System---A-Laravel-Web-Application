@@ -95,7 +95,7 @@
                     @else
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="participants-area dashboard-container p-30">
+                                <div class="participants-area dashboard-container p-30 mb-5">
                                     <h4 class="py-3">Bookings</h4>
                                     @foreach ($bookings as $booking)
                                         <div class="participants-single">

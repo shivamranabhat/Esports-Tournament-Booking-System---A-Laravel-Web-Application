@@ -15,10 +15,12 @@ class Profile extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
+    //relation with game
     public function game()
     {
-        return $this->belongsTo(Game::class, 'game_id');
+        return $this->belongsTo(Game::class);
     }
+    //relation with user
     public function user()
     {
         return $this->belongsTo(User::class);

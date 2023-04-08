@@ -150,6 +150,7 @@ class PageController extends Controller
         $user = Auth::user();
         $check_points = Points::where('user_id',$user)->first();
         $games = Game::all();
+        Session::put('team_id',$id);
         //check the host is actual a logged user
         $tournament_id = Session::get('tournament_id');
         $check = Tournament::where('id',$tournament_id)->where('user_id',$user->id)->first();

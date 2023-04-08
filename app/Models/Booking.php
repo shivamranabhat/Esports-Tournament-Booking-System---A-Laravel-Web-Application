@@ -11,16 +11,21 @@ class Booking extends Model
     protected $fillable=[
         'tournament_id','user_id','team_id','payment_id'
     ];
+
+    //relation with team
     public function team(){
-        return $this->belongsTo(Team::class,'team_id','id');
-    }
-    public function points()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-    public function tournament()
-    {
-        return $this->belongsTo(Tournament::class, 'tournament_id');
+        return $this->belongsTo(Team::class);
     }
 
+    //relation with tournament
+    public function tournament()
+    {
+        return $this->belongsTo(Tournament::class);
+    }
+
+    //relation with user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

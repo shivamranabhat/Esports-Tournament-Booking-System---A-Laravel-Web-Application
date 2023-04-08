@@ -23,17 +23,44 @@ class Tournament extends Model
         'game_id',
         'user_id'
     ];
-    public function image() {
-        return $this->belongsTo('App\Models\tournament_avatar', 'image_id');
+    // public function image() {
+    //     return $this->belongsTo('App\Models\tournament_avatar', 'image_id');
+    // }
+    // public function game(){
+    //     return $this->belongsTo('App\Models\Game','game_id');
+    // }
+    // public function team(){
+    //     return $this->belongsTo('App\Models\Team','user_id');
+    // }
+    // public function bookings()
+    // {
+    //     return $this->hasMany(Booking::class, 'tournament_id', 'id');
+    // }
+
+    //relation with avatar
+    public function image()
+    {
+        return $this->belongsTo(tournament_avatar::class);
     }
-    public function game(){
-        return $this->belongsTo('App\Models\Game','game_id');
+
+    //relation with game
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
     }
-    public function team(){
-        return $this->belongsTo('App\Models\Team','user_id');
+    //relation with result
+    public function result()
+    {
+        return $this->hasMany(Result::class);
     }
+    //relation with history
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
+    //relation with bookings
     public function bookings()
     {
-        return $this->hasMany(Booking::class, 'tournament_id', 'id');
+        return $this->hasMany(Booking::class);
     }
 }

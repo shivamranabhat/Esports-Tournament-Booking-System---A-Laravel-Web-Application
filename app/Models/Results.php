@@ -11,10 +11,19 @@ class Results extends Model
     protected $fillable =[
         'tournament_id', 'team_id', 'kills', 'placement','user_id','match_no','total'
     ];
+
+
+    //relation with team
     public function team(){
-        return $this->belongsTo('App\Models\Team','team_id');
+        return $this->belongsTo(Team::class);
     }
+    //relation with tournament
     public function tournament(){
-        return $this->belongsTo('App\Models\Tournament','tournament_id');
+        return $this->belongsTo(Tournament::class);
+    }
+    //relation with user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
