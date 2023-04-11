@@ -34,34 +34,57 @@ use App\Http\Controllers\PerformanceController;
 Route::prefix('/admin')->middleware('auth','isAdmin')->group(function(){
 //Access admin index
 Route::get('/index',[AdminPageController::class,'index'] )->name('index');
-//Display Teams
-Route::get('/teams',[AdminTeamController::class,'index'])->name('teams');
-//Routes for Users
-Route::prefix('/users')->group(function(){
-    Route::get('/',[AdminUserController::class,'index'])->name('users');
-    Route::get('/add',[AdminUserController::class,'create'])->name('add-user');
-});
-//Display Tournaments
-Route::get('/tournaments',[AdminTournamentController::class,'index'])->name('tournaments');
+    Route::prefix('/teams')->group(function(){
+        Route::get('/',[AdminTeamController::class,'index'])->name('teams');
+        Route::get('/add',[AdminTeamController::class,'create'])->name('add-team');
+        Route::post('/store',[AdminTeamController::class,'store'])->name('store-team');
+        Route::get('/{id}',[AdminTeamController::class,'edit'])->name('edit-team');
+        Route::put('/update/{id}',[AdminTeamController::class,'update'])->name('update-team');
+        Route::delete('/delete/{id}',[AdminTeamController::class,'destroy'])->name('delete-team');
+    });
 
-//Routes for Games
-Route::prefix('/games')->group(function(){
-//Display Games
-Route::get('/',[AdminGameController::class,'index'])->name('games');
-//Add games
-Route::get('/create',[AdminGameController::class,'create'])->name('add-game');
-//Store games
-Route::post('/store',[AdminGameController::class,'store'])->name('store-game');
-});
-//Routes for Avatars
-Route::prefix('/avatars')->group(function(){
-//Display Avatars
-Route::get('/',[AdminAvatarController::class,'index'])->name('avatars');
-//Add Avatars
-Route::get('/add',[AdminAvatarController::class,'create'])->name('add-avatar');
-//Store tournament avatar
-Route::post('/store',[AdminAvatarController::class,'store'])->name('store-avatar');
-});
+    //Routes for Users
+    Route::prefix('/users')->group(function(){
+        Route::get('/',[AdminUserController::class,'index'])->name('users');
+        Route::get('/add',[AdminUserController::class,'create'])->name('add-user');
+        Route::post('/store',[AdminUserController::class,'store'])->name('store-user');
+        Route::get('/{id}',[AdminUserController::class,'edit'])->name('edit-user');
+        Route::put('/update/{id}',[AdminUserController::class,'update'])->name('update-user');
+        Route::delete('/delete/{id}',[AdminUserController::class,'destroy'])->name('delete-user');
+    });
+    //Display Tournaments
+    Route::get('/tournaments',[AdminTournamentController::class,'index'])->name('tournaments');
+    //Routes for Games
+    Route::prefix('/games')->group(function(){
+        //Display Games
+        Route::get('/',[AdminGameController::class,'index'])->name('games');
+        //Add games
+        Route::get('/create',[AdminGameController::class,'create'])->name('add-game');
+        //Store games
+        Route::post('/store',[AdminGameController::class,'store'])->name('store-game');
+        //Edit games
+        Route::get('/{id}',[AdminGameController::class,'edit'])->name('edit-game');
+        //Update games
+        Route::put('/update/{id}',[AdminGameController::class,'update'])->name('update-game');
+        //Delete games
+        Route::delete('/delete/{id}',[AdminGameController::class,'destroy'])->name('delete-game');
+    });
+    //Routes for Avatars
+    Route::prefix('/avatars')->group(function(){
+    //Display Avatars
+    Route::get('/',[AdminAvatarController::class,'index'])->name('avatars');
+        //Add Avatars
+        Route::get('/add',[AdminAvatarController::class,'create'])->name('add-avatar');
+        //Store tournament avatar
+        Route::post('/store',[AdminAvatarController::class,'store'])->name('store-avatar');
+        //Edit tournament avatar
+        Route::get('/{id}',[AdminAvatarController::class,'edit'])->name('edit-avatar');
+        //Update tournament avatar
+        Route::put('/update/{id}',[AdminAvatarController::class,'update'])->name('update-avatar');
+        //Delete tournament avatar
+        Route::delete('/delete/{id}',[AdminAvatarController::class,'destroy'])->name('delete-avatar');
+    });
+    Route::get('/contact',[PageController::class,'show_contact'])->name('show-contacts');
 });
 
 Route::middleware('auth')->group(function(){
@@ -72,14 +95,17 @@ Route::get('/dashboard',[PageController::class,'dashboard']);
 Route::get('/select',[PageController::class,'select_game']);
 //show create tournament page
 Route::get( 'create_tournament/{id}',[PageController::class,'create_tournament'])->name('create_tournament');
+Route::prefix('/tournament')->group(function(){
 //Store tournament
-Route::post('/tournament/store',[TournamentController::class,'store']);
+Route::post('/store',[TournamentController::class,'store']);
 //edit tournament
-Route::get('/tournament/edit/{id}',[TournamentController::class,'edit']);
+Route::get('/edit/{id}',[TournamentController::class,'edit']);
 //edit tournament
-Route::put('/tournament/update/{id}',[TournamentController::class,'update']);
+Route::put('/update/{id}',[TournamentController::class,'update']);
 // delete tournament
-Route::delete('/tournament/{id}', [TournamentController::class,'destroy'])->name('tournament.destroy');
+Route::delete('/{id}', [TournamentController::class,'destroy'])->name('tournament.destroy');
+});
+
 //show points index page
 Route::get('/points',[PointsController::class,'index']);
 //store bookings
@@ -159,6 +185,14 @@ Route::get('/bookings/{id}',[PageController::class,'bookings']);
 Route::get('/',[PageController::class,'index']);
 
 //////////////User/////////////////
+//contact page
+Route::prefix('/contact')->group(function(){
+    Route::get('/',[PageController::class,'contact']);
+    Route::post('/add',[PageController::class,'add_contact']);
+});
+//About us
+Route::get('/about',[PageController::class,'about']);
+Route::get('/tournaments',[PageController::class,'show_tournaments']);
 //show tournaments
 Route::get('/tournaments',[PageController::class,'show_tournaments']);
 //show tournament details
@@ -170,7 +204,7 @@ Route::get('/register',[UserController::class,'create']);
 //create new user
 Route::post('/users',[UserController::class,'store']);
 //show login form
-Route::get('/login',[UserController::class,'login']);
+Route::get('/login',[UserController::class,'login'])->name('login');
 //login user
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
 //logout user

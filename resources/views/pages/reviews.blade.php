@@ -214,7 +214,7 @@
                                                             style="background: rgb(55,8,152) !important;">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    Are you sure want to delete this?</h5>
+                                                                    Delete Review</h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>

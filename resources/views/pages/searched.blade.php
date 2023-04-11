@@ -32,7 +32,7 @@
     </section>
     <!-- banner-section end -->
    <!-- Browse Tournaments start -->
-    <section id="tournaments-section">
+    <section id="tournaments-section" class="mt-5 tournament-banner">
         <div class="overlay pt-20 pb-120">
             <div class="container wow fadeInUp">
                 <div class="row d-flex justify-content-center">

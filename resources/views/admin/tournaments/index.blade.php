@@ -69,7 +69,7 @@
             </td>
             <td>
                 <div class="action-icons">
-                    <a href="#"><i class='bx bxs-edit'></i></a>
+                    <a href="#" class="mr-4"><i class='bx bxs-edit'></i></a>
                    <a href="#"> <i class='bx bxs-trash-alt'></i></a>
                 </div>
             </td>

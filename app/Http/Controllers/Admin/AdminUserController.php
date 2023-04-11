@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -19,7 +21,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role',0)->get();
+        $users = User::orderBy('created_at','desc')->where('role',0)->get();
         return view('admin.users.index',compact('users'));
     }
 
@@ -41,7 +43,16 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-
+        $formFields = $request->validate([
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required',
+            'role'=>'required',
+            'confirmed'=>'required',
+        ]);
+        //To make Hash Password
+        $formFields['password'] = Hash::make($request->password);
+        User::create($formFields);
+        return redirect()->route('users')->with('message','User added successfully');
     }
     /**
      * Display the specified resource.
@@ -51,7 +62,7 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -62,6 +73,8 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
+        $user = User::findOrFail($id);
+        return view('admin.users.edit',compact('user'));
 
     }
 
@@ -74,7 +87,18 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $user = User::findOrFail($id);
+        $formFields = $request->validate([
+            'email'=>'required|email',
+            'password'=>'required',
+            'role'=>'required',
+            'confirmed'=>'required',
+        ]);
+        if (Hash::needsRehash($formFields['password'])) {
+            $formFields['password'] = Hash::make($request->password);
+        }
+        $user->update($formFields);
+        return redirect()->route('users')->with('message','User updated successfully');
     }
 
     /**
@@ -85,7 +109,9 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users')->with('message','User deleted successfully');
     }
 }
 

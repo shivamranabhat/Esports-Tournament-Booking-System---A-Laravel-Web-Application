@@ -28,8 +28,8 @@
                                     @endauth
                                 </ul>
                             </li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="/about" class="{{(request()->segment(1)=='about')?'active':''}}">About</a></li>
+                            <li><a href="/contact" class="{{(request()->segment(1)=='contact')?'active':''}}">Contact</a></li>
                             <form action="/logout" method="post">
                                 @csrf
                                 <li><button type="submit" class="btn logout-mobile text-white">Logout</button></li>
@@ -39,7 +39,11 @@
                 </nav>
                 <div class="right-area header-action d-flex align-items-center">
                     <div class="search-icon">
-                        <a href="#"><img src="http://127.0.0.1:8000/images/search_btn.png" alt="icon"></a>
+                       <a href="#" class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                            </svg>
+                       </a>
                     </div>
                     @auth()
                         <div class="end-elements profile d-flex justify-content-between align-items-center">

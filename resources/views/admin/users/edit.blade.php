@@ -10,21 +10,22 @@
             </div>
         </div>
         <div class="form-container pr-5">
-            <form method="POST" action="#">
+            <form method="POST" action="{{route('update-user',$user->id)}}">
                 @csrf
+                @method('PUT')
                 <div class="form-row">
                     <div class="col-12 col-sm-6 col-lg-6">
                         <div class="form-group">
                             <label for="name">Email</label>
                             <input type="text" class="form-control" name="email" id="email"
-                                value="{{ old('email') }}">
+                                value="{{ $user->email }}">
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-6">
                         <div class="form-group">
                             <label for="name">Password</label>
                             <input type="password" class="form-control" name="password" id="password"
-                                value="{{ old('password') }}">
+                                value="{{ $user->password}}">
                         </div>
                     </div>
                 </div>

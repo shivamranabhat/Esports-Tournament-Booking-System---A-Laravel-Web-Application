@@ -34,12 +34,6 @@
 					<span class="text">Users</span>
 				</a>
 			</li>
-			<li class="{{(request()->segment(2)=='tournaments')?'active':''}}">
-				<a href="{{route('tournaments')}}">
-					<i class='bx bxs-joystick' ></i>
-					<span class="text">Tournaments</span>
-				</a>
-			</li>
 			<li class="{{(request()->segment(2)=='games')?'active':''}}">
 				<a href="{{route('games')}}">
 					<i class='bx bxs-game' ></i>
@@ -58,19 +52,27 @@
 					<span class="text">Avatars</span>
 				</a>
 			</li>
-		</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
+            <li class="{{(request()->segment(2)=='tournaments')?'active':''}}">
+				<a href="{{route('tournaments')}}">
+					<i class='bx bxs-joystick' ></i>
+					<span class="text">Tournaments</span>
 				</a>
 			</li>
-			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
+            <li class="{{(request()->segment(2)=='contact')?'active':''}}">
+				<a href="{{route('show-contacts')}}">
+					<i class='bx bxs-message-dots'></i>
+					<span class="text">Message</span>
 				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li class="logout">
+                <form action="/logout" method="post">
+                    @csrf
+                        <button type="submit" class="btn log-btn mt-2 d-flex text-danger align-items-center"><i class='bx bxs-log-out-circle'></i>
+                            <span type="submit" class="text">Logout</span>
+                        </button>
+                </form>
 			</li>
 		</ul>
 	</section>
@@ -134,6 +136,10 @@
           infoArea.textContent = 'File name: ' + fileName;
         }
    </script>
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="http://127.0.0.1:8000/js/admin.js"></script>
     <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
 </body>

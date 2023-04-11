@@ -1683,6 +1683,10 @@ body::-webkit-scrollbar-thumb:hover {
 #banner-section.inner-banner .testimonials-carousel{
     margin-bottom: -70px;
 }
+.tournament-banner{
+    position: relative;
+    top: -120px;
+}
 #banner-section.inner-banner .bottom-item{
     background: #130757;
     border-radius: 10px;

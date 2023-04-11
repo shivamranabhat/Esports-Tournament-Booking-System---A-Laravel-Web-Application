@@ -62,7 +62,7 @@
                             <div class="col-lg-3 col-md-4 text-center">
                                 <h2 class="dollar">Rs.{{$tournaments->fees}}</h2>
 
-                                <a href="/bookings/{{$tournaments->id}}" class="cmn-btn">Join Now!</a>
+                                <a href="/bookings/{{$tournaments->id}}" class="btn text-white cmn-btn">Join Now!</a>
                             </div>
                         </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">

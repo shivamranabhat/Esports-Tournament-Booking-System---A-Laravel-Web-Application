@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="form-container pr-5">
-            <form method="POST" action="#">
+            <form method="POST" action="{{route('store-user')}}">
                 @csrf
                 <div class="form-row">
                     <div class="col-12 col-sm-6 col-lg-6">

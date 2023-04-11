@@ -6,6 +6,7 @@ use App\PerformanceHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Game;
+use App\Models\Contact;
 use App\Models\User;
 use App\Models\Tournament;
 use App\Models\Tournament_Avatar;
@@ -31,8 +32,35 @@ class PageController extends Controller
     public function index()
     {
         $games = Game::all();
-        $tournaments = Tournament::orderBy('closing_time', 'asc')->simplePaginate(3);
+        $tournaments = Tournament::orderBy('closing_time', 'asc')->simplePaginate(5);
         return view('pages.index', compact('games','tournaments'));
+    }
+    //contact us
+    public function contact()
+    {
+        return view('pages.contact');
+    }
+    //add contact
+    public function add_contact(Request $request)
+    {
+        $formField= $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'message'=>'required'
+        ]);
+        Contact::create($formField);
+        return redirect('/')->with('message','Message sent successfully');
+    }
+    //show message
+    public function show_contact()
+    {
+        $contacts = Contact::orderBy('created_at', 'desc')->simplePaginate(5);
+        return view('admin.contact.index',compact('contacts'));
+    }
+    //about us
+    public function about()
+    {
+        return view('pages.about');
     }
     //display user profile page
     public function user_profile()
@@ -79,7 +107,7 @@ class PageController extends Controller
     //display all tournaments
     public function show_tournaments()
     {
-        $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->simplePaginate(3);
+        $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->simplePaginate(5);
         $games = Game::all();
         $now = Carbon::now();
         foreach ($tournaments as $tournament) {
@@ -96,6 +124,7 @@ class PageController extends Controller
     {
         $tournaments = Tournament::findOrFail($id);
         $user_id = $tournaments->user_id;
+        Session::put('id',$id);
         $ratings = Rating::where('comments_on', $user_id)->get();
         $average = $ratings->avg('ratings');
         $user = Profile::where('user_id',$tournaments->user_id)->first();
@@ -135,19 +164,10 @@ class PageController extends Controller
         $user = auth()->user()->id;
         $profiles = Profile::where('user_id',$user)->first();
         $teams = Team::where('user_id',$user)->first();
-        $check = Booking::where('user_id',$user)->where('tournament_id',$id)->first();
         $tournaments = Tournament::find($id);
-        if($user == null)
-        {
-            return redirect('/login');
-        }
-        else if($profiles == null || $teams == null)
+         if($profiles == null || $teams == null)
         {
             return redirect('/editprofile')->with('message','Please set your team information');;
-        }
-        else if($check)
-        {
-            return redirect('/');
         }
         else{
             return view('tournament.bookings',compact('teams','profiles'),['tournaments'=>$tournaments]);
@@ -192,7 +212,6 @@ class PageController extends Controller
     //show result to organizer
     public function show_result($id)
     {
-
         $results = DB::table('results')
         ->select('teams.name as team_name', 'teams.logo as logo', 'results.team_id', 'results.tournament_id', DB::raw('SUM(total) as total_points'), DB::raw('SUM(kills) as total_kills'))
         ->join('teams', 'teams.id', '=', 'results.team_id')
@@ -204,12 +223,6 @@ class PageController extends Controller
         $user = Auth::user();
         $points = Points::where('user_id',$user->id)->get();
         $games = Game::all();
-         //check the host is actual a logged user
-         $check = Results::where('tournament_id',$id)->where('user_id',$user->id)->first();
-         if(! $check)
-         {
-             return redirect('/')->with('message','Access forbidden');
-         }
         return view('console.result',compact('results','points','games'));
     }
      //show result to user

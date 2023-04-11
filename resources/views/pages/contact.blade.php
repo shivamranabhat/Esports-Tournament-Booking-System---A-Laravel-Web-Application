@@ -17,7 +17,7 @@
                         <div class="breadcrumb-area">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb d-flex justify-content-center">
-                                    <li class="breadcrumb-item"><a href="">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                                     <li class="breadcrumb-item active mb-3" aria-current="page">Contact</li>
                                 </ol>
                             </nav>
@@ -45,21 +45,31 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    <form action="#" method="post">
+                    <form action="/contact/add" method="POST">
+                        @csrf
                         <h5>Leave your message</h5>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Enter your Name">
+                            <input type="text" id="name" name="name" placeholder="Enter your Name">
+                            @error('name')
+                            <p class="d-flex justify-content-start text-danger mt-2">{{ $message }}</p>
+                        @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Enter your email">
+                            <input type="email" id="email" name="email" placeholder="Enter your email">
+                            @error('email')
+                            <p class="d-flex justify-content-start text-danger mt-2">{{ $message }}</p>
+                        @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Message</label>
-                            <textarea rows="6" placeholder="Enter your message"></textarea>
+                            <textarea rows="6" placeholder="Enter your message" id="message" name="message"></textarea>
+                            @error('message')
+                            <p class="d-flex justify-content-start text-danger mt-2">{{ $message }}</p>
+                        @enderror
                         </div>
-                        <button class="cmn-btn" type="submit">Submit Now</button>
+                        <button class="cmn-btn btn text-white" type="submit">Submit Now</button>
                     </form>
                 </div>
                 <div class="col-md-4">
@@ -71,7 +81,7 @@
                             </div>
                             <div class="right-area">
                                 <h6>Email</h6>
-                                <p class="text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d6d1d3d5d9f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a></p>
+                                <p class="text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d6d1d3d5d9f4d3d9d5ddd89ad7dbd9">scoresensi@gmail.com</a></p>
                             </div>
                         </div>
                         <div class="single-area d-flex align-items-center">
@@ -80,7 +90,7 @@
                             </div>
                             <div class="right-area">
                                 <h6>Phone</h6>
-                                <p class="text-sm">(123) 456 - 7890</p>
+                                <p class="text-sm">+977 9805867639</p>
                             </div>
                         </div>
                     </div>

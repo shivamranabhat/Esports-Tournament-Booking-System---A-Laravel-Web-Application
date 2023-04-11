@@ -186,9 +186,10 @@ a{
 }
 
 /* Icons */
-.action-icons{
-    display: flex;
-    justify-content: space-between;
+.log-btn{
+    border: none;
+    background: none;
+    outline: none;
 }
 .action-icons a{
     text-decoration: none !important;
@@ -197,7 +198,11 @@ a{
 .action-icons i{
     font-size: 22px;
 }
-
+.modal-content{
+    background: #eee;
+    color: var(--purple);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 2px, rgba(0, 0, 0, 0.23) 0px 0px 2px;
+}
 
 /* NAVBAR */
 #content nav {

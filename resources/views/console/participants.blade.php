@@ -33,7 +33,7 @@
                                         <span class="dot"></span>
                                     </span>
                                     <ul class="list">
-                                        <li><a href="#"><i class="fa-solid fa-user"></i>Profile</a></li>
+                                        {{-- <li><a href="#"><i class="fa-solid fa-user"></i>Profile</a></li> --}}
                                         <li><a href="/calculate/{{ $participant->team_id }}"><i
                                                     class="fa-solid fa-calculator"></i>Calculate Points</a></li>
                                     </ul>

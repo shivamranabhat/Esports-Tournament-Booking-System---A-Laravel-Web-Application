@@ -80,7 +80,8 @@ class ResultsController extends Controller
             ['tournament_id' => $tournament, 'team_id' => $request->team_id, 'player_name' => $request->input('player_name4'), 'kills' => $request->input('kills4')],
         ];
         History::insert($data);
-        return redirect('/dashboard');
+        // return redirect('/dashboard')->with('message','Result added successfully');
+        return redirect()->back();
 
     }
 

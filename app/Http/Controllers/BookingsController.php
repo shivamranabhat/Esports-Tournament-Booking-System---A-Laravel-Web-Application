@@ -7,6 +7,8 @@ use App\Models\Booking;
 use App\Models\Team;
 use App\Models\Tournament;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 class BookingsController extends Controller
 {
     /**
@@ -19,6 +21,7 @@ class BookingsController extends Controller
         $tournament = Tournament::find($id);
         $participants= Booking::where('tournament_id',$tournament)->get();
         return view('console.tournaments.participants',compact('participants'),compact('tournament'));
+
     }
 
     /**
@@ -45,11 +48,16 @@ class BookingsController extends Controller
         $team_id = $team->id;
         $check = Booking::where('tournament_id',$request->tournament_id)->where('user_id',$user_id)->count();
         if($check >0){
-            return redirect('/')->with('message','This tournament has been already booked.');
+            return redirect('/')->with('message','This tournament has been already booked');
         }
         $formFields = $request->validate([
             'tournament_id'=>'required',
         ]);
+        $tournament_id = Session::get('id');
+        $tournament = Tournament::find($tournament_id);
+        if($tournament->closing_time < now()) {
+            return redirect('/')->with('message','This tournament has already closed for booking');
+        }
         Booking::create($formFields+['team_id'=>$team_id] + ['user_id'=>$user_id]);
         return redirect('/')->with('message','Tournament booked successfully');
 

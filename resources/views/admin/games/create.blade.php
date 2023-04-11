@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="form-container pr-5">
-            <form method="POST" action="#" enctype="multipart/form-data">
+            <form method="POST" action="{{route('store-game')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
                     <div class="col-12 col-sm-12 col-lg-6">

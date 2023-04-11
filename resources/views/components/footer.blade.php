@@ -13,8 +13,8 @@
                     </div>
                     <ul class="menu-side d-flex align-items-center">
                         <li><a href="/" class="active">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
                 <div

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Tournament_Avatar;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class AdminAvatarController extends Controller
@@ -68,7 +70,8 @@ class AdminAvatarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $avatar = Tournament_Avatar::findOrFail($id);
+        return view('admin.avatars.edit',compact('avatar'));
     }
 
     /**
@@ -80,7 +83,16 @@ class AdminAvatarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $avatar = Tournament_Avatar::findOrFail($id);
+        $formFields = $request->validate([
+            'image'=>'required|image'
+        ]);
+        if($request->hasFile('image')){
+            $formFields['image']=$request->file('image')->store('tournament_avatar','public');
+        }
+        $avatar->update($formFields);
+        Storage::delete($avatar->image);
+        return redirect()->route('avatars')->with('message','Avatar has been updated');
     }
 
     /**
@@ -91,6 +103,9 @@ class AdminAvatarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $avatar = Tournament_Avatar::findOrFail($id);
+        Storage::delete($avatar->image);
+        $avatar->delete();
+        return redirect()->route('avatars')->with('message','Avatar has been deleted');
     }
 }

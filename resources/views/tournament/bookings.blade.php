@@ -120,7 +120,7 @@
                                                 <input type="hidden" id="tournament_id" name="tournament_id" value="{{$tournaments->id}}">
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="update-btn">Book Now</button>
+                                                <button type="submit" class="btn text-white update-btn">Book Now</button>
                                             </div>
                                         </form>
                                     </div>

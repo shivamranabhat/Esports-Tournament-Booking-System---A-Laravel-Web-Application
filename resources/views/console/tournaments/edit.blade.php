@@ -119,7 +119,7 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <input type="hidden" class="form-control" id="image_id" name="image_id">
+                                        <input type="hidden" class="form-control" id="image_id" name="image_id" value="{{$tournament->image_id}}">
                                         <div class="form-row">
                                             <div class="form-outline col-md-6 mb-4">
                                                 <label class="form-label text-white" for="closing_time">Closing time</label>

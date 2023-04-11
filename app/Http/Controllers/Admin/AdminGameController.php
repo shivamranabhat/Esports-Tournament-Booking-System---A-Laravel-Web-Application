@@ -50,7 +50,7 @@ class AdminGameController extends Controller
             $formFields['image']= $request->file('image')->store('images','public');
         }
         Game::create($formFields);
-        return redirect('/games')->with('message','Game added successfully');
+        return redirect()->route('games')->with('message','Game added successfully');
     }
     /**
      * Display the specified resource.
@@ -71,7 +71,8 @@ class AdminGameController extends Controller
      */
     public function edit($id)
     {
-
+        $game = Game::findOrFail($id);
+        return view('admin.games.edit',compact('game'));
     }
 
     /**
@@ -83,7 +84,23 @@ class AdminGameController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $game = Game::findOrFail($id);
+        //if user select new image
+        if($request->hasFile('image')){
+            $formFields = $request->validate([
+                'name'=>'required',
+                'image'=>'required|image'
+            ]);
+            $formFields['image']= $request->file('image')->store('users','public');
+            Storage::delete($avatar->image);
+            $game->update($formFields);
+        }
+        //if user didn't select new image
+        $fields = $request->validate([
+            'name'=>'required',
+        ]);
+        $game->update($fields);
+        return redirect()->route('games')->with('message','Game updated successfully');
     }
 
     /**
@@ -97,7 +114,7 @@ class AdminGameController extends Controller
         $game = Game::findOrFail($id);
         Storage::delete($game->image);
         $game->delete();
-        return redirect()->route('/games')->with('message','Game deleted succesfully');
+        return redirect()->route('games')->with('message','Game deleted succesfully');
     }
 }
 
