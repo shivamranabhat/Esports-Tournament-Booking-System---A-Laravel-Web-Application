@@ -15,6 +15,7 @@ use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\PerformanceController;
 
 /*
@@ -127,14 +128,29 @@ Route::put('/team/update/{id}',[TeamController::class,'update']);
 //Delete team
 Route::delete('/team/{id}',[TeamController::class,'destroy'])->name('team.destroy');
 //show user dashboard
-Route::get('/user_dashboard',[PerformanceController::class,'performance']);
+Route::get('/user_dashboard',[PageController::class,'user_dashboard']);
 //show result to user
 Route::get('/userresults/{id}',[PageController::class,'user_result']);
 //show tournament performance individually to user
 Route::get('/performance/{id}',[PageController::class,'tournament_performance']);
 
-////////////////Booking ////////////////////////////////////
+//////Search///////
+Route::get('/search_name', [PageController::class,'searchByName'])->name('searchByName');
+Route::get('/search_type', [PageController::class,'searchByType'])->name('searchByType');
+Route::get('/search_game', [PageController::class,'searchByGame'])->name('searchByGame');
 
+
+////////Ratings/////////////
+//show rating page
+Route::prefix('/rating')->group(function(){
+    Route::get('/{id}',[PageController::class,'ratings'])->name('show-ratings');
+    //add rating
+    Route::post('/add',[RatingsController::class,'store'])->name('add-ratings');
+    Route::delete('/delete/{id}',[RatingsController::class,'destroy'])->name('rating.destroy');
+});
+
+
+////////////////Booking ////////////////////////////////////
 //show bookings page
 Route::get('/bookings/{id}',[PageController::class,'bookings']);
 });

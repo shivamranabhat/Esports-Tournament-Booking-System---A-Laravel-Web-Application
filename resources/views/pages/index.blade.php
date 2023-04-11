@@ -64,9 +64,6 @@
                             </div>
                         @endforeach
                     </div>
-                    {{-- <div class="btn-area text-center">
-                        <a href="tournaments.html" class="cmn-btn">View All</a>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -86,19 +83,7 @@
                     </div>
                 </div>
                 <div class="row mb-40 mp-none">
-                    <div class="col-lg-3 col-md-3">
-                        <div class="single-input">
-                            <span>Status</span>
-                            <select>
-                                <option>Status</option>
-                                <option value="1">Upcoming 1</option>
-                                <option value="2">Upcoming 2</option>
-                                <option value="3">Upcoming 3</option>
-                                <option value="5">Upcoming 5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-6 col-md-6">
                         <div class="single-input">
                             <span>Search</span>
                             <input type="text" placeholder="Search">
@@ -198,132 +183,9 @@
         </div>
     </section>
     <!-- Browse Tournaments end -->
-
-    <!-- Counter In start -->
-    {{-- <section id="counter-section">
-        <div class="overlay pt-120 pb-120">
-            <div class="container">
-                <div class="row mp-none">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <div class="img-area">
-                                <img src="images/counter-icon-1.png" alt="image">
-                            </div>
-                            <h3><span class="counter">84</span>K</h3>
-                            <p>Matches Played</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <div class="img-area">
-                                <img src="images/counter-icon-2.png" alt="image">
-                            </div>
-                            <h3>$<span class="counter">96</span>m</h3>
-                            <p>Winnings Paid</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <div class="img-area">
-                                <img src="images/counter-icon-3.png" alt="image">
-                            </div>
-                            <h3><span class="counter">180</span></h3>
-                            <p>Active Ladders</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <div class="img-area">
-                                <img src="images/counter-icon-4.png" alt="image">
-                            </div>
-                            <h3><span class="counter">168</span>b</h3>
-                            <p>XP Earned</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Counter In end -->
-    <!-- Players of the Week In start -->
-    {{-- <section id="players-week-section">
-        <div class="overlay pt-120 pb-120">
-            <div class="container wow fadeInUp">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7 mb-30">
-                        <div class="section-header text-center">
-                            <h2 class="title">Players of the Week</h2>
-                            <p>We take a look at the best player of the week awarded
-                                on Monday for the previous Monday to Sunday</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mp-none">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-item text-center">
-                            <div class="img-area">
-                                <div class="img-wrapper">
-                                    <img src="images/player-1.png" alt="image">
-                                </div>
-                            </div>
-                            <a href="profile.html"><h5>Barton Griggs</h5></a>
-                            <p class="date">
-                                <span class="text-sm earn">1970 XP Earned</span>
-                                <span class="text-sm">04/05 - 04/12</span>
-                            </p>
-                            <p class="text-sm credit">
-                                <span class="text-sm"><img src="images/credit-icon.png" alt="image"> +20 credits</span>
-                            </p>
-                            <a href="profile.html" class="cmn-btn">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-item mid-area text-center">
-                            <div class="top-level">
-                                <img src="images/star.png" alt="image">
-                            </div>
-                            <div class="img-area">
-                                <div class="img-wrapper">
-                                    <img src="images/player-2.png" alt="image">
-                                </div>
-                            </div>
-                            <a href="profile.html"><h5>Mervin Trask</h5></a>
-                            <p class="date">
-                                <span class="text-sm earn">1970 XP Earned</span>
-                                <span class="text-sm">04/05 - 04/12</span>
-                            </p>
-                            <p class="text-sm credit">
-                                <span class="text-sm"><img src="images/credit-icon.png" alt="image"> +20 credits</span>
-                            </p>
-                            <a href="profile.html" class="cmn-btn">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-item text-center">
-                            <div class="img-area">
-                                <div class="img-wrapper">
-                                    <img src="images/player-3.png" alt="image">
-                                </div>
-                            </div>
-                            <a href="profile.html"><h5>Adria Poulin</h5></a>
-                            <p class="date">
-                                <span class="text-sm earn">1970 XP Earned</span>
-                                <span class="text-sm">04/05 - 04/12</span>
-                            </p>
-                            <p class="text-sm credit">
-                                <span class="text-sm"><img src="images/credit-icon.png" alt="image"> +20 credits</span>
-                            </p>
-                            <a href="profile.html" class="cmn-btn">View Profile</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Players of the Week In end -->
     <!-- Features In start -->
-    {{-- <section id="features-section">
-        <div class="overlay pt-120">
+    <section id="features-section">
+        <div class="overlay pt-120 pb-120">
             <div class="container wow fadeInUp">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
@@ -391,136 +253,10 @@
                 </div>
             </div>
         </div>
-    </section> --}}
-    <!-- Features In end -->
-    <!-- Call to Action In start -->
-    {{-- <section id="call-to-action">
-        <div class="overlay pt-120 pb-120">
-            <div class="container">
-                <div class="main-content">
-                    <div class="row d-sm-flex justify-content-sm-end">
-                        <div class="col-lg-4 col-md-1">
-                            <img class="left" src="images/call-to-action-left.png" alt="image">
-                        </div>
-                        <div class="col-lg-4 col-md-5 col-sm-5 d-flex align-items-center">
-                            <div class="section-item">
-                                <h4>Invite Friends and Win Rewards.Join ESports Nepal today</h4>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center justify-content-sm-end align-items-center">
-                            <div class="btn-area d-flex justify-content-center justify-content-sm-end align-items-center">
-                                <a href="registration.html" class="cmn-btn">Join Now</a>
-                            </div>
-                            <img src="images/call-to-action-right.png" alt="image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Call to Action In end -->
-    <!-- Testimonials In start -->
-    {{-- <section id="testimonials-section">
-        <div class="overlay pt-120 pb-120">
-            <div class="container wow fadeInUp">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="section-header text-center">
-                            <h2 class="title">Our Gamers Review</h2>
-                            <p>Thousands of Happy Gamers All Around the World</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mp-none">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <p>I play Tournament every day, it's a great way to relax and win cash too!</p>
-                            <div class="bottom-area d-flex justify-content-between">
-                                <div class="left-area d-flex">
-                                    <div class="img">
-                                        <div class="img-area">
-                                            <img src="images/testimonials-user-1.png" alt="image">
-                                        </div>
-                                    </div>
-                                    <div class="title-area">
-                                        <h6>Brice Tong</h6>
-                                        <span>Texas, USA</span>
-                                    </div>
-                                </div>
-                                <div class="amount">
-                                    <h6>$306</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <p>When I hang out with my friends, we play Tournament, its so much fun</p>
-                            <div class="bottom-area d-flex justify-content-between">
-                                <div class="left-area d-flex">
-                                    <div class="img">
-                                        <div class="img-area">
-                                            <img src="images/testimonials-user-1.png" alt="image">
-                                        </div>
-                                    </div>
-                                    <div class="title-area">
-                                        <h6>Alva Adair</h6>
-                                        <span>Frankfurt, Germany</span>
-                                    </div>
-                                </div>
-                                <div class="amount">
-                                    <h6>$496</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-item text-center">
-                            <p>I joined for the community but ended up winning cash, amazing.</p>
-                            <div class="bottom-area d-flex justify-content-between">
-                                <div class="left-area d-flex">
-                                    <div class="img">
-                                        <div class="img-area">
-                                            <img src="images/testimonials-user-1.png" alt="image">
-                                        </div>
-                                    </div>
-                                    <div class="title-area">
-                                        <h6>Ray Sutton</h6>
-                                        <span>Ontario, Canada</span>
-                                    </div>
-                                </div>
-                                <div class="amount">
-                                    <h6>$306</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Testimonials In end -->
-    <!-- Call Action In start -->
-    <section id="call-action" class="pb-120">
-        <div class="overlay">
-            <div class="container wow fadeInUp">
-                <div class="row d-flex justify-content-between align-items-center">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="left-area">
-                            <h2 class="title">Build Your Esports Profile</h2>
-                            <p>Showcase your achievements, match history and win rate while you build your reputation on
-                                Begam.</p>
-                            <a href="registration.html" class="cmn-btn-second">Sign Up Free</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-6">
-                        <div class="right-area">
-                            <img src="images/profile-info.png" alt="image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
+    <!-- Features In end -->
+    <!-- Call Action In start -->
+    <x-cta>
+    </x-cta>
     <!-- Call Action In end -->
 @endsection

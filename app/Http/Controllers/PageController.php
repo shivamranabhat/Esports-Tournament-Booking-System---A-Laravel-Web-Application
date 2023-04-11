@@ -14,6 +14,7 @@ use App\Models\Profile;
 use App\Models\Team;
 use App\Models\Points;
 use App\Models\Results;
+use App\Models\Rating;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -54,10 +55,32 @@ class PageController extends Controller
             }
         }
     }
+    public function searchByName(Request $request)
+    {
+        $name = $request->input('name');
+        $search_tournaments = Tournament::where('name', 'like', "%$name%")->simplePaginate(3);
+        $games = Game::all();
+        return view('pages.searched',compact('search_tournaments','games'));
+    }
+    public function searchByType(Request $request)
+    {
+        $type = $request->input('type');
+        $search_tournaments = Tournament::where('type',$type)->simplePaginate(3);
+        $games = Game::all();
+        return view('pages.searched',compact('search_tournaments','games'));
+    }
+    public function searchByGame(Request $request)
+    {
+        $game = $request->input('game_id');
+        $search_tournaments = Tournament::where('game_id',$game)->simplePaginate(3);
+        $games = Game::all();
+        return view('pages.searched',compact('search_tournaments','games'));
+    }
     //display all tournaments
     public function show_tournaments()
     {
         $tournaments = Tournament::orderBy('closing_time','asc')->with('bookings')->simplePaginate(3);
+        $games = Game::all();
         $now = Carbon::now();
         foreach ($tournaments as $tournament) {
             $bookingCloseTime = new Carbon($tournament->closing_time);
@@ -66,14 +89,17 @@ class PageController extends Controller
             $secondsSinceTournamentPosting = $now->diffInSeconds($tournament->created_at);
             $tournament->secondsSinceTournamentPosting = $secondsSinceTournamentPosting;
         }
-        return view('pages.tournament',compact('tournaments'));
+        return view('pages.tournament',compact('tournaments','games'));
     }
     //show indvidual tournaments details
     public function tournament_details($id)
     {
         $tournaments = Tournament::findOrFail($id);
+        $user_id = $tournaments->user_id;
+        $ratings = Rating::where('comments_on', $user_id)->get();
+        $average = $ratings->avg('ratings');
         $user = Profile::where('user_id',$tournaments->user_id)->first();
-        return view('pages.tournaments-details',compact('tournaments'),['profile'=>$user]);
+        return view('pages.tournaments-details',compact('tournaments','average'),['profile'=>$user]);
     }
     //show tournament host dashboard
     public function dashboard()
@@ -189,6 +215,7 @@ class PageController extends Controller
      //show result to user
      public function user_result($id)
      {
+        $user_id = Auth::user()->id;
         $userresults = DB::table('results')
         ->select('teams.name as team_name', 'teams.logo as logo', 'results.team_id', 'results.tournament_id', DB::raw('SUM(total) as total_points'), DB::raw('SUM(kills) as total_kills'))
         ->join('teams', 'teams.id', '=', 'results.team_id')
@@ -197,34 +224,48 @@ class PageController extends Controller
         ->where('results.tournament_id', '=', $id)
         ->orderByRaw('SUM(total) desc')
         ->get();
-         $performance = new PerformanceHelper();
-         $overall_results = $performance->performance();
-        // Access individual variables from the returned array
-        $kills = $overall_results[0];
-        $week_data = $overall_results[1];
-        $month_data = $overall_results[2];
-        $results = $overall_results[3];
-        return view('users.result',compact('userresults','kills','week_data','month_data','results'));
+         //to fetch weekly, monthly score and overall kills
+         $command = 'python ' . base_path() . '/python/overall_manipulation.py '. $user_id;
+         $output = shell_exec($command);
+         $overall_data = json_decode($output, true);
+        return view('users.result',compact('userresults'),['overall_data' => $overall_data]);
      }
-
+     //show user dashboard
+     public function user_dashboard()
+     {
+        $user_id = Auth::user()->id;
+        $bookings = Booking::where('user_id',$user_id)->get();
+        //to fetch weekly, monthly score and overall kills
+        $command = 'python ' . base_path() . '/python/overall_manipulation.py '. $user_id;
+        $output = shell_exec($command);
+        $overall_data = json_decode($output, true);
+        return view('users.dashboard',['overall_data' => $overall_data],compact('bookings'));
+    }
      //show tournament performance individually
      public function tournament_performance($id)
      {
         $user_id = Auth::user()->id;
         $team = Team::where('user_id',$user_id)->first();
-
         //to fetch kills in relation to teammates from histories table
         $command = 'python ' . base_path() . '/python/overall_manipulation.py '. $user_id;
         $output = shell_exec($command);
         $overall_data = json_decode($output, true);
-
         //to fetch total score and kills in relation to match number from results table
         $team = Team::where('user_id',$user_id)->first();
         $command = 'python ' . base_path() . '/python/tournament_manipulation.py ' . $id . ' ' . $team->id;
         $output = shell_exec($command);
         $tournament_data= json_decode($output, true);
-
         return view('users.tournament_performance',['overall_data' => $overall_data],['tournament_data' => $tournament_data]);
+    }
+    //show reviews page
+    public function ratings($id)
+    {
+        $user_id = auth()->user()->id;
+        $comments_on = User::findOrFail($id);
+        $user_rating = Rating::where('comments_by',$user_id)->get();
+        $profiles = Profile::where('user_id',$user_id)->first();
+        $ratings = Rating::where('comments_on',$id)->get();
+        return view('pages.reviews',compact('comments_on','user_rating'),compact('profiles','ratings'));
     }
 }
 

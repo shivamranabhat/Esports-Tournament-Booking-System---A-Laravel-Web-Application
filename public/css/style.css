@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 *{
     margin: 0;
@@ -27,6 +28,9 @@ body {
     margin: 0;
     font-weight: 400;
     overflow-x: hidden;
+}
+.cursor{
+    cursor: pointer;
 }
 h1,h2,h3,h4,h5,h6 {
     padding: 0;
@@ -443,7 +447,19 @@ body::-webkit-scrollbar-thumb:hover {
         width: 100%;
     }
 }
-
+.brand{
+    display: flex;
+    align-items: center;
+}
+.brand, .brand span{
+    font-family: 'Great Vibes', cursive;
+    color:#fff;
+    font-size: 24px;
+}
+.brand span{
+    margin-top: 10px;
+    font-weight: bold;
+}
 .navbar-collapse .main-menu li .sub-menu {
     position: absolute;
     top: 100%;

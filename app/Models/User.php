@@ -93,5 +93,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Booking::class);
     }
-
+    //relation with ratings
+    public function ratings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

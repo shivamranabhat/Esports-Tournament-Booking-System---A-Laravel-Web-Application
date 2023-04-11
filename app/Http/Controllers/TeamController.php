@@ -103,6 +103,7 @@ class TeamController extends Controller
                 'player_3'=>'required',
                 'player_4'=>'required'
             ]);
+            Storage::delete($team->logo);
             $formFields['image']= $request->file('image')->store('users','public');
             $teams->update($formFields);
         }
@@ -131,6 +132,7 @@ class TeamController extends Controller
          if($team->user_id != auth()->id()) {
             abort(403, 'Unauthorized Action');
         }
+        Storage::delete($team->logo);
         $team->delete();
         return redirect('/editprofile')->with('message','Team has been deleted successfully');
     }

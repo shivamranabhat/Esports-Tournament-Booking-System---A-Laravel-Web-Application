@@ -35,128 +35,41 @@
         </div>
     @endif
     <a href="#" class="scrollToTop"><i class="fas fa-angle-double-up"></i></a>
-    <!-- header-section start -->
-    <header id="header-section">
-        <div class="overlay">
-            <div class="container">
-                <div class="row d-flex header-area">
-                    <div class="logo-section flex-grow-1 d-flex align-items-center">
-                        <a class="site-logo site-title" href="">LOGO</a>
-                    </div>
-                    <button class="navbar-toggler ml-auto collapsed" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <nav class="navbar navbar-expand-lg p-0">
-                        <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav main-menu ml-auto">
-                                <li><a href="/" class="active">Home</a></li>
-                                <li class="menu_has_children"><a href="/tournaments">Tournaments</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="/tournaments">Tournaments</a></li>
-                                        @auth()
-                                            <li><a href="/dashboard">Host Tournaments</a></li>
-                                        @else
-                                            <li><a href="/login">Host Tournaments</a></li>
-                                        @endauth
-                                    </ul>
-                                </li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <li><button type="submit" class="btn logout-mobile text-white">Logout</button></li>
-                                </form>
-                            </ul>
-                        </div>
-                    </nav>
-                    <div class="right-area header-action d-flex align-items-center">
-                        <div class="search-icon">
-                            <a href="#"><img src="http://127.0.0.1:8000/images/search_btn.png" alt="icon"></a>
-                        </div>
-                        @auth()
-                            <a href="/myprofile" class="profile">
-                                <span role="button" class="text-decoration-none ml-5" id="profile">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
-                                        class="bi bi-person-circle" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                        <path fill-rule="evenodd"
-                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                    </svg>
-                                </span>
-                            </a>
-                        @else
-                            <a href="/login" class="login-btn">Login</a>
-                            <a href="/register" class="btn text-white cmn-btn">Join Now!</a>
-                        @endauth
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <x-navbar>
+    </x-navbar>
     <!-- header-section end -->
     @yield('page-name')
-    <!-- footer-section start -->
-    <footer id="footer-section">
-        <div class="footer-mid pt-120">
-            <div class="container">
-                <div class="row d-flex">
-                    <div
-                        class="col-lg-8 col-md-8 d-flex justify-content-md-between justify-content-center align-items-center cus-grid">
-                        <div class="logo-section">
-                            <a class="site-logo site-title" href="/">Logo</a>
-                        </div>
-                        <ul class="menu-side d-flex align-items-center">
-                            <li><a href="/" class="active">Home</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div
-                        class="col-lg-4 col-md-4 d-flex align-items-center justify-content-center justify-content-md-end">
-                        <div class="right-area">
-                            <ul class="d-flex">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="main-content">
-                    <div class="row d-flex align-items-center justify-content-center">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="left-area text-center">
-                                <p>Copyright © 2021. All Rights Reserved By
-                                    <a href="#">ESports Nepal</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer-section end -->
+    {{-- footer component --}}
+    <x-footer>
+    </x-footer>
+    {{-- footer component --}}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    {{-- script for displaying weekly score against tournament --}}
+    {{-- script for displaying weekly score against overall tournament --}}
     <script>
-        var ctx = document.getElementById('weeklyChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
+        var data = {!! json_encode($overall_data) !!};
+        var score_tournament_name = Object.values(data.results.name);
+        var overall_score = Object.values(data.results.total_points);
+        //total kills
+        var tournament_names = Object.values(data.kills.name);
+        var total_kills = Object.values(data.kills.total_kills);
+        //week data
+        var week_tournament_name=Object.values(data.week_data.name);
+        var week_score=Object.values(data.week_data.total_points);
+        //month data
+        var month_tournament_name=Object.values(data.month_data.name);
+        var month_score=Object.values(data.month_data.total_points);
+        //To display the total score  in all tournament
+        var ctx = document.getElementById('scoreChart').getContext('2d');
+        var overall_score = new Chart(ctx, {
+            type: 'line',
             data: {
-                labels: {!! json_encode($week_data->pluck('name')) !!},
+                labels: score_tournament_name,
                 datasets: [{
-                    label: 'Weekly Score:',
-                    data: {!! json_encode($week_data->pluck('total_points')) !!},
-                    backgroundColor: ['#3A1078', '#4E31AA', '#2F58CD', '#3795BD'],
-                    borderColor: '',
+                    label: 'Total Score',
+                    data: overall_score,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
             },
@@ -170,45 +83,17 @@
                 }
             }
         });
-    </script>
-    {{-- script for displaying monthly score against tournament --}}
-    <script>
-        var ctx = document.getElementById('monthlyChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($month_data->pluck('name')) !!},
-                datasets: [{
-                    label: 'Monthly Score:',
-                    data: {!! json_encode($month_data->pluck('total_points')) !!},
-                    backgroundColor: ['#3A1078', '#4E31AA', '#2F58CD', '#3795BD'],
-                    borderColor: '',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
-    {{-- script for displaying kills against tournament --}}
-    <script>
+        //To display the total kills  in all tournament
         var ctx = document.getElementById('killsChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
+        var total_kills = new Chart(ctx, {
+            type: 'line',
             data: {
-                labels: {!! json_encode($kills->pluck('name')) !!},
+                labels: tournament_names,
                 datasets: [{
-                    label: 'Total Kills:',
-                    data: {!! json_encode($kills->pluck('total_kills')) !!},
-                    backgroundColor: ['#3A1078', '#4E31AA', '#2F58CD', '#3795BD'],
-                    borderColor: '',
+                    label: 'Total kills',
+                    data: total_kills,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
             },
@@ -222,34 +107,56 @@
                 }
             }
         });
+        //To display the weekly score in all tournament
+        var ctx = document.getElementById('weeklyChart').getContext('2d');
+                var week_score = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: week_tournament_name,
+                        datasets: [{
+                            label: 'Total Weekly Score',
+                            data: week_score,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+        //To display the monthly score in all tournament
+        var ctx = document.getElementById('monthlyChart').getContext('2d');
+                var month_score = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: month_tournament_name,
+                        datasets: [{
+                            label: 'Total Month Score',
+                            data: month_score,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
     </script>
 
-    {{-- script for displaying score against tournament --}}
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($results->pluck('name')) !!},
-                datasets: [{
-                    label: 'Total Score:',
-                    data: {!! json_encode($results->pluck('total_points')) !!},
-                    backgroundColor: ['#3A1078', '#4E31AA', '#2F58CD', '#3795BD'],
-                    borderColor: '',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>

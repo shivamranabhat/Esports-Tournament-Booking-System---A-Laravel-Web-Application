@@ -26,6 +26,6 @@ class Booking extends Model
     //relation with user
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 }

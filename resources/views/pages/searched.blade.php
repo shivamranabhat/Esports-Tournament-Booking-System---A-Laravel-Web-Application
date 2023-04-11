@@ -47,8 +47,8 @@
                 <div class="row mb-40 mp-none">
                     <div class="col-lg-6 col-md-6">
                         <div class="single-input">
-                            <span>Search</span>
                             <form action="{{ route('searchByName') }}">
+                                <span>Search</span>
                                 <input type="text" name="name" placeholder="Search...">
                                 <button type="submit" class="d-none">Search</button>
                             </form>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                @if(!isset($tournaments))
+                @if(!isset($search_tournaments))
                 <div class="single-item">
                     <div class="row">
                        <div class="col-12">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 @else
-                @foreach ($tournaments as $tournament)
+                @foreach ($search_tournaments as $tournament)
                     <div class="single-item">
                         <div class="row">
                             <div class="col-lg-3 col-md-3 d-flex align-items-center">
@@ -156,7 +156,7 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
                             <li class="page-item">
-                                {{$tournaments->links('vendor.pagination.simple-bootstrap-4')}}
+                                {{$search_tournaments->links('vendor.pagination.simple-bootstrap-4')}}
                             </li>
                         </ul>
                     </nav>
@@ -168,6 +168,5 @@
     <x-cta>
     </x-cta>
 @endsection
-
 
 

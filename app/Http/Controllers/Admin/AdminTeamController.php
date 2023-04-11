@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminTeamController extends Controller
 {
@@ -107,6 +108,7 @@ class AdminTeamController extends Controller
                 'player_4'=>'required'
             ]);
             $formFields['image']= $request->file('image')->store('users','public');
+            Storage::delete($teams->id);
             $teams->update($formFields);
         }
         //if user didn't select new image

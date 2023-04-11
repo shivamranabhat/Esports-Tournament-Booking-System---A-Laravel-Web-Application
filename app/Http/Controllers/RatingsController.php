@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Models\Game;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
 
-
-
-class AdminGameController extends Controller
+class RatingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +15,7 @@ class AdminGameController extends Controller
      */
     public function index()
     {
-        $games = Game::orderBy('created_at','desc')->simplePaginate(5);
-        return view('admin.games.index',compact('games'));
+        //
     }
 
     /**
@@ -31,7 +25,7 @@ class AdminGameController extends Controller
      */
     public function create()
     {
-        return view('admin.games.create');
+        //
     }
 
     /**
@@ -42,16 +36,16 @@ class AdminGameController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = auth()->user()->id;
         $formFields = $request->validate([
-            'name'=>'required',
-            'image'=>'required|image'
+            'rating'=>'required',
+            'comment'=>'required',
+            'comments_on'=>'required'
         ]);
-        if($request->hasFile('image')){
-            $formFields['image']= $request->file('image')->store('images','public');
-        }
-        Game::create($formFields);
-        return redirect('/games')->with('message','Game added successfully');
+        Rating::create($formFields+['comments_by'=>$user_id]);
+        return redirect('/')->with('message','Comments added successfully');
     }
+
     /**
      * Display the specified resource.
      *
@@ -71,7 +65,7 @@ class AdminGameController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -83,7 +77,7 @@ class AdminGameController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**
@@ -94,11 +88,12 @@ class AdminGameController extends Controller
      */
     public function destroy($id)
     {
-        $game = Game::findOrFail($id);
-        Storage::delete($game->image);
-        $game->delete();
-        return redirect()->route('/games')->with('message','Game deleted succesfully');
+        $rating = Rating::findOrFail($id);
+         // Make sure logged in user is owner
+         if($rating->comments_by != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $rating->delete();
+        return redirect('/')->with('message','Comments deleted succesfully');
     }
 }
-
-?>
