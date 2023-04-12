@@ -43,7 +43,7 @@ class UserController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/')->with('message','You have been logged out!');
+        return redirect('/')->with('message','Logged out successfully!');
     }
     //Authenticate user
     public function authenticate(Request $request)
@@ -62,7 +62,7 @@ class UserController extends Controller
             }
             //if user then redirect to home
             else{
-                return redirect('/')->with('message','You are logged in');
+                return redirect('/')->with('message','Login successfully');
             }
         }
         return back()->withErrors(['email'=>'Invalid credentials'])->onlyInput('email');

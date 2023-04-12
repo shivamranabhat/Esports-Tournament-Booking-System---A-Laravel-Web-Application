@@ -81,7 +81,7 @@ class ResultsController extends Controller
         ];
         History::insert($data);
         // return redirect('/dashboard')->with('message','Result added successfully');
-        return redirect()->back();
+        return redirect()->back()->with('message','Result added successfully');
 
     }
 

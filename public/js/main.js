@@ -130,7 +130,7 @@
     //hide flash message
     setTimeout(function() {
         $('.flash-message').fadeOut();
-    }, 4000);
+    }, 2000);
 
 
   // Shop Details Slide

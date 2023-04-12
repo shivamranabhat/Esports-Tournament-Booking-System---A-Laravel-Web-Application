@@ -79,6 +79,7 @@
 	<!-- SIDEBAR -->
 	<!-- CONTENT -->
 	<section id="content">
+
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
@@ -99,8 +100,14 @@
 
 		<!-- MAIN -->
 		<main>
-			{{$slot}}
-		</main>
+             {{-- Flash message --}}
+            @if (session()->has('message'))
+                <div class="flash-message text-center" id="flash">
+                <h5> {{ session('message') }}</h5>
+                </div>
+            @endif
+                {{$slot}}
+            </main>
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
@@ -142,5 +149,16 @@
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="http://127.0.0.1:8000/js/admin.js"></script>
     <script src="http://127.0.0.1:8000/js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        var flash= $('#flash');
+
+        // hide the div after 5 seconds
+        setTimeout(function() {
+            flash.hide();
+        }, 2000);
+        });
+
+    </script>
 </body>
 </html>
